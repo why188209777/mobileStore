@@ -19,7 +19,7 @@ public class DBUtil {
 	
 	//获得连接
 	public static Connection getConn() {
-		dsadsada
+		System.out.print("222");
 		Connection conn=null;
         DruidDataSourceFactory factory = new DruidDataSourceFactory();
         Properties p = new Properties();
