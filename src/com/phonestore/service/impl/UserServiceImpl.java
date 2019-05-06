@@ -38,9 +38,5 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return ud.getAll();
 	}
-	public static void main(String[] args) {
-		UserService us = new UserServiceImpl();
-		User use = new User(4, "ะกอ๕", "123456", 1, 1, "1234567890");
-		us.addUser(use);
-	}
+
 }

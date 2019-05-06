@@ -36,16 +36,14 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public User searchUser(int id) {
 		// TODO Auto-generated method stub
-		User user=null;
 		String sql="select * from user where id=?";
-		user=(User) DBUtil.getObject(User.class, sql, id);
+		User user=(User) DBUtil.getObject(User.class, sql, id);
 		return user;
 	}
 
 	@Override
 	public List<User> getAll() {
 		// TODO Auto-generated method stub
-		List<User> list = new ArrayList<>();
 		String sql="select * from user";
 		List<User> user = DBUtil.getObjects(User.class, sql);
 		return user;
