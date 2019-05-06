@@ -3,6 +3,7 @@ package com.phonestore.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
@@ -16,10 +17,10 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 public class DBUtil {
-	
-	//获得连接
+
+	//鑾峰緱杩炴帴
 	public static Connection getConn() {
-		System.out.print("222");
+		
 		Connection conn=null;
         DruidDataSourceFactory factory = new DruidDataSourceFactory();
         Properties p = new Properties();
@@ -41,7 +42,7 @@ public class DBUtil {
         return conn;
 	}
 	
-	//执行删、改操作
+	//鎵ц鍒犮�佹敼鎿嶄綔
 	public static int executeUpdate(String sql, Object...params) {
 		Connection conn = getConn();
 		QueryRunner runner = new QueryRunner();
@@ -54,20 +55,20 @@ public class DBUtil {
 		return 0;
 	}
 	
-	//执行单个查询
+	//鎵ц鍗曚釜鏌ヨ
 	public static Object getObject(Class clazz, String sql, Object...params) {
 		Connection conn = getConn();
 		QueryRunner runner = new QueryRunner();
 		try {
-			runner.query(conn, sql, new BeanHandler<Class>(clazz), params);
+			return runner.query(conn, sql, new BeanHandler<Class>(clazz), params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return null;
 	}
 	
-	//执行全部查询
+	//鎵ц鍏ㄩ儴鏌ヨ
 	public static List getObjects(Class clazz, String sql, Object...params) {
 		Connection conn = getConn();
 		QueryRunner runner = new QueryRunner();
@@ -78,6 +79,13 @@ public class DBUtil {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void main(String[] args) {
+		Connection conn = getConn();
+		if (conn!=null) {
+			System.out.println("成功");
+		}
 	}
 	
 	

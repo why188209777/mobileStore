@@ -10,7 +10,10 @@ public class User {
 	private String phoneNum;
 	
 	
-	
+	public User() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
 	public User(int id, String userName, String password, int vip, int admin, String phoneNum) {
 		super();
 		this.id = id;

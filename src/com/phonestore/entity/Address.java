@@ -7,7 +7,10 @@ public class Address {
 	private int userId;
 	
 	
-	
+	public Address() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
 	public Address(int id, String name, int userId) {
 		super();
 		this.id = id;

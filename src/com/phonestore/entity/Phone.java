@@ -18,7 +18,10 @@ public class Phone {
 	private String operatingSystem;
 	
 	
-	
+	public Phone() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
 	public Phone(int id, int phoneId, String brand, double price, int num, String image, String size, String color,
 			String ram, String rom, String netType, String camera, String cpu, String operatingSystem) {
 		super();
