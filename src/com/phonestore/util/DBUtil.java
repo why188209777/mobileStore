@@ -3,7 +3,6 @@ package com.phonestore.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
@@ -17,13 +16,13 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 public class DBUtil {
-
-	//鑾峰緱杩炴帴
 	public static Connection getConn() {
-		
+		System.out.println();
+		System.out.println();
 		Connection conn=null;
         DruidDataSourceFactory factory = new DruidDataSourceFactory();
         Properties p = new Properties();
+        System.out.println();
         InputStream in = DBUtil.class.getClassLoader().getResourceAsStream("druid.properties");
         try {
 			p.load(in);
