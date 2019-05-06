@@ -14,7 +14,10 @@ public class Orders {
 	private int status;
 	
 	
-	
+	public Orders() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
 	public Orders(int id, String orderId, int userId, Date createTime, double total, String address, String phoneNum,
 			int status) {
 		super();

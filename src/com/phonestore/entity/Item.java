@@ -11,7 +11,10 @@ public class Item {
 	private int orderId;
 	
 	
-	
+	public Item() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
 	public Item(int id, String itemId, String name, String image, double price, int number, int orderId) {
 		super();
 		this.id = id;

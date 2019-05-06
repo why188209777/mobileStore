@@ -16,13 +16,13 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 public class DBUtil {
-	dsadsad
-	//获得连接
 	public static Connection getConn() {
-		System.out.print("222");
+		System.out.println();
+		System.out.println();
 		Connection conn=null;
         DruidDataSourceFactory factory = new DruidDataSourceFactory();
         Properties p = new Properties();
+        System.out.println();
         InputStream in = DBUtil.class.getClassLoader().getResourceAsStream("druid.properties");
         try {
 			p.load(in);
@@ -41,7 +41,7 @@ public class DBUtil {
         return conn;
 	}
 	
-	//执行删、改操作
+	//鎵ц鍒犮�佹敼鎿嶄綔
 	public static int executeUpdate(String sql, Object...params) {
 		Connection conn = getConn();
 		QueryRunner runner = new QueryRunner();
@@ -54,20 +54,20 @@ public class DBUtil {
 		return 0;
 	}
 	
-	//执行单个查询
+	//鎵ц鍗曚釜鏌ヨ
 	public static Object getObject(Class clazz, String sql, Object...params) {
 		Connection conn = getConn();
 		QueryRunner runner = new QueryRunner();
 		try {
-			runner.query(conn, sql, new BeanHandler<Class>(clazz), params);
+			return runner.query(conn, sql, new BeanHandler<Class>(clazz), params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return null;
 	}
 	
-	//执行全部查询
+	//鎵ц鍏ㄩ儴鏌ヨ
 	public static List getObjects(Class clazz, String sql, Object...params) {
 		Connection conn = getConn();
 		QueryRunner runner = new QueryRunner();
@@ -78,6 +78,13 @@ public class DBUtil {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void main(String[] args) {
+		Connection conn = getConn();
+		if (conn!=null) {
+			System.out.println("成功");
+		}
 	}
 	
 	
