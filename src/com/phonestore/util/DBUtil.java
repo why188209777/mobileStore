@@ -16,13 +16,12 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 public class DBUtil {
+	
 	public static Connection getConn() {
-		System.out.println("22222");
-		System.out.println();
+		
 		Connection conn=null;
         DruidDataSourceFactory factory = new DruidDataSourceFactory();
         Properties p = new Properties();
-        System.out.println();
         InputStream in = DBUtil.class.getClassLoader().getResourceAsStream("druid.properties");
         try {
 			p.load(in);
@@ -41,12 +40,11 @@ public class DBUtil {
         return conn;
 	}
 	
-	//鎵ц鍒犮�佹敼鎿嶄綔
 	public static int executeUpdate(String sql, Object...params) {
 		Connection conn = getConn();
-		QueryRunner runner = new QueryRunner();
+		QueryRunner qr = new QueryRunner();
 		try {
-			return runner.update(conn, sql, params);
+			return qr.update(conn, sql, params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,12 +52,11 @@ public class DBUtil {
 		return 0;
 	}
 	
-	//鎵ц鍗曚釜鏌ヨ
 	public static Object getObject(Class clazz, String sql, Object...params) {
 		Connection conn = getConn();
-		QueryRunner runner = new QueryRunner();
+		QueryRunner qr = new QueryRunner();
 		try {
-			return runner.query(conn, sql, new BeanHandler<Class>(clazz), params);
+			return qr.query(conn, sql, new BeanHandler<Class>(clazz), params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,25 +64,16 @@ public class DBUtil {
 		return null;
 	}
 	
-	//鎵ц鍏ㄩ儴鏌ヨ
 	public static List getObjects(Class clazz, String sql, Object...params) {
 		Connection conn = getConn();
-		QueryRunner runner = new QueryRunner();
+		QueryRunner qr = new QueryRunner();
 		try {
-			return (List) runner.query(conn, sql, new BeanListHandler<Class>(clazz), params);
+			return qr.query(conn, sql, new BeanListHandler<Class>(clazz), params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-
-	public static void main(String[] args) {
-		Connection conn = getConn();
-		if (conn!=null) {
-			System.out.println("成功");
-		}
-	}
-	
 	
 }
