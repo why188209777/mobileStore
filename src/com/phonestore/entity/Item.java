@@ -8,14 +8,28 @@ public class Item {
 	private String image;
 	private double price;
 	private int number;
-	private int orderId;
+	private String orderId;
 	
 	
 	public Item() {
 		// TODO Auto-generated constructor stub
 		super();
 	}
-	public Item(int id, String itemId, String name, String image, double price, int number, int orderId) {
+	
+	
+	public Item(String itemId, String name, String image, double price, int number, String orderId) {
+		super();
+		this.itemId = itemId;
+		this.name = name;
+		this.image = image;
+		this.price = price;
+		this.number = number;
+		this.orderId = orderId;
+	}
+
+
+
+	public Item(int id, String itemId, String name, String image, double price, int number, String orderId) {
 		super();
 		this.id = id;
 		this.itemId = itemId;
@@ -61,10 +75,10 @@ public class Item {
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	public int getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(int orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 	@Override

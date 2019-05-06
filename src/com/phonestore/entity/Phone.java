@@ -4,6 +4,7 @@ public class Phone {
 
 	private int id;
 	private int phoneId;
+	private String name;
 	private String brand;
 	private double price;
 	private int num;
@@ -22,24 +23,7 @@ public class Phone {
 		// TODO Auto-generated constructor stub
 		super();
 	}
-	public Phone(int id, int phoneId, String brand, double price, int num, String image, String size, String color,
-			String ram, String rom, String netType, String camera, String cpu, String operatingSystem) {
-		super();
-		this.id = id;
-		this.phoneId = phoneId;
-		this.brand = brand;
-		this.price = price;
-		this.num = num;
-		this.image = image;
-		this.size = size;
-		this.color = color;
-		this.ram = ram;
-		this.rom = rom;
-		this.netType = netType;
-		this.camera = camera;
-		this.cpu = cpu;
-		this.operatingSystem = operatingSystem;
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -51,6 +35,12 @@ public class Phone {
 	}
 	public void setPhoneId(int phoneId) {
 		this.phoneId = phoneId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getBrand() {
 		return brand;
@@ -124,13 +114,15 @@ public class Phone {
 	public void setOperatingSystem(String operatingSystem) {
 		this.operatingSystem = operatingSystem;
 	}
+
 	@Override
 	public String toString() {
-		return "Phone [id=" + id + ", phoneId=" + phoneId + ", brand=" + brand + ", price=" + price + ", num=" + num
-				+ ", image=" + image + ", size=" + size + ", color=" + color + ", ram=" + ram + ", rom=" + rom
-				+ ", netType=" + netType + ", camera=" + camera + ", cpu=" + cpu + ", operatingSystem="
+		return "Phone [id=" + id + ", phoneId=" + phoneId + ", name=" + name + ", brand=" + brand + ", price=" + price
+				+ ", num=" + num + ", image=" + image + ", size=" + size + ", color=" + color + ", ram=" + ram
+				+ ", rom=" + rom + ", netType=" + netType + ", camera=" + camera + ", cpu=" + cpu + ", operatingSystem="
 				+ operatingSystem + "]";
 	}
+	
 	
 	
 }
