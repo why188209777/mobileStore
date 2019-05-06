@@ -17,7 +17,7 @@ import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 public class DBUtil {
 	public static Connection getConn() {
-		System.out.println();
+		System.out.println("22222");
 		System.out.println();
 		Connection conn=null;
         DruidDataSourceFactory factory = new DruidDataSourceFactory();
