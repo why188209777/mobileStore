@@ -46,9 +46,17 @@ public class UserDaoImpl implements UserDao{
 		List<User> user = DBUtil.getObjects(User.class, sql);
 		return user;
 	}
+	
+	@Override
+	public User login(String name, String password) {
+		String sql = "select * from user where username=? and password=?";
+		return (User) DBUtil.getObject(User.class, sql, name, password);
+	}
+	
 	public static void main(String[] args) {
 		UserDaoImpl ud = new UserDaoImpl();
 		User user = new User("小玉","654321", 1, 1, "123456789");
 		ud.addUser(user);
 	}
+	
 }

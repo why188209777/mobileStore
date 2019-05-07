@@ -7,7 +7,7 @@ public interface UserService {
 	public int addUser(User user);
 	public int delUser(int sid);
 	public int updateUser(User use);
-	//
 	public User searchUser(int id);
 	public List<User> getAll();
+	public User login(String name, String password);
 }

@@ -17,6 +17,27 @@
     <link rel="stylesheet" href="assets/css/icomoon.css">
     <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
     <link rel="shortcut icon" href="assets/images/shortcut_logo.png">
+    <script type="text/javascript">
+    	$(function(){
+    		$("button[name=loginBtn]").click()unction(){
+    			var username = $("input[id=user-name]").val();
+    			var password = $("input[id=password]").val();
+    			$.ajax({
+    				type:"post",
+    				url:"user",
+    				cache:false,
+    				data:"username=" + username + "&password=" + password + "&op=login",
+    				dayaType:"text",
+    				success:function(){
+    					location.href="index.html";
+    				},
+    				error:function(){
+    					alert('failed')
+    				}
+    			})
+    		})
+    	})
+    </script>
   </head>
   <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
   <body>
@@ -199,8 +220,7 @@
                   </div>
                   <div class="account-forgot"><a href="#">Forget your Password</a></div>
                 </div>
-                <div class="account-function">
-                  <button class="no-round-btn">Sign in</button><a class="create-account" href="register.html">Or create an account</a>
+                <div class="account-function"><button class="no-round-btn" name="loginBtn">Sign in</button><a class="create-account" href="register.html">Or create an account</a>
                 </div>
               </form>
             </div>

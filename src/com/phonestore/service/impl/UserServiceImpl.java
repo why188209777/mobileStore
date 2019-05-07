@@ -39,4 +39,10 @@ public class UserServiceImpl implements UserService{
 		return ud.getAll();
 	}
 
+	@Override
+	public User login(String name, String password) {
+		// TODO Auto-generated method stub
+		return ud.login(name, password);
+	}
+
 }
