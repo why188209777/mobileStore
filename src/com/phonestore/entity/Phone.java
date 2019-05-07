@@ -3,7 +3,7 @@ package com.phonestore.entity;
 public class Phone {
 
 	private int id;
-	private int phoneId;
+	private String phoneId;
 	private String name;
 	private String brand;
 	private double price;
@@ -17,23 +17,78 @@ public class Phone {
 	private String camera;
 	private String cpu;
 	private String operatingSystem;
-	
+	private String description;
 	
 	public Phone() {
 		// TODO Auto-generated constructor stub
 		super();
 	}
 	
+	
+
+
+
+	public Phone(String phoneId, String name, String brand, double price, int num, String image, String size,
+			String color, String ram, String rom, String netType, String camera, String cpu, String operatingSystem,
+			String description) {
+		super();
+		this.phoneId = phoneId;
+		this.name = name;
+		this.brand = brand;
+		this.price = price;
+		this.num = num;
+		this.image = image;
+		this.size = size;
+		this.color = color;
+		this.ram = ram;
+		this.rom = rom;
+		this.netType = netType;
+		this.camera = camera;
+		this.cpu = cpu;
+		this.operatingSystem = operatingSystem;
+		this.description = description;
+	}
+
+
+
+
+
+	public Phone(int id, String phoneId, String name, String brand, double price, int num, String image, String size,
+			String color, String ram, String rom, String netType, String camera, String cpu, String operatingSystem,
+			String description) {
+		super();
+		this.id = id;
+		this.phoneId = phoneId;
+		this.name = name;
+		this.brand = brand;
+		this.price = price;
+		this.num = num;
+		this.image = image;
+		this.size = size;
+		this.color = color;
+		this.ram = ram;
+		this.rom = rom;
+		this.netType = netType;
+		this.camera = camera;
+		this.cpu = cpu;
+		this.operatingSystem = operatingSystem;
+		this.description = description;
+	}
+
+
+
+
+
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPhoneId() {
+	public String getPhoneId() {
 		return phoneId;
 	}
-	public void setPhoneId(int phoneId) {
+	public void setPhoneId(String phoneId) {
 		this.phoneId = phoneId;
 	}
 	public String getName() {
@@ -114,15 +169,24 @@ public class Phone {
 	public void setOperatingSystem(String operatingSystem) {
 		this.operatingSystem = operatingSystem;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+
 
 	@Override
 	public String toString() {
 		return "Phone [id=" + id + ", phoneId=" + phoneId + ", name=" + name + ", brand=" + brand + ", price=" + price
 				+ ", num=" + num + ", image=" + image + ", size=" + size + ", color=" + color + ", ram=" + ram
 				+ ", rom=" + rom + ", netType=" + netType + ", camera=" + camera + ", cpu=" + cpu + ", operatingSystem="
-				+ operatingSystem + "]";
+				+ operatingSystem + ", description=" + description + "]";
 	}
-	
-	
+
 	
 }
