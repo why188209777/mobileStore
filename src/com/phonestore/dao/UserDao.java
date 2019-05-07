@@ -1,4 +1,4 @@
-package com.phonestrore.dao;
+package com.phonestore.dao;
 
 import java.util.List;
 import com.phonestore.entity.User;

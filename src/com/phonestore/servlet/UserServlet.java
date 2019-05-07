@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.phonestore.entity.User;
 import com.phonestore.service.UserService;
 import com.phonestore.service.impl.UserServiceImpl;
 
-/**
- * Servlet implementation class UserServlet
- */
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -51,6 +49,9 @@ public class UserServlet extends HttpServlet {
 			String name = request.getParameter("username");
 			String password = request.getParameter("password");
 			User user = userService.login(name, password);
+			String json = JSON.toJSONString(user);
+			System.out.println(json);
+			out.println(json);
 		}
 	}
 

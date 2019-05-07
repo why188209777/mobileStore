@@ -2,10 +2,10 @@ package com.phonestore.service.impl;
 
 import java.util.List;
 
+import com.phonestore.dao.ItemDao;
 import com.phonestore.dao.impl.ItemDaoImpl;
 import com.phonestore.entity.Item;
 import com.phonestore.service.ItemService;
-import com.phonestrore.dao.ItemDao;
 
 public class ItemServiceImpl implements ItemService {
 

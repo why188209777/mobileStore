@@ -2,10 +2,10 @@ package com.phonestore.service.impl;
 
 import java.util.List;
 
+import com.phonestore.dao.OrderDao;
 import com.phonestore.dao.impl.OrderDaoImpl;
 import com.phonestore.entity.Order;
 import com.phonestore.service.OrderService;
-import com.phonestrore.dao.OrderDao;
 
 public class OrderServiceImpl implements OrderService {
 

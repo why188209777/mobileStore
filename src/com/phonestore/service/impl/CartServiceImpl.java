@@ -2,10 +2,10 @@ package com.phonestore.service.impl;
 
 import java.util.List;
 
+import com.phonestore.dao.CartDao;
 import com.phonestore.dao.impl.CartDaoImpl;
 import com.phonestore.entity.Cart;
 import com.phonestore.service.CartService;
-import com.phonestrore.dao.CartDao;
 
 public class CartServiceImpl implements CartService{
 	CartDao cd = new CartDaoImpl();

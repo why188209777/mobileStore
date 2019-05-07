@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
+import com.phonestore.dao.ItemDao;
+import com.phonestore.dao.OrderDao;
 import com.phonestore.dao.impl.ItemDaoImpl;
 import com.phonestore.dao.impl.OrderDaoImpl;
 import com.phonestore.entity.Item;
 import com.phonestore.entity.Order;
-import com.phonestrore.dao.ItemDao;
-import com.phonestrore.dao.OrderDao;
 
 /**
  * Servlet implementation class OrderServlet
