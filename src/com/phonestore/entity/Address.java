@@ -11,6 +11,11 @@ public class Address {
 		// TODO Auto-generated constructor stub
 		super();
 	}
+	public Address(String name, int userId) {
+		super();
+		this.name = name;
+		this.userId = userId;
+	}
 	public Address(int id, String name, int userId) {
 		super();
 		this.id = id;

@@ -19,6 +19,12 @@ public class Cart {
 		this.num = num;
 		this.userId = userId;
 	}
+	public Cart(int phoneId, int num, int userId) {
+		super();
+		this.phoneId = phoneId;
+		this.num = num;
+		this.userId = userId;
+	}
 	public int getId() {
 		return id;
 	}

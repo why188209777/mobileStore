@@ -14,6 +14,14 @@ public class User {
 		// TODO Auto-generated constructor stub
 		super();
 	}
+	public User(String userName, String password, int vip, int admin, String phoneNum) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.vip = vip;
+		this.admin = admin;
+		this.phoneNum = phoneNum;
+	}
 	public User(int id, String userName, String password, int vip, int admin, String phoneNum) {
 		super();
 		this.id = id;
