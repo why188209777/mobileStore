@@ -2,7 +2,7 @@ package com.phonestore.entity;
 
 import java.util.Date;
 
-public class Orders {
+public class Order {
 
 	private int id;
 	private String orderId;
@@ -14,11 +14,28 @@ public class Orders {
 	private int status;
 	
 	
-	public Orders() {
+	public Order() {
 		// TODO Auto-generated constructor stub
 		super();
 	}
-	public Orders(int id, String orderId, int userId, Date createTime, double total, String address, String phoneNum,
+	
+	
+	
+	public Order(String orderId, int userId, Date createTime, double total, String address, String phoneNum,
+			int status) {
+		super();
+		this.orderId = orderId;
+		this.userId = userId;
+		this.createTime = createTime;
+		this.total = total;
+		this.address = address;
+		this.phoneNum = phoneNum;
+		this.status = status;
+	}
+
+
+
+	public Order(int id, String orderId, int userId, Date createTime, double total, String address, String phoneNum,
 			int status) {
 		super();
 		this.id = id;
