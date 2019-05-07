@@ -47,7 +47,7 @@ public class OrderDaoImpl implements OrderDao {
 
 	@Override
 	public List<Order> getAll() {
-		String sql = "select * from orders";
+		String sql = "select * from orders ";
 		return DBUtil.getObjects(Order.class, sql);
 	}
 

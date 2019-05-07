@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/css/icomoon.css">
     <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
     <link rel="shortcut icon" href="assets/images/shortcut_logo.png">
+    
 </head>
 <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
 <body>
@@ -210,7 +211,7 @@
                                 <th class="product-total" scope="col">总价</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="test">
                             <tr>
                                 <td class="product-id" scope="col">201903254659889</td>
                                 <td class="product-iamge">
@@ -236,18 +237,6 @@
                                 </td>
                                 <td class="product-total">$460.00</td>
 
-                            </tr>
-                            <tr>
-                                <td class="product-id" scope="col"></td>
-                                <td class="product-iamge">
-                                    <div class="img-wrapper"><img src="assets/images/product/product05.png" alt="product image"></div>
-                                </td>
-                                <td class="product-name">Chrysanthemum</td>
-                                <td class="product-price">$460.00</td>
-                                <td class="product-quantity">
-                                    <input class="quantity no-round-input" type="number" min="1" value="2">
-                                </td>
-                                <td class="product-total">$460.00</td>
                             </tr>
                             </tbody>
                         </table>
@@ -347,5 +336,36 @@
 <script src="assets/js/vanilla-tilt.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script></script>
+<script type="text/javascript">
+    $(function(){
+    	$.ajax({
+    		type:"post",
+    		url:"OrderServlet",
+    		dataType:"json",
+    		cache:false,
+    		success:function(data){
+    			//console.log(data);
+    			var itemlist = data.itemlist;
+    			var orderlist = data.orderlist;
+   				$(itemlist).each(function(index, item){
+   					var order = orderlist[index];
+   					html = "<td class='product-id' scope='col'>"+item.orderId+"</td><td class='product-iamge'>"+
+                    "<div class='img-wrapper'><img src='assets/images/product/product05.png' alt='product image'></div>"
+                    +"</td>"+
+                    "<td class='product-name'>"+order.name+"</td>"+
+                    "<td class='product-price'>$"+order.price+"</td>"+
+                    "<td class='product-quantity'>"+
+                        "<input class='quantity no-round-input' type='number' min='1' value='1'>"+
+                    "</td>"+
+                    "<td class='product-total'>$"+item.total+"</td>"
+                    $("#test").append('<tr>'+html+'</tr>');
+   				})
+    		},
+    		error:function(data){
+    			console.log("有错误")
+    		}
+    	});
+    })
+</script>
 </body>
 </html>
