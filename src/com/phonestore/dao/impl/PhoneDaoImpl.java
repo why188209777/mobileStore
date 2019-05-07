@@ -13,14 +13,15 @@ public class PhoneDaoImpl implements PhoneDao {
 		String sql = "insert into phone "
 				+ "(phoneid, name, brand, price,"
 				+ "num, image, size, color, ram,"
-				+ "rom, nettype, carema, cpu, operationsystem) values "
-				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "rom, nettype, camera, cpu,"
+				+ "operatingsystem, description) values "
+				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		return DBUtil.executeUpdate(sql,
 				phone.getPhoneId(), phone.getName(), phone.getBrand(),
 				phone.getPrice(), phone.getNum(), phone.getImage(),
 				phone.getSize(), phone.getColor(), phone.getRam(),
 				phone.getRom(), phone.getNetType(), phone.getCamera(),
-				phone.getCpu(), phone.getOperatingSystem()
+				phone.getCpu(), phone.getOperatingSystem(), phone.getDescription()
 				);
 	}
 
@@ -33,16 +34,16 @@ public class PhoneDaoImpl implements PhoneDao {
 	@Override
 	public int updatePhone(Phone phone) {
 		String sql = "update phone set "
-				+ "phoneid, name, brand, price,"
-				+ "num, image, size, color, ram,"
-				+ "rom, nettype, carema, cpu,"
-				+ "operationsystem where id=?";
+				+ "phoneid=?, name=?, brand=?, price=?,"
+				+ "num=?, image=?, size=?, color=?, ram=?,"
+				+ "rom=?, nettype=?, camera=?, cpu=?,"
+				+ "operatingsystem=?, description=? where id=?";
 		return DBUtil.executeUpdate(sql,
 				phone.getPhoneId(), phone.getName(), phone.getBrand(),
 				phone.getPrice(), phone.getNum(), phone.getImage(),
 				phone.getSize(), phone.getColor(), phone.getRam(),
 				phone.getRom(), phone.getNetType(), phone.getCamera(),
-				phone.getCpu(), phone.getOperatingSystem(), phone.getId()
+				phone.getCpu(), phone.getOperatingSystem(), phone.getDescription(), phone.getId()
 				);
 	}
 
@@ -58,7 +59,6 @@ public class PhoneDaoImpl implements PhoneDao {
 		return DBUtil.getObjects(Phone.class, sql);
 	}
 
-
 	@Override
 	public long getTotalCount() {
 		String sql = "select count(*) from phone";
@@ -72,5 +72,4 @@ public class PhoneDaoImpl implements PhoneDao {
 		String sql = "select * from phone limit ?,?";
 		return DBUtil.getObjects(Phone.class, sql, pageIndex, pageSize);
 	}
-
 }
