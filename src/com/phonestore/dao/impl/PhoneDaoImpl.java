@@ -2,9 +2,9 @@ package com.phonestore.dao.impl;
 
 import java.util.List;
 
+import com.phonestore.dao.PhoneDao;
 import com.phonestore.entity.Phone;
 import com.phonestore.util.DBUtil;
-import com.phonestrore.dao.PhoneDao;
 
 public class PhoneDaoImpl implements PhoneDao {
 

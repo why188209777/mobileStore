@@ -5,10 +5,12 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.phonestore.entity.User;
 import com.phonestore.service.UserService;
 import com.phonestore.service.impl.UserServiceImpl;
@@ -51,11 +53,17 @@ public class UserServlet extends HttpServlet {
 			String name = request.getParameter("username");
 			String password = request.getParameter("password");
 			User user = userService.login(name, password);
-			
-			System.out.println(name);
-			System.out.println(password);
-			System.out.println(user);
-			out.println(user);
+			if (user != null) {
+				Cookie nameCookie = new Cookie("username", name);
+				Cookie pwdCookie = new Cookie("password", password);
+				nameCookie.setMaxAge(60);
+				pwdCookie.setMaxAge(60);
+				response.addCookie(nameCookie);
+				response.addCookie(pwdCookie);
+			}
+			String json = JSON.toJSONString(user);
+			System.out.println(json);
+			out.println(json);
 		}
 	}
 

@@ -199,7 +199,9 @@
                   </div>
                   <div class="account-forgot"><a href="#">Forget your Password</a></div>
                 </div>
-                <div class="account-function"><button class="no-round-btn" name="loginBtn">Sign in</button><a class="create-account" href="register.html">Or create an account</a>
+                <div class="account-function">
+               	  <button class="no-round-btn" id="loginBtn" type="button">Sign in</button>
+               	  <a class="create-account" href="register.html">Or create an account</a>
                 </div>
               </form>
             </div>
@@ -296,20 +298,32 @@
     <script src="assets/js/main.js"></script>
     <script type="text/javascript">
     	$(function(){
-    		$("button[name=loginBtn]").click(function(){
+    		
+    		
+    		$("#loginBtn").click(function(){
     			var username = $("input[id=user-name]").val();
     			var password = $("input[id=password]").val();
     			$.ajax({
     				type:"post",
     				url:"user",
     				cache:false,
-    				data:"username=" + username + "&password=" + password + "&op=login",
-    				dayaType:"text",
+    				//data:"username=" + username + "&password=" + password + "&op=login",
+    				data:{
+    					username:username,
+    					password:password,
+    					op:"login"
+    				},
+    				dataType:"json",
     				success:function(data){
-    					alert(data)
+    					if (data != null){
+    						window.location.href="index.html";
+    					}else{
+    						alert('用户名或密码错误')
+    					}
+    					
     				},
     				error:function(){
-    					alert('failed')
+    					alert('登录出错')
     				}
     			})
     		})

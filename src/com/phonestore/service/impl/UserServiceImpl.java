@@ -2,10 +2,10 @@ package com.phonestore.service.impl;
 
 import java.util.List;
 
+import com.phonestore.dao.UserDao;
 import com.phonestore.dao.impl.UserDaoImpl;
 import com.phonestore.entity.User;
 import com.phonestore.service.UserService;
-import com.phonestrore.dao.UserDao;
 
 public class UserServiceImpl implements UserService{
 	UserDao ud = new UserDaoImpl();

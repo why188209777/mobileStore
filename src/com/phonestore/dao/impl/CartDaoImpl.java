@@ -2,10 +2,9 @@ package com.phonestore.dao.impl;
 
 import java.util.List;
 
-
+import com.phonestore.dao.CartDao;
 import com.phonestore.entity.Cart;
 import com.phonestore.util.DBUtil;
-import com.phonestrore.dao.CartDao;
 
 public class CartDaoImpl implements CartDao{
 

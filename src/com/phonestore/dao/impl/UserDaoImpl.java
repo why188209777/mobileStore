@@ -3,10 +3,9 @@ package com.phonestore.dao.impl;
 
 import java.util.List;
 
-
+import com.phonestore.dao.UserDao;
 import com.phonestore.entity.User;
 import com.phonestore.util.DBUtil;
-import com.phonestrore.dao.UserDao;
 
 public class UserDaoImpl implements UserDao{
 	

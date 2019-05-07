@@ -3,9 +3,9 @@ package com.phonestore.dao.impl;
 
 import java.util.List;
 
+import com.phonestore.dao.AddressDao;
 import com.phonestore.entity.Address;
 import com.phonestore.util.DBUtil;
-import com.phonestrore.dao.AddressDao;
 
 public class AddressDaoImpl implements AddressDao{
 

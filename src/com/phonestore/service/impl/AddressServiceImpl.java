@@ -2,10 +2,10 @@ package com.phonestore.service.impl;
 
 import java.util.List;
 
+import com.phonestore.dao.AddressDao;
 import com.phonestore.dao.impl.AddressDaoImpl;
 import com.phonestore.entity.Address;
 import com.phonestore.service.AddressService;
-import com.phonestrore.dao.AddressDao;
 
 public class AddressServiceImpl implements AddressService{
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50724
 File Encoding         : 65001
 
-Date: 2019-05-07 09:11:55
+Date: 2019-05-07 10:51:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,10 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `detail` varchar(255) DEFAULT NULL,
+  `postalcode` varchar(255) DEFAULT NULL,
+  `phonenum` varchar(11) DEFAULT NULL,
   `userid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
@@ -29,8 +32,8 @@ CREATE TABLE `address` (
 -- ----------------------------
 -- Records of address
 -- ----------------------------
-INSERT INTO `address` VALUES ('1', '浙江省杭州市', '1');
-INSERT INTO `address` VALUES ('2', '浙江省舟山市', '1');
+INSERT INTO `address` VALUES ('1', '浙江省杭州市', null, null, null, '1');
+INSERT INTO `address` VALUES ('2', '浙江省舟山市', null, null, null, '1');
 
 -- ----------------------------
 -- Table structure for `cart`
