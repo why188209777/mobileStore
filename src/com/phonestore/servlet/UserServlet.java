@@ -52,6 +52,10 @@ public class UserServlet extends HttpServlet {
 			String password = request.getParameter("password");
 			User user = userService.login(name, password);
 			
+			System.out.println(name);
+			System.out.println(password);
+			System.out.println(user);
+			out.println(user);
 		}
 	}
 
