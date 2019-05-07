@@ -53,14 +53,6 @@ public class UserServlet extends HttpServlet {
 			String name = request.getParameter("username");
 			String password = request.getParameter("password");
 			User user = userService.login(name, password);
-			if (user != null) {
-				Cookie nameCookie = new Cookie("username", name);
-				Cookie pwdCookie = new Cookie("password", password);
-				nameCookie.setMaxAge(60);
-				pwdCookie.setMaxAge(60);
-				response.addCookie(nameCookie);
-				response.addCookie(pwdCookie);
-			}
 			String json = JSON.toJSONString(user);
 			System.out.println(json);
 			out.println(json);
