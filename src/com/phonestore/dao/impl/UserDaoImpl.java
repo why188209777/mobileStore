@@ -1,8 +1,6 @@
 package com.phonestore.dao.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -16,8 +14,8 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int addUser(User user) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO user VALUES (?,?,?,?,?,?)";
-		return DBUtil.executeUpdate(sql, user.getId(),user.getUserName(),user.getPassword(),user.getVip(),user.getAdmin(),user.getPhoneNum());
+		String sql = "INSERT INTO user (username,password,vip,guanliyuan,phonenum) VALUES (?,?,?,?,?)";
+		return DBUtil.executeUpdate(sql, user.getUserName(),user.getPassword(),user.getVip(),user.getAdmin(),user.getPhoneNum());
 	}
 
 	@Override
@@ -47,5 +45,10 @@ public class UserDaoImpl implements UserDao{
 		String sql="select * from user";
 		List<User> user = DBUtil.getObjects(User.class, sql);
 		return user;
+	}
+	public static void main(String[] args) {
+		UserDaoImpl ud = new UserDaoImpl();
+		User user = new User("小玉","654321", 1, 1, "123456789");
+		ud.addUser(user);
 	}
 }
