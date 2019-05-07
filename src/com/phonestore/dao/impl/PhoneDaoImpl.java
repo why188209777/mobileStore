@@ -59,5 +59,17 @@ public class PhoneDaoImpl implements PhoneDao {
 		return DBUtil.getObjects(Phone.class, sql);
 	}
 
-	
+	@Override
+	public long getTotalCount() {
+		String sql = "select count(*) from phone";
+		return DBUtil.getTotalCount(sql);
+	}
+
+	//分页查询
+	@Override
+	public List<Phone> getAllPhoneByPage(int pageIndex, int pageSize) {
+		pageIndex = (pageIndex - 1) * pageSize;
+		String sql = "select * from phone limit ?,?";
+		return DBUtil.getObjects(Phone.class, sql, pageIndex, pageSize);
+	}
 }

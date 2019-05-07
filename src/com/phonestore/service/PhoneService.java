@@ -11,4 +11,6 @@ public interface PhoneService {
 	public int updatePhone(Phone phone);
 	public Phone searchPhone(int id);
 	public List<Phone> getAll();
+	public long getTotalCount();
+	public List<Phone> getAllPhoneByPage(int pageIndex, int pageSize);
 }

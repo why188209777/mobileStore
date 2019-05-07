@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
@@ -76,4 +77,18 @@ public class DBUtil {
 		return null;
 	}
 	
+	//获取总条数
+	public static long getTotalCount(String sql, Object...params) {
+		Connection conn = getConn();
+		QueryRunner qr = new QueryRunner();
+		try {
+			return (long) qr.query(conn, sql, new ScalarHandler());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
+
+

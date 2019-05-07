@@ -40,4 +40,16 @@ public class PhoneServiceImpl implements PhoneService {
 		return dao.getAll();
 	}
 
+	@Override
+	public long getTotalCount() {
+		// TODO Auto-generated method stub
+		return dao.getTotalCount();
+	}
+
+	@Override
+	public List<Phone> getAllPhoneByPage(int pageIndex, int pageSize) {
+		// TODO Auto-generated method stub
+		return dao.getAllPhoneByPage(pageIndex, pageSize);
+	}
+
 }
