@@ -22,9 +22,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int updateUser(User use) {
+
+	public int updateUser(User user) {
 		// TODO Auto-generated method stub
-		return ud.updateUser(use);
+		return ud.updateUser(user);
 	}
 
 	@Override
@@ -43,6 +44,18 @@ public class UserServiceImpl implements UserService{
 	public User login(String name, String password) {
 		// TODO Auto-generated method stub
 		return ud.login(name, password);
+	}
+
+	@Override
+	public List<User> getAllUserByPage(int pageIndex, int pageSize, Object... params) {
+		// TODO Auto-generated method stub
+		return ud.getAllUserByPage(pageIndex, pageSize, params);
+	}
+
+	@Override
+	public int getTotalCount(Object...params) {
+		// TODO Auto-generated method stub
+		return ud.getTotalCount(params);
 	}
 
 }

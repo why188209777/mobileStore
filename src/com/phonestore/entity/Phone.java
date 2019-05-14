@@ -28,6 +28,17 @@ public class Phone {
 
 
 
+	public Phone(String phoneId, double price, int num, String description) {
+		this.phoneId = phoneId;
+		this.price = price;
+		this.num = num;
+		this.description = description;
+	}
+
+
+
+
+
 	public Phone(String phoneId, String phonename, String brand, double price, int num, String image, String size,
 			String color, String ram, String rom, String netType, String camera, String cpu, String operatingSystem,
 			String description) {
@@ -174,6 +185,15 @@ public class Phone {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	
+
+
+
+	public Phone(String brand) {
+		this.brand = brand;
+
 	}
 
 

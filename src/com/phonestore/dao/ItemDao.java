@@ -12,6 +12,5 @@ public interface ItemDao {
 	public int updateItem(Item item);
 	public Item searchItem(int id);
 	public List<Item> getAll();
-	//根据订单号查询订单详细信息
 	public List<Item> searchItemsByOrderId(String orderId);
 }

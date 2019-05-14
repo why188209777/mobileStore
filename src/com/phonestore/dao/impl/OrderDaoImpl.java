@@ -2,7 +2,6 @@ package com.phonestore.dao.impl;
 
 import java.util.Calendar;
 import java.util.List;
-
 import com.phonestore.dao.OrderDao;
 import com.phonestore.entity.Order;
 import com.phonestore.util.DBUtil;
@@ -27,6 +26,12 @@ public class OrderDaoImpl implements OrderDao {
 		return DBUtil.executeUpdate(sql, id);
 	}
 
+	@Override
+	public int delOrderByOrderId(String orderId) {
+		String sql = "delete from orders where orderid=?";
+		return DBUtil.executeUpdate(sql, orderId);
+	}
+	
 	@Override
 	public int updateOrder(Order order) {
 		String sql = "update orders set "
@@ -93,4 +98,5 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	
+
 }

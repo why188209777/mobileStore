@@ -13,8 +13,10 @@ public class AddressDaoImpl implements AddressDao{
 	@Override
 	public int addAddress(Address address) {
 		// TODO Auto-generated method stub
+
 		String sql="insert into address (name,city,detail,postalcode,phonenum,userid) values (?,?,?,?,?,?)";
 		return DBUtil.executeUpdate(sql, address.getName(),address.getCity(),address.getDetail(),address.getPostalcode(),address.getPhoneNum(),address.getUserId());
+
 	}
 
 	@Override
@@ -27,8 +29,10 @@ public class AddressDaoImpl implements AddressDao{
 	@Override
 	public int updateAddress(Address address) {
 		// TODO Auto-generated method stub
+
 		String sql="update address set name=?,city=?,detail=?,postalcode=?,phonenum=?,userid=? where id=?";
 		return DBUtil.executeUpdate(sql, address.getName(),address.getCity(),address.getDetail(),address.getPostalcode(),address.getPhoneNum(),address.getId(),address.getUserId());
+
 	}
 
 	@Override
@@ -70,6 +74,10 @@ public class AddressDaoImpl implements AddressDao{
 		}else {
 			return (int) DBUtil.getTotalCount(sql);
 		}
+	}
+	public List<Address> searchAllAddressByUserId(int userId) {
+		String sql="select * from address where userid=?";
+		return DBUtil.getObjects(Address.class, sql, userId);
 	}
 	
 }

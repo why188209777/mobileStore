@@ -26,13 +26,12 @@ public class CartServiceImpl implements CartService{
 	public Cart searchCart(int id) {
 		// TODO Auto-generated method stub
 		return cd.searchCart(id);
+
 	}
 
-	@Override
-	public List<Cart> getAll() {
-		// TODO Auto-generated method stub
-		return cd.getAll();
-	}
+
+
+
 
 
 	@Override
@@ -75,5 +74,22 @@ public class CartServiceImpl implements CartService{
 		// TODO Auto-generated method stub
 		return cd.updateAllChecked();
 	}
+
+
+	@Override
+	public List<Cart> getAll() {
+		// TODO Auto-generated method stub
+		return cd.getAll();
+	}
+
+
+	@Override
+	public List<Cart> getAllCart(int userId) {
+		// TODO Auto-generated method stub
+		return cd.getAllCart(userId);
+	}
+
+
+	
 
 }

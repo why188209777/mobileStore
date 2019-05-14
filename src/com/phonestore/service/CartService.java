@@ -14,5 +14,6 @@ public interface CartService {
 	public int updateAllChecked();
 	public Cart searchCart(int id);
 	public List<Cart> getAll();
+	public List<Cart> getAllCart(int userId);
 	public List<Cart> getAllCartChecked(int userId);
 }

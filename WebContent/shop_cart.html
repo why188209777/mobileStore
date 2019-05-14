@@ -612,61 +612,19 @@
                         
        				})
 					$(".total").html("0元");  
-   					/* $('.product-checked ').click(function(){
-   						var checked = $(this).prop("checked");
-   						var checkedid = $(".product-id").children().html();
-   						console.log(checked);
-   						console.log(checked);
-   						$.ajax({
-	        					type:"post",
-	        					url:"Cart",
-	        					data:{
-	        						checked:checked,
-	        						checkedid:checkedid,
-   	    							op:"updatechecked"
-   	    						},
-	        					dataType:"json",
-	        					cache:false,
-	        					success:function(data){
-	        						console.log("checked更新成功")
-	        					},
-	    						error:function(data){
-	    		        			console.log("checked有错误");
-	    		        		}
-	   	  					});
-   						}) */
    					
-   					/* $('.product-checked ').bind('click', function(event) {
-   						var check = $(this).parent().next().next().next().next().next().next().html();
-   						var checked = $(this).prop("checked").toString();
-   			    		console.log(check);
-   			    		$(".producttotal").each(function(){
-   	   	          			if(checked == "true"){  
-   	   	          				sum += parseInt($(this).html());
-   	   	          				$(".total").html(sum+"元");
-   	   	          			}else{
-   	   	          				sum -= parseInt($(this).html());
-   	   	          				$(".total").html(sum+"元");
-   	   	          			}
-   	   	          			
-						});
-   					}) */
    					$('.num ').bind('input propertychange', function(event) {
    						sum=0;
    	   		    	 	var num = $(this).val();
     	   	         	var price = $(this).parent().prev().prev().html();    	   	         	
     	   	      		var numid = $(this).parent().prev().children().html();
-    	   	      		//var checked = $(this).parent().prev().prev().prev().prev().prev().children().is(":checked");
-    	   	      		//var checked=$(".product-checked").is(":checked");
     	   	      		
-    	 
    	   	              	total = num*price;
    	   	                $(this).parent().next().html(total);
    	   	 
-   	   	          		//$(".producttotal").each(function(){
+   	   	          		
    	   	          			$(".product-checked").each(function(){
-   	   	          				/* alert($(this).parent().next().next().next().next().next().next().html());
-   	   	          				alert($(this).prop("checked")); */
+   	   	          				
    	   	          				if($(this).is(":checked")){
 	   	          					sum += parseInt($(this).parent().next().next().next().next().next().next().html());
 	   	          				}
@@ -674,21 +632,10 @@
 	   	          					sum+=0;
 	   	          				}
    	   	          			})
-   	   	          			/*  */
    	   	          			
-						//});	
    	   	          		$(".total").html(sum+"元");
    	   	          		
-   	   	             	/* $(".producttotal").each(function(){
-   	   	                	var reg = /(^[\-0-9][0-9]*(.[0-9]+)?)$/;
-   	   	                	var pattern = new RegExp(reg);
-   	   	                	if(pattern.test($(this).html())){
-   	   	                		sum+= parseInt($(this).html());
-   	   	                	}else{
-   	   	                		var nprice = parseInt($(this).children().children().html());
-   	   	                		sum+= nprice;
-   	   	                	}	
-   	   	              	}); */
+   	   	             	
    	   	  					$.ajax({
    	        					type:"post",
    	        					url:"Cart",
@@ -712,29 +659,7 @@
         			console.log("有错误")
         		},
         	});
-    		/* $("input[class=oc]").click(function(){
-				$("input[class=product-checked]").prop("checked",true);	
-				var checked = $('.product-checked ').prop("checked");
-	    		console.log(id);
-	    		console.log(checked);
-				$.ajax({
-					type:"post",
-					url:"Cart",
-					data:{
-						checked:checked,
-						id:id,
-						op:"updatechecked"
-						},
-					dataType:"json",
-					cache:false,
-					success:function(data){
-						console.log("checked更新成功")
-						},
-					error:function(data){
-		        		console.log("checked有错误");
-		       			}
-	 				});
-			}) */
+    		
 			
     		$("input[id=check1]").click(function(){
     			sum=0;
@@ -786,25 +711,7 @@
      				});
         	})
         	
-        	/* $(".normal-btn").click(function(){
-        		$.ajax({
-            	type:"post",
-            	url:"Cart",
-            	data:"op=add",
-            	dataType:"json",
-            	cache:false,
-            	success:function(data){
-            		if(data>0){
-            			alert("删除成功");
-                		window.location.href="shop_cart.html";
-            		}
-            		else{
-            			alert("删除失败");
-            		}
-            	},
-        		error:function(data){},
-        	}); */
-        	/* }) */
+        	
     	})
     	function update(id){
     		var checked = $('.product-checked ').prop("checked").toString();

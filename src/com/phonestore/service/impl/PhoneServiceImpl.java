@@ -53,6 +53,71 @@ public class PhoneServiceImpl implements PhoneService {
 	}
 
 	@Override
+	public Phone searchPhone(String imageUrl) {
+		return dao.searchPhone(imageUrl);
+	}
+
+	@Override
+	public List<Phone> searchBrandPhone(String brand,int pageIndex, int pageSize) {
+		return dao.searchBrandPhone(brand,pageIndex,pageSize);
+	}
+
+	@Override
+	public List<Phone> searchPricePhone(String minPrice, String maxPrice,int pageIndex, int pageSize) {
+		return dao.searchPricePhone(minPrice, maxPrice,pageIndex,pageSize);
+	}
+
+	@Override
+	public List<Phone> searchDistinctBrand() {
+		return dao.searchDistinctBrand();
+	}
+
+	@Override
+	public List<Phone> vagueSearchPhone(String phoneName,int pageIndex, int pageSize) {
+		return dao.vagueSearchPhone(phoneName,pageIndex,pageSize);
+	}
+
+	@Override
+	public long getTotalCountByBrand(String brand) {
+		// TODO Auto-generated method stub
+		return dao.getTotalCountByBrand(brand);
+	}
+
+	@Override
+	public long getTotalCountByVague(String phoneName) {
+		// TODO Auto-generated method stub
+		return dao.getTotalCountByVague(phoneName);
+	}
+
+	@Override
+	public long getTotalCountByPrice(String minPrice, String maxPrice) {
+		// TODO Auto-generated method stub
+		return dao.getTotalCountByPrice(minPrice, maxPrice);
+	}
+
+	@Override
+	public Phone searchPhoneByPhoneId(String phoneid) {
+		// TODO Auto-generated method stub
+		return dao.searchPhoneByPhoneId(phoneid);
+	}
+
+	@Override
+	public int delPhoneByPhoneId(String phoneid) {
+		// TODO Auto-generated method stub
+		return dao.delPhoneByPhoneId(phoneid);
+	}
+
+	@Override
+	public int updatePhoneByNum(int num, String phoneid) {
+		return dao.updatePhoneByNum(num, phoneid);
+	}
+
+	@Override
+	public int modifyPhone(Phone phone) {
+		// TODO Auto-generated method stub
+		return dao.modifyPhone(phone);
+	}
+	@Override
 	public Phone getPhoneByPhoneId(int phoneId) {
 		// TODO Auto-generated method stub
 		return dao.getPhoneByPhoneId(phoneId);

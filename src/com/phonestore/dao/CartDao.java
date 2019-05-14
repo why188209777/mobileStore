@@ -15,6 +15,7 @@ public interface CartDao {
 	public int updateAllChecked();
 	public Cart searchCart(int id);
 	public List<Cart> getAll();
+	public List<Cart> getAllCart(int userId);
 	//获取checked的信息用于结算订单
 	public List<Cart> getAllCartChecked(int userId);
 }

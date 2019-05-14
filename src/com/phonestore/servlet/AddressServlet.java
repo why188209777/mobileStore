@@ -122,6 +122,7 @@ public class AddressServlet extends HttpServlet {
 			String json = JSON.toJSONString(updateAddress);
 			out.print(json);
 		}
+
 	}
 
 }

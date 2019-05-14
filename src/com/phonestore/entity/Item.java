@@ -1,5 +1,7 @@
 package com.phonestore.entity;
 
+import com.phonestore.util.IdWorker;
+
 public class Item {
 
 	private int id;

@@ -1,5 +1,6 @@
 package com.phonestore.servlet;
 
+
 import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,9 +22,14 @@ import com.phonestore.dao.UserDao;
 import com.phonestore.dao.impl.ItemDaoImpl;
 import com.phonestore.dao.impl.OrderDaoImpl;
 import com.phonestore.dao.impl.UserDaoImpl;
+import com.phonestore.entity.Address;
 import com.phonestore.entity.Item;
 import com.phonestore.entity.Order;
 import com.phonestore.entity.User;
+import com.phonestore.service.AddressService;
+import com.phonestore.service.OrderService;
+import com.phonestore.service.impl.AddressServiceImpl;
+import com.phonestore.service.impl.OrderServiceImpl;
 
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
@@ -56,25 +62,52 @@ public class OrderServlet extends HttpServlet {
 		ItemDao id = new ItemDaoImpl();
 		OrderDao od = new OrderDaoImpl();
 		UserDao ud = new UserDaoImpl();
-		List<Order> list = od.getAll();
+		OrderService orderService = new OrderServiceImpl();
+		AddressService addressService = new AddressServiceImpl();
+		
 		List<Item> list2=id.getAll();
+		
 		if ("list".equals(op)) {
-			Map map = new HashMap();
-			map.put("orderlist", list);
-			String json = JSON.toJSONString(map);
+			int userid =Integer.parseInt(request.getParameter("userid"));
+			List<Order> list = orderService.searcOrderByUserId(userid);
+			String json = JSON.toJSONString(list);
+			System.out.println("orderList" + list);
+			System.out.println("json:" + json);
 			out.println(json);
 		}
+		
+		if ("cancel".equals(op)) {
+			String orderId = request.getParameter("orderid");
+			int delOrder = orderService.delOrderByOrderId(orderId);
+			String json = JSON.toJSONString(delOrder);
+			out.println(json);
+		}
+		
+		if ("add".equals(op)) {
+			int userId = Integer.parseInt(request.getParameter("userid"));
+			double total = Double.parseDouble(request.getParameter("total"));
+			int addressId = Integer.parseInt(request.getParameter("addressid"));
+			Address address = addressService.searchAddress(addressId);
+			int status = Integer.parseInt(request.getParameter("status"));
+			Order order = new Order(
+				userId, total, address.getCity() + " " + address.getDetail(),
+				address.getPhoneNum(), status);
+			System.out.println("order:" + order);
+			int addOrder = orderService.addOrder(order);
+			String json = JSON.toJSONString(addOrder);
+			out.println(json);
 		if ("show".equals(op)) {
 			String orderid = request.getParameter("id");
 			List<Item> itemlist = id.searchItemsByOrderId(orderid);
-			String json = JSON.toJSONString(itemlist);
-			out.print(json);
+			String json1 = JSON.toJSONString(itemlist);
+			out.print(json1);
 		}
 		if ("getlist".equals(op)) {
+			List<Order> list = od.getAll();
 			List<User> userList = new ArrayList<>();
 			List<Item> itemlist = new ArrayList<>();
-			for (Order order : list) {
-				User user = ud.searchUser(order.getUserId());
+			for (Order order1 : list) {
+				User user = ud.searchUser(order1.getUserId());
 				userList.add(user);
 				
 			}
@@ -103,15 +136,15 @@ public class OrderServlet extends HttpServlet {
 			map.put("userlist", userList);
 			map.put("pageIndex", pageIndex);
 			map.put("totalSize", totalSize);
-			String json = JSON.toJSONString(map);
-			out.print(json);
+			String json1 = JSON.toJSONString(map);
+			out.print(json1);
 		}
 		if ("dellist".equals(op)) {
 			int itemid = Integer.parseInt(request.getParameter("id"));
 			int delOrder = od.delOrder(itemid);
-			String json = JSON.toJSONString(delOrder);
-			out.print(json);
+			String json1 = JSON.toJSONString(delOrder);
+			out.print(json1);
 		}
 	}
-
+}
 }

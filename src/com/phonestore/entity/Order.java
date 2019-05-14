@@ -1,8 +1,10 @@
 package com.phonestore.entity;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.phonestore.util.IdWorker;
 
 public class Order {
 
@@ -24,10 +26,11 @@ public class Order {
 	
 	
 	
-	public Order(int id, int userId, double total, String address, String phoneNum, int status) {
+	public Order(int userId, double total, String address, String phoneNum, int status) {
 		super();
-		this.id = id;
+		this.orderId = String.valueOf(new IdWorker().nextId());
 		this.userId = userId;
+		this.createTime = Calendar.getInstance().getTime();
 		this.total = total;
 		this.address = address;
 		this.phoneNum = phoneNum;

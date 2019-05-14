@@ -191,7 +191,7 @@
                 <label for="user-name">Username or email address *</label>
                 <input class="no-round-input" id="user-name" type="text">
                 <label for="password">Password *</label>
-                <input class="no-round-input" id="password" type="text">
+                <input class="no-round-input" id="password" type="password">
                 <div class="account-method">
                   <div class="account-save">
                     <input id="savepass" type="checkbox">
@@ -297,6 +297,7 @@
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/jquery.cookie.js"></script>
+    <script src="assets/js/jquery.md5.js"></script>
     <script type="text/javascript">
     	$(function(){
     		//在加载页面时查询是否有cookie
@@ -314,6 +315,10 @@
     		$("#loginBtn").click(function(){
     			var username = $("input[id=user-name]").val();
     			var password = $("input[id=password]").val();
+    			//如果cookie中不存在，则代表用户手动输入，需进行md5加密
+    			if (pwdCookie == null){
+    				password = $.md5(password);
+    			}
     			$.ajax({
     				type:"post",
     				url:"user",
@@ -330,11 +335,17 @@
     						//如果选择保存密码，则增加保存时间，单位为天
     						//默认是关闭浏览器cookie自动失效
     						if (savepass == true){
-    							$.cookie('username', username, {expires:1});
-        						$.cookie('password', password, {expires:1});
+    							$.cookie('username', username, {expires:7});
+        						$.cookie('password', password, {expires:7});
+        						//将用户id存入cookie，方便后续查询
+        						$.cookie('userid', data.id, {expires:7});
+        						//用户是否是vip
+        						$.cookie('vip', data.vip, {expires:7});
     						}else{
     							$.cookie('username', username);
         						$.cookie('password', password);
+        						$.cookie('userid', data.id);
+        						$.cookie('vip', data.vip);
     						}
     						window.location.href="index.html";
     					}else{

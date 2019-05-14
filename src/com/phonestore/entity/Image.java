@@ -6,7 +6,7 @@ package com.phonestore.entity;
  */
 public class Image {
 	private int id;
-	private int imageid;
+	private String imageid;
 	private String phonename;
 	public int getId() {
 		return id;
@@ -14,10 +14,10 @@ public class Image {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getImageid() {
+	public String getImageid() {
 		return imageid;
 	}
-	public void setImageid(int imageid) {
+	public void setImageid(String imageid) {
 		this.imageid = imageid;
 	}
 	public String getPhonename() {
@@ -30,13 +30,13 @@ public class Image {
 	public String toString() {
 		return "image [id=" + id + ", imageid=" + imageid + ", phonename=" + phonename + "]";
 	}
-	public Image(int id, int imageid, String phonename) {
+	public Image(int id, String imageid, String phonename) {
 		super();
 		this.id = id;
 		this.imageid = imageid;
 		this.phonename = phonename;
 	}
-	public Image(int imageid, String phonename) {
+	public Image(String imageid, String phonename) {
 		super();
 		this.imageid = imageid;
 		this.phonename = phonename;
