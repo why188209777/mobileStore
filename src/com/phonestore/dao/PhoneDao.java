@@ -13,4 +13,5 @@ public interface PhoneDao {
 	public List<Phone> getAll();
 	public long getTotalCount();
 	public List<Phone> getAllPhoneByPage(int pageIndex, int pageSize);
+	public Phone getPhoneByPhoneId(int phoneId);
 }

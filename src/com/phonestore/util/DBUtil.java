@@ -82,7 +82,7 @@ public class DBUtil {
 		Connection conn = getConn();
 		QueryRunner qr = new QueryRunner();
 		try {
-			return (long) qr.query(conn, sql, new ScalarHandler());
+			return (long) qr.query(conn, sql, new ScalarHandler(), params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

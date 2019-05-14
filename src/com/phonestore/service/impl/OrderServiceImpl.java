@@ -40,4 +40,22 @@ public class OrderServiceImpl implements OrderService {
 		return dao.getAll();
 	}
 
+	@Override
+	public Order searchUser(int userid) {
+		// TODO Auto-generated method stub
+		return dao.searchOrder(userid);
+	}
+
+	@Override
+	public List<Order> getAllOrdersByPage(int pageIndex, int pageSize, Object... params) {
+		// TODO Auto-generated method stub
+		return dao.getAllOrdersByPage(pageIndex, pageSize, params);
+	}
+
+	@Override
+	public int getTotalCount(Object... params) {
+		// TODO Auto-generated method stub
+		return dao.getTotalCount(params);
+	}
+
 }

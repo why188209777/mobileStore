@@ -6,9 +6,13 @@ import com.phonestore.entity.Cart;
 
 public interface CartService {
 	public int addCart(Cart cart);
-	public int delUser(int id);
-	public int updateUser(Cart cart);
-	//
-	public Cart searchUser(int id);
+	public int delCart(int id);
+	public int updateCart(Cart cart);
+	public int updateNum(int id,int num);
+	public int updateChecked(int id,int checked);
+	public int delAllCart();
+	public int updateAllChecked();
+	public Cart searchCart(int id);
 	public List<Cart> getAll();
+	public List<Cart> getAllCartChecked(int userId);
 }

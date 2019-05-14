@@ -11,12 +11,12 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public int addCart(Cart cart) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO cart (phoneid,num,userid) VALUES (?,?,?)";
-		return DBUtil.executeUpdate(sql, cart.getPhoneId(),cart.getNum(),cart.getUserId());
+		String sql = "INSERT INTO cart (phoneid,num,userid,checked) VALUES (?,?,?,?)";
+		return DBUtil.executeUpdate(sql, cart.getPhoneId(),cart.getNum(),cart.getUserId(),cart.getChecked());
 	}
-
+	
 	@Override
-	public int delUser(int id) {
+	public int delCart(int id) {
 		// TODO Auto-generated method stub
 		String sql="delete from cart where id=?";
 		return DBUtil.executeUpdate(sql, id);
@@ -24,14 +24,14 @@ public class CartDaoImpl implements CartDao{
 	}
 
 	@Override
-	public int updateUser(Cart cart) {
+	public int updateCart(Cart cart) {
 		// TODO Auto-generated method stub
-		String sql="update address set phoneid=?,num=?,userid=? where id=?";
-		return DBUtil.executeUpdate(sql, cart.getPhoneId(),cart.getNum(),cart.getUserId(),cart.getId());
+		String sql="update cart set phoneid=?,num=?,userid=?,checked=? where id=?";
+		return DBUtil.executeUpdate(sql, cart.getPhoneId(),cart.getNum(),cart.getUserId(),cart.getChecked(),cart.getId());
 	}
 
 	@Override
-	public Cart searchUser(int id) {
+	public Cart searchCart(int id) {
 		// TODO Auto-generated method stub
 		String sql="select * from cart where id=?";
 		Cart cart = (Cart) DBUtil.getObject(Cart.class, sql, id);
@@ -53,6 +53,46 @@ public class CartDaoImpl implements CartDao{
 //		for(int i=0;i<cd.getAll().size();i++) {
 //			System.out.println(cd.getAll().get(i));
 //		}
-		System.out.println(cd.searchUser(2));
+		System.out.println(cd.searchCart(2));
 	}
+
+	@Override
+	public List<Cart> getAllCartChecked(int userId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from cart where userid=? and checked=1";
+		return DBUtil.getObjects(Cart.class, sql,userId);
+	}
+
+	@Override
+	public int updateNum(int id, int num) {
+		// TODO Auto-generated method stub
+		String sql ="update cart set num=? where id=?";
+		return DBUtil.executeUpdate(sql,num,id);
+	}
+
+
+
+	@Override
+	public int updateChecked(int id, int checked) {
+		// TODO Auto-generated method stub
+		String sql ="update cart set checked=? where id=?";
+		return DBUtil.executeUpdate(sql,checked,id);
+	}
+
+	
+
+	@Override
+	public int updateAllChecked() {
+		// TODO Auto-generated method stub
+		String sql ="update cart set checked=1 ";
+		return DBUtil.executeUpdate(sql);
+	}
+
+	@Override
+	public int delAllCart() {
+		// TODO Auto-generated method stub
+		String sql="delete from cart";
+		return DBUtil.executeUpdate(sql);
+	}
+
 }

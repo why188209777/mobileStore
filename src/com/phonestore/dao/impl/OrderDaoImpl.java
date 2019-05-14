@@ -6,6 +6,7 @@ import java.util.List;
 import com.phonestore.dao.OrderDao;
 import com.phonestore.entity.Order;
 import com.phonestore.util.DBUtil;
+import com.phonestore.util.IdWorker;
 
 public class OrderDaoImpl implements OrderDao {
 
@@ -15,8 +16,8 @@ public class OrderDaoImpl implements OrderDao {
 				+ "(orderid, userid, createtime, total, address, phonenum, status) values "
 				+ "(?,?,?,?,?,?,?)";
 		return DBUtil.executeUpdate(sql, 
-				order.getOrderId(), order.getUserId(),
-				order.getCreateTime(), order.getTotal(),
+				String.valueOf(new IdWorker().nextId()), order.getUserId(),
+				Calendar.getInstance().getTime(), order.getTotal(),
 				order.getAddress(), order.getPhoneNum(), order.getStatus());
 	}
 
@@ -49,6 +50,46 @@ public class OrderDaoImpl implements OrderDao {
 	public List<Order> getAll() {
 		String sql = "select * from orders ";
 		return DBUtil.getObjects(Order.class, sql);
+	}
+
+	@Override
+	//根据用户id查询订单的信息
+	public List<Order> searcOrderByUserId(int userid) {
+		// TODO Auto-generated method stub
+		String sql = "select * from orders where userid=?";
+		return DBUtil.getObjects(Order.class, sql, userid);
+	}
+
+	@Override
+	public Order searchUser(int userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getAllOrdersByPage(int pageIndex, int pageSize, Object... params) {
+		pageIndex = (pageIndex - 1) * pageSize;
+		String sql = "select * from orders where 1=1";
+		if (params.length > 0) {
+			String key = (String) params[0];
+			sql += " and concat(orderid,phonenum) like \"%\"?\"%\" limit ?,?";
+			return DBUtil.getObjects(Order.class, sql, key, pageIndex, pageSize);
+		}else {
+			sql += " limit ?,?";
+			return DBUtil.getObjects(Order.class, sql, pageIndex, pageSize);
+		}
+	}
+
+	@Override
+	public int getTotalCount(Object... params) {
+		// TODO Auto-generated method stub
+		String sql = "select count(*) from orders where 1=1";
+		if (params.length > 0) {
+			sql += " and concat(orderid,phonenum) like \"%\"?\"%\"";
+			return (int) DBUtil.getTotalCount(sql, params);
+		}else {
+			return (int) DBUtil.getTotalCount(sql);
+		}
 	}
 
 	

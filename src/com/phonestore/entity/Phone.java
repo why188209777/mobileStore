@@ -4,7 +4,7 @@ public class Phone {
 
 	private int id;
 	private String phoneId;
-	private String name;
+	private String phonename;
 	private String brand;
 	private double price;
 	private int num;
@@ -28,12 +28,12 @@ public class Phone {
 
 
 
-	public Phone(String phoneId, String name, String brand, double price, int num, String image, String size,
+	public Phone(String phoneId, String phonename, String brand, double price, int num, String image, String size,
 			String color, String ram, String rom, String netType, String camera, String cpu, String operatingSystem,
 			String description) {
 		super();
 		this.phoneId = phoneId;
-		this.name = name;
+		this.phonename = phonename;
 		this.brand = brand;
 		this.price = price;
 		this.num = num;
@@ -53,13 +53,13 @@ public class Phone {
 
 
 
-	public Phone(int id, String phoneId, String name, String brand, double price, int num, String image, String size,
+	public Phone(int id, String phoneId, String phonename, String brand, double price, int num, String image, String size,
 			String color, String ram, String rom, String netType, String camera, String cpu, String operatingSystem,
 			String description) {
 		super();
 		this.id = id;
 		this.phoneId = phoneId;
-		this.name = name;
+		this.phonename = phonename;
 		this.brand = brand;
 		this.price = price;
 		this.num = num;
@@ -91,11 +91,11 @@ public class Phone {
 	public void setPhoneId(String phoneId) {
 		this.phoneId = phoneId;
 	}
-	public String getName() {
-		return name;
+	public String getPhonename() {
+		return phonename;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setPhonename(String phonename) {
+		this.phonename = phonename;
 	}
 	public String getBrand() {
 		return brand;
@@ -182,7 +182,7 @@ public class Phone {
 
 	@Override
 	public String toString() {
-		return "Phone [id=" + id + ", phoneId=" + phoneId + ", name=" + name + ", brand=" + brand + ", price=" + price
+		return "Phone [id=" + id + ", phoneId=" + phoneId + ", phonename=" + phonename + ", brand=" + brand + ", price=" + price
 				+ ", num=" + num + ", image=" + image + ", size=" + size + ", color=" + color + ", ram=" + ram
 				+ ", rom=" + rom + ", netType=" + netType + ", camera=" + camera + ", cpu=" + cpu + ", operatingSystem="
 				+ operatingSystem + ", description=" + description + "]";

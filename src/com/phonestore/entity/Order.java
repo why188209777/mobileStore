@@ -2,11 +2,14 @@ package com.phonestore.entity;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Order {
 
 	private int id;
 	private String orderId;
 	private int userId;
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
 	private double total;
 	private String address;
@@ -21,6 +24,18 @@ public class Order {
 	
 	
 	
+	public Order(int id, int userId, double total, String address, String phoneNum, int status) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.total = total;
+		this.address = address;
+		this.phoneNum = phoneNum;
+		this.status = status;
+	}
+
+
+
 	public Order(String orderId, int userId, Date createTime, double total, String address, String phoneNum,
 			int status) {
 		super();

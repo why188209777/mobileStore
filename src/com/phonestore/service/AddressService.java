@@ -6,9 +6,11 @@ import com.phonestore.entity.Address;
 
 public interface AddressService {
 	public int addAddress(Address address);
-	public int delUser(int id);
-	public int updateUser(Address address);
+	public int delAddress(int id);
+	public int updateAddress(Address address);
 	//
-	public Address searchUser(int id);
+	public Address searchAddress(int id);
 	public List<Address> getAll();
+	public List<Address> getAllAddressByPage(int pageIndex, int pageSize, Object...params);
+	public int getTotalCount(Object...params);
 }

@@ -52,4 +52,10 @@ public class PhoneServiceImpl implements PhoneService {
 		return dao.getAllPhoneByPage(pageIndex, pageSize);
 	}
 
+	@Override
+	public Phone getPhoneByPhoneId(int phoneId) {
+		// TODO Auto-generated method stub
+		return dao.getPhoneByPhoneId(phoneId);
+	}
+
 }

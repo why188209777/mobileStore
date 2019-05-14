@@ -15,28 +15,65 @@ public class CartServiceImpl implements CartService{
 		return cd.addCart(cart);
 	}
 
+
 	@Override
-	public int delUser(int id) {
+	public int updateCart(Cart cart) {
 		// TODO Auto-generated method stub
-		return cd.delUser(id);
+		return cd.updateCart(cart);
 	}
 
 	@Override
-	public int updateUser(Cart cart) {
+	public Cart searchCart(int id) {
 		// TODO Auto-generated method stub
-		return cd.updateUser(cart);
-	}
-
-	@Override
-	public Cart searchUser(int id) {
-		// TODO Auto-generated method stub
-		return cd.searchUser(id);
+		return cd.searchCart(id);
 	}
 
 	@Override
 	public List<Cart> getAll() {
 		// TODO Auto-generated method stub
-		return getAll();
+		return cd.getAll();
+	}
+
+
+	@Override
+	public int delCart(int id) {
+		// TODO Auto-generated method stub
+		return cd.delCart(id);
+	}
+
+
+	@Override
+	public List<Cart> getAllCartChecked(int userId) {
+		// TODO Auto-generated method stub
+		return cd.getAllCartChecked(userId);
+	}
+
+
+	@Override
+	public int updateNum(int id, int num) {
+		// TODO Auto-generated method stub
+		return cd.updateNum(id, num);
+	}
+
+
+	@Override
+	public int updateChecked(int id, int checked) {
+		// TODO Auto-generated method stub
+		return cd.updateChecked(id, checked);
+	}
+
+
+	@Override
+	public int delAllCart() {
+		// TODO Auto-generated method stub
+		return cd.delAllCart();
+	}
+
+
+	@Override
+	public int updateAllChecked() {
+		// TODO Auto-generated method stub
+		return cd.updateAllChecked();
 	}
 
 }

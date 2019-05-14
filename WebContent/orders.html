@@ -209,35 +209,10 @@
                                 <th class="product-price" scope="col">Price</th>
                                 <th class="product-quantity" scope="col">商品数量</th>
                                 <th class="product-total" scope="col">总价</th>
+                                <th >状态</th>
                             </tr>
                             </thead>
                             <tbody id="test">
-                            <tr>
-                                <td class="product-id" scope="col">201903254659889</td>
-                                <td class="product-iamge">
-                                    <div class="img-wrapper"><img src="assets/images/product/product03.png" alt="product image"></div>
-                                </td>
-                                <td class="product-name">Pure Pineapple</td>
-                                <td class="product-price">$460.00</td>
-                                <td class="product-quantity">
-                                    <input class="quantity no-round-input" type="number" min="1" value="1">
-                                </td>
-                                <td class="product-total">$460.00</td>
-
-                            </tr>
-                            <tr>
-                                <td class="product-id" scope="col">201903254659889</td>
-                                <td class="product-iamge">
-                                    <div class="img-wrapper"><img src="assets/images/product/product02.png" alt="product image"></div>
-                                </td>
-                                <td class="product-name">American lobster</td>
-                                <td class="product-price">$460.00</td>
-                                <td class="product-quantity">
-                                    <input class="quantity no-round-input" type="number" min="1" value="1">
-                                </td>
-                                <td class="product-total">$460.00</td>
-
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -341,6 +316,7 @@
     	$.ajax({
     		type:"post",
     		url:"OrderServlet",
+    		data:"op=list",
     		dataType:"json",
     		cache:false,
     		success:function(data){
@@ -349,20 +325,27 @@
     			var orderlist = data.orderlist;
    				$(itemlist).each(function(index, item){
    					var order = orderlist[index];
+   					console.log(order);
+   					console.log(item.image);
    					html = "<td class='product-id' scope='col'>"+item.orderId+"</td><td class='product-iamge'>"+
-                    "<div class='img-wrapper'><img src='assets/images/product/product05.png' alt='product image'></div>"
+                    "<div class='img-wrapper'><img src="+item.image+" alt='"+item.name+"'></div>"
                     +"</td>"+
-                    "<td class='product-name'>"+order.name+"</td>"+
-                    "<td class='product-price'>$"+order.price+"</td>"+
+                    "<td class='product-name'>"+item.name+"</td>"+
+                    "<td class='product-price'>$"+item.price+"</td>"+
                     "<td class='product-quantity'>"+
-                        "<input class='quantity no-round-input' type='number' min='1' value='1'>"+
+                        "<span class='quantity no-round-put'>"+item.number+"</span>"+
                     "</td>"+
-                    "<td class='product-total'>$"+item.total+"</td>"
+                    "<td class='product-total'>$"+order.total+"</td>";
+                    if (order.status == 1){
+                    	html+="<td><span style='color:#00EE00;'>已支付</span></td>";
+                    }else{
+                    	html+="<td><span style='color:#FFA500;'>待支付</span></td>";
+                    }
                     $("#test").append('<tr>'+html+'</tr>');
    				})
     		},
     		error:function(data){
-    			console.log("有错误")
+    			console.log("有错误");
     		}
     	});
     })

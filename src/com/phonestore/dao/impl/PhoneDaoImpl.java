@@ -17,7 +17,7 @@ public class PhoneDaoImpl implements PhoneDao {
 				+ "operatingsystem, description) values "
 				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		return DBUtil.executeUpdate(sql,
-				phone.getPhoneId(), phone.getName(), phone.getBrand(),
+				phone.getPhoneId(), phone.getPhonename(), phone.getBrand(),
 				phone.getPrice(), phone.getNum(), phone.getImage(),
 				phone.getSize(), phone.getColor(), phone.getRam(),
 				phone.getRom(), phone.getNetType(), phone.getCamera(),
@@ -39,7 +39,7 @@ public class PhoneDaoImpl implements PhoneDao {
 				+ "rom=?, nettype=?, camera=?, cpu=?,"
 				+ "operatingsystem=?, description=? where id=?";
 		return DBUtil.executeUpdate(sql,
-				phone.getPhoneId(), phone.getName(), phone.getBrand(),
+				phone.getPhoneId(), phone.getPhonename(), phone.getBrand(),
 				phone.getPrice(), phone.getNum(), phone.getImage(),
 				phone.getSize(), phone.getColor(), phone.getRam(),
 				phone.getRom(), phone.getNetType(), phone.getCamera(),
@@ -71,5 +71,12 @@ public class PhoneDaoImpl implements PhoneDao {
 		pageIndex = (pageIndex - 1) * pageSize;
 		String sql = "select * from phone limit ?,?";
 		return DBUtil.getObjects(Phone.class, sql, pageIndex, pageSize);
+	}
+
+	@Override
+	public Phone getPhoneByPhoneId(int phoneId) {
+		// TODO Auto-generated method stub
+		String sql ="select * from phone where phoneid=?";
+		return (Phone) DBUtil.getObject(Phone.class, sql, phoneId);
 	}
 }

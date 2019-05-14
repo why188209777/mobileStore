@@ -17,11 +17,6 @@
     <link rel="stylesheet" href="assets/css/icomoon.css">
     <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
     <link rel="shortcut icon" href="assets/images/shortcut_logo.png">
-    <script type="text/javascript">
-    	$(function(){
-    		$("button")
-    	})
-    </script>
   </head>
   <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
   <body>
@@ -295,9 +290,42 @@
     <script src="assets/js/numscroller-1.0.js"></script>
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/jquery.cookie.js"></script>
     <script type="text/javascript">
     	$(function(){
-    		
+    		$("#registerBtn").click(function(){
+    			var username = $("input[id=user-name]").val();
+    			var password = $("input[id=password]").val();
+    			var confirm = $("input[id=confirm]").val();
+    			if (password != confirm){
+    				alert('密码不一致，请重试');
+    				return;
+    			}
+    			$.ajax({
+    				type:"post",
+    				url:"user",
+    				cache:false,
+    				data:{
+    					username:username,
+    					password:password,
+    					op:"register"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					console.log(data);
+    					if (data > 0){
+    						//注册成功后自动存入cookie，跳转到登录页面后就能自动填充
+    						//并且不会永久储存
+    						$.cookie('username', username);
+    						$.cookie('password', password);
+    						alert('注册成功');
+    						window.location.href = "login.html";
+    					}else{
+    						console.log('注册失败')
+    					}
+    				}
+    			})
+    		})
     	})
     </script>
   </body>
