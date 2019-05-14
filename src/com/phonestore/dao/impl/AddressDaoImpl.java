@@ -12,26 +12,32 @@ public class AddressDaoImpl implements AddressDao{
 	@Override
 	public int addAddress(Address address) {
 		// TODO Auto-generated method stub
-		String sql="insert into address (name,userid) values (?,?)";
-		return DBUtil.executeUpdate(sql, address.getName(),address.getUserId());
+
+		String sql="insert into address (name, city, detail, postalcode, phonenum, userid) values (?,?,?,?,?,?)";
+		return DBUtil.executeUpdate(sql,
+			address.getName(), address.getCity(), address.getDetail(),
+			address.getPostalcode(), address.getPhoneNum(), address.getUserId());
 	}
 
 	@Override
-	public int delUser(int id) {
+	public int delAddress(int id) {
 		// TODO Auto-generated method stub
 		String sql="delete from address where id=?";
 		return DBUtil.executeUpdate(sql, id);
 	}
 
 	@Override
-	public int updateUser(Address address) {
+	public int updateAddress(Address address) {
 		// TODO Auto-generated method stub
-		String sql="update address set name=?,userid=? where id=?";
-		return DBUtil.executeUpdate(sql, address.getName(),address.getUserId(),address.getId());
+		String sql="update address set name=?, city=?, detail=?, postalcode=?, phonenum=?, userid=? where id=?";
+		return DBUtil.executeUpdate(sql,
+			address.getName(), address.getCity(), address.getDetail(),
+			address.getPostalcode(), address.getPhoneNum(),
+			address.getUserId(),address.getId());
 	}
 
 	@Override
-	public Address searchUser(int id) {
+	public Address searchAddress(int id) {
 		// TODO Auto-generated method stub
 		String sql="select * from address where id=?";
 		Address address = (Address) DBUtil.getObject(Address.class, sql, id);
@@ -44,6 +50,12 @@ public class AddressDaoImpl implements AddressDao{
 		String sql="select * from address";
 		List<Address> list = DBUtil.getObjects(Address.class, sql);
 		return list;
+	}
+
+	@Override
+	public List<Address> searchAllAddressByUserId(int userId) {
+		String sql="select * from address where userid=?";
+		return DBUtil.getObjects(Address.class, sql, userId);
 	}
 	
 }

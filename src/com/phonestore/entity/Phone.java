@@ -193,6 +193,7 @@ public class Phone {
 
 	public Phone(String brand) {
 		this.brand = brand;
+
 	}
 
 

@@ -155,5 +155,12 @@ public class PhoneDaoImpl implements PhoneDao {
 				+ "num=?,"
 				+ "description=? where phoneid=?";
 		return DBUtil.executeUpdate(sql, phone.getPrice(),phone.getNum(),phone.getDescription(),phone.getPhoneId());
+
+	}
+
+	@Override
+	public Phone getPhoneByPhoneId(int phoneId) {
+		String sql="select * from phone where phoneid=?";
+		return (Phone) DBUtil.getObject(Phone.class, sql, phoneId);
 	}
 }

@@ -7,9 +7,10 @@ import com.phonestore.entity.Cart;
 
 public interface CartDao {
 	public int addCart(Cart cart);
-	public int delUser(int id);
-	public int updateUser(Cart cart);
-	//
-	public Cart searchUser(int id);
-	public List<Cart> getAll();
+	public int delCart(int id);
+	public int updateCart(Cart cart);
+	public Cart searchCart(int id);
+	public List<Cart> getAllCart(int userId);
+	//获取checked的信息用于结算订单
+	public List<Cart> getAllCartChecked(int userId);
 }

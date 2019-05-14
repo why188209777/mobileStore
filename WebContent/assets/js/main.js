@@ -607,6 +607,7 @@ window.onload = function () {
 			`);
 			
 			
+			//Wirte Quick view block to DOM
 			$('#quickview .big-img_qv').slick({
 				slidesToShow: 1,
 				slidesToScroll: 1,

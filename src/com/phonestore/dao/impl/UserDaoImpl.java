@@ -13,7 +13,8 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int addUser(User user) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO user (username,password,vip,guanliyuan,phonenum) VALUES (?,?,?,?,?)";
+
+		String sql = "INSERT INTO user (username,password,vip,admin,phonenum) VALUES (?,?,?,?,?)";
 		return DBUtil.executeUpdate(sql, user.getUserName(),user.getPassword(),user.getVip(),user.getAdmin(),user.getPhoneNum());
 	}
 
@@ -26,8 +27,8 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public int updateUser(User user) {
-		String sql="update user set username=?,password=?,vip=?,guanliyuan=?,phonenum=? where id=?";
-	    return DBUtil.executeUpdate(sql,user.getUserName(),user.getPassword(),user.getVip(),user.getAdmin(),user.getAdmin(),user.getPhoneNum(),user.getId());
+		String sql="update user set username=?,password=?,vip=?,admin=?,phonenum=? where id=?";
+	    return DBUtil.executeUpdate(sql,user.getUserName(),user.getPassword(),user.getVip(),user.getAdmin(),user.getPhoneNum(),user.getId());
 	}
 
 	@Override
@@ -52,10 +53,33 @@ public class UserDaoImpl implements UserDao{
 		return (User) DBUtil.getObject(User.class, sql, name, password);
 	}
 	
-	public static void main(String[] args) {
-		UserDaoImpl ud = new UserDaoImpl();
-		User user = new User("小玉","654321", 1, 1, "123456789");
-		ud.addUser(user);
+
+	//模糊分页查询
+	@Override
+	public List<User> getAllUserByPage(int pageIndex, int pageSize, Object... params) {
+		pageIndex = (pageIndex - 1) * pageSize;
+		String sql = "select * from user where 1=1";
+		if (params.length > 0) {
+			String key = (String) params[0];
+			sql += " and concat(username, phonenum) like \"%\"?\"%\" limit ?,?";
+			return DBUtil.getObjects(User.class, sql, key, pageIndex, pageSize);
+		}else {
+			sql += " limit ?,?";
+			return DBUtil.getObjects(User.class, sql, pageIndex, pageSize);
+		}
+		
+	}
+	
+	
+	@Override
+	public int getTotalCount(Object...params) {
+		String sql = "select count(*) from user where 1=1";
+		if (params.length > 0) {
+			sql += " and concat(username, phonenum) like \"%\"?\"%\"";
+			return (int) DBUtil.getTotalCount(sql, params);
+		}else {
+			return (int) DBUtil.getTotalCount(sql);
+		}
 	}
 	
 }

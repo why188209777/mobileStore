@@ -50,12 +50,68 @@ public class UserServlet extends HttpServlet {
 		UserService userService = new UserServiceImpl();
 		PrintWriter out = response.getWriter();
 		if ("login".equals(op)) {
+
+			
 			String name = request.getParameter("username");
 			String password = request.getParameter("password");
+			System.out.println(name);
+			System.out.println(password);
 			User user = userService.login(name, password);
 			String json = JSON.toJSONString(user);
 			System.out.println(json);
 			out.println(json);
+		}
+		
+		if ("register".equals(op)) {
+			
+			String name = request.getParameter("username");
+			String password = request.getParameter("password");
+			User user = new User(name, password);
+			int addUser = userService.addUser(user);
+			if (addUser > 0) {
+				out.println(true);
+			}else {
+				out.println(false);
+			}
+			
+		}
+		
+		if ("userinfo".equals(op)) {
+			
+			int userId = Integer.parseInt(request.getParameter("userid"));
+			User user = userService.searchUser(userId);
+			String json = JSON.toJSONString(user);
+			out.println(json);
+		}
+		
+		if ("updatePassword".equals(op)) {
+			
+			int userId = Integer.parseInt(request.getParameter("userid"));
+			String password = request.getParameter("password");
+			User user = userService.searchUser(userId);
+			System.out.println(user);
+			user.setPassword(password);
+			int updateUser = userService.updateUser(user);
+			if (updateUser > 0) {
+				out.println(true);
+			}else {
+				out.println(false);
+			}
+		}
+		
+		if ("updatePhoneNum".equals(op)) {
+			
+			int userId = Integer.parseInt(request.getParameter("userid"));
+			String phoneNum = request.getParameter("phonenum");
+			User user = userService.searchUser(userId);
+			System.out.println(user);
+			user.setPhoneNum(phoneNum);
+			int updateUser = userService.updateUser(user);
+			if (updateUser > 0) {
+				out.println(true);
+			}else {
+				out.println(false);
+			}
 		}
 	}
 

@@ -17,21 +17,22 @@ public class AddressServiceImpl implements AddressService{
 	}
 
 	@Override
-	public int delUser(int id) {
+
+	public int delAddress(int id) {
 		// TODO Auto-generated method stub
-		return ad.delUser(id);
+		return ad.delAddress(id);
 	}
 
 	@Override
-	public int updateUser(Address address) {
+	public int updateAddress(Address address) {
 		// TODO Auto-generated method stub
-		return ad.updateUser(address);
+		return ad.updateAddress(address);
 	}
 
 	@Override
-	public Address searchUser(int id) {
+	public Address searchAddress(int id) {
 		// TODO Auto-generated method stub
-		return ad.searchUser(id);
+		return ad.searchAddress(id);
 	}
 
 	@Override
@@ -39,14 +40,14 @@ public class AddressServiceImpl implements AddressService{
 		// TODO Auto-generated method stub
 		return ad.getAll();
 	}
-	public static void main(String[] args) {
-		AddressService as = new AddressServiceImpl();
-		List<Address> adr = as.getAll();
-		for (int i=0;i<adr.size();i++) {
-			System.out.println(adr.get(i));
-		}
-		Address address = new Address("浙江省温州市", 1);
-		as.addAddress(address);
+	
+	@Override
+	public List<Address> searchAllAddressByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return ad.searchAllAddressByUserId(userId);
 	}
+	
+
+
 
 }

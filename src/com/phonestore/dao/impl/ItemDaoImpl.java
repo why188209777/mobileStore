@@ -25,6 +25,14 @@ public class ItemDaoImpl implements ItemDao {
 		return DBUtil.executeUpdate(sql, id);
 	}
 
+
+
+	@Override
+	public int delItemByOrderId(String orderId) {
+		String sql = "delete from item where orderid=?";
+		return DBUtil.executeUpdate(sql, orderId);
+	}
+	
 	@Override
 	public int updateItem(Item item) {
 		String sql = "update item set "
@@ -47,5 +55,12 @@ public class ItemDaoImpl implements ItemDao {
 		String sql = "select * from item";
 		return DBUtil.getObjects(Item.class, sql);
 	}
+
+	@Override
+	public List<Item> searchItemsByOrderId(String orderId) {
+		String sql = "select * from item where orderid=?";
+		return DBUtil.getObjects(Item.class, sql, orderId);
+	}
+
 
 }

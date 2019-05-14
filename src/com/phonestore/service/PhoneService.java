@@ -25,4 +25,5 @@ public interface PhoneService {
 	public List<Phone> searchPricePhone(String minPrice,String maxPrice,int pageIndex, int pageSize);//根据价格区间查询
 	public List<Phone> vagueSearchPhone(String phoneName,int pageIndex, int pageSize);//模糊查询
 	public List<Phone> searchDistinctBrand();//查询去重的品牌
+	public Phone getPhoneByPhoneId(int phoneId);
 }

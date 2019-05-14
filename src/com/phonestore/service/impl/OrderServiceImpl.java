@@ -23,6 +23,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+
+	public int delOrderByOrderId(String orderId) {
+		// TODO Auto-generated method stub
+		return dao.delOrderByOrderId(orderId);
+	}
+	
+	@Override
 	public int updateOrder(Order order) {
 		// TODO Auto-generated method stub
 		return dao.updateOrder(order);
@@ -39,5 +46,13 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return dao.getAll();
 	}
+
+	@Override
+	public List<Order> searcOrderByUserId(int userid) {
+		// TODO Auto-generated method stub
+		return dao.searcOrderByUserId(userid);
+	}
+
+
 
 }

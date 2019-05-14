@@ -117,5 +117,10 @@ public class PhoneServiceImpl implements PhoneService {
 		// TODO Auto-generated method stub
 		return dao.modifyPhone(phone);
 	}
+	@Override
+	public Phone getPhoneByPhoneId(int phoneId) {
+		// TODO Auto-generated method stub
+		return dao.getPhoneByPhoneId(phoneId);
+	}
 
 }

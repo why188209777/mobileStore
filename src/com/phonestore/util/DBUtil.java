@@ -49,15 +49,6 @@ public class DBUtil {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			if(conn!=null){
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 		return 0;
 	}
@@ -70,15 +61,6 @@ public class DBUtil {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			if(conn!=null){
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 		return null;
 	}
@@ -91,15 +73,6 @@ public class DBUtil {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			if(conn!=null){
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 		return null;
 	}
@@ -113,30 +86,9 @@ public class DBUtil {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			if(conn!=null){
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 		return 0;
 	}
-	
-	
-	//判断String的值是否Integet类型
-	public static boolean Integer(String str){
-        try{
-        	Integer.parseInt(str);
-            return true;
-        }
-        catch(NumberFormatException e) {
-            return false;
-        }
-    }
 }
 
 

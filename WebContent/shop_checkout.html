@@ -33,7 +33,7 @@
               </div>
               <div class="col-12 col-md-6">
                 <div class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
-                  <div class="login d-flex"><a href="login.html"><i class="fas fa-user"></i>Login</a></div>
+                  <div class="login d-flex"><a href="login.html" id="logininfo"><i class="fas fa-user"></i><span id="username">Login</span></a></div>
                 </div>
               </div>
             </div>
@@ -272,110 +272,66 @@
       <!-- End order step-->
       <div class="shop-checkout">
         <div class="container">
-          <form action="" method="post">
-            <div class="row">
-              <div class="col-12 col-lg-8">
-                <h2 class="form-title">Billing details</h2>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputFirstName">First Name*</label>
-                    <input class="no-round-input-bg" id="inputFirstName" type="text" required>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputLastName">Last Name*</label>
-                    <input class="no-round-input-bg" id="inputLastName" type="text" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputCompanyName">Company name (optional)</label>
-                  <input class="no-round-input-bg" id="inputCompanyName" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="inputCountry">Country*</label>
-                  <select class="no-round-input-bg" id="inputContry">
-                    <option value="1">Vietnam</option>
-                    <option value="2">USA</option>
-                    <option value="3">Italy</option>
-                    <option value="4">China</option>
-                    <option value="5">Japan</option>
-                    <option value="6">Russia</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="inputStreet">Street address*</label>
-                  <input class="no-round-input-bg" id="inputStreet" type="text" required>
-                </div>
-                <div class="form-group">
-                  <label for="inputZip">Postcode / ZIP (optional)</label>
-                  <input class="no-round-input-bg" id="inputZip" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="inputCity">Town / City*</label>
-                  <input class="no-round-input-bg" id="inputCity" type="text" required>
-                </div>
-                <div class="form-group">
-                  <label for="inputPhone">Phone*</label>
-                  <input class="no-round-input-bg" id="inputPhone" type="text" required>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail">Email address *</label>
-                  <input class="no-round-input-bg" id="inputEmail" type="email" required>
-                </div>
-                <h2 class="form-title">Shipping Address</h2>
-                <div class="form-group">
-                  <input id="differentAddress" type="checkbox">
-                  <label for="differentAddress">Ship to a different address?</label>
-                </div>
-                <div class="form-group">
-                  <label for="inputNote">Order notes (optional)</label>
-                  <textarea class="textarea-form-bg" id="inputNote" name="" cols="30" rows="7"></textarea>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <h2 class="form-title">Your order</h2>
-                <div class="shopping-cart">
-                  <div class="cart-total_block">
-                    <table class="table">
-                      <colgroup>
-                        <col span="1" style="width: 50%">
-                        <col span="1" style="width: 50%">
-                      </colgroup>
-                      <tbody>
-                        <tr>
-                          <th class="name">Australian Kiwi × <span>1</span></th>
-                          <td class="price black" style="border-top: 0">$169.00</td>
-                        </tr>
-                        <tr>
-                          <th>SUBTOTAL</th>
-                          <td class="price">$169.00</td>
-                        </tr>
-                        <tr>
-                          <th>SHIPPING</th>
-                          <td>
-                            <p>Free shipping</p>
-                            <p>Calculate shipping</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>TOTAL</th>
-                          <td class="total">$169.00</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="form-group">
-                    <input type="radio" name="paymethod" id="shipping" value="option1" checked>
-                    <label for="shipping">Cash on delivery</label>
-                  </div>
-                  <div class="form-group">
-                    <input type="radio" name="paymethod" id="paypal" value="option2">
-                    <label for="paypal">Paypal</label>
-                  </div>
-                  <button class="normal-btn submit-btn">Place order</button>
-                </div>
-              </div>
-            </div>
-          </form>
+          <div class="row">
+            <div class="col-12 col-lg-8">
+              <h2 class="form-title">Address choose</h2>
+               <div class="form-group">
+                 <div class="product-table">
+               	   <table class="table table-responsive">
+                     <colgroup>
+                       <col span="1" style="width: 10%">
+                       <col span="1" style="width: 10%">
+                       <col span="1" style="width: 20%">
+                       <col span="3" style="width: 50%">
+                       <col span="1" style="width: 10%">
+                     </colgroup>
+                  	 <thead>
+                       <tr>
+                         <th scope="col"></th>
+                         <th scope="col">收件人</th>
+                         <th scope="col">手机号</th>
+                         <th scope="col">收货地址</th>
+                         <th scope="col">邮编</th>
+                       </tr>
+                     </thead>
+                   <tbody id="addresslist">
+                   </tbody>
+                 </table>
+	               <button class="no-round-btn" data-toggle="modal" data-target="#addModal">添加地址</button>
+	               <button class="no-round-btn" data-toggle="modal" data-target="#changeModal">更改地址</button>
+             	 </div>
+           	   </div>
+               <div class="form-group">
+                 <label for="inputNote">Order notes</label>
+                 <textarea class="textarea-form-bg" id="inputNote" name="" cols="30" rows="7"></textarea>
+               </div>
+             </div>
+             <div class="col-12 col-md-6 col-lg-4">
+               <h2 class="form-title">Your order</h2>
+               <div class="shopping-cart">
+                 <div class="cart-total_block">
+                   <table class="table">
+                     <colgroup>
+                       <col span="1" style="width: 50%">
+                       <col span="1" style="width: 50%">
+                     </colgroup>
+                     <tbody id="orderList">
+                       
+                     </tbody>
+                   </table>
+                 </div>
+                 <div class="form-group">
+                   <input type="radio" name="paymethod" id="shipping" value="option1" checked>
+                   <label for="shipping">Cash on delivery</label>
+                 </div>
+                 <div class="form-group">
+                   <input type="radio" name="paymethod" id="paypal" value="option2">
+                   <label for="paypal">Paypal</label>
+                 </div>
+                 <button class="normal-btn submit-btn"id="toPay">Place order</button>
+               </div>
+             </div>
+           </div>
         </div>
       </div>
       <div class="partner">
@@ -453,6 +409,63 @@
       </footer>
       <!-- End footer-->
     </div>
+    
+    <!-- 添加地址模态框 -->
+	<div class="modal fade" id="addModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="gridSystemModalLabel">添加地址</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>地址信息</label>
+						<input type="text" class="form-control col-8" name="city" placeholder="请选择省/市/区/街道">
+					</div>
+					<div class="form-group">
+						<label>详细地址</label>
+						<textarea class="form-control col-8" name="detail" rows="" cols="" placeholder="请输入详细地址信息，如道路、门牌号、小区、楼栋号、单元等信息"></textarea>
+					</div>
+					<div class="form-group">
+						<label>收货人姓名</label>
+						<input class="form-control col-8" name="name" type="text" id="exampleInputFile" placeholder="收货人姓名应为2-25个字符，一个汉字为两个字符">
+						<p class="help-block"></p>
+					</div>
+					<div class="form-group">
+						<label>邮政编码</label>
+						<input type="text" class="form-control col-8" name="postalcode" placeholder="请填写邮编">
+					</div>
+					<div class="form-group">
+						<label>手机号码</label>
+						<input class="form-control col-8" type="text" name="phonenum" id="" value="" placeholder="电话号码和手机号码必须填一个" />
+					</div>
+					<button class="btn btn-primary" id="addAddress">添加</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	
+	<!--  更换地址 -->
+	<div class="modal fade" id="changeModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="gridSystemModalLabel">添更改地址</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery-ui.min.js"></script>
     <script src="assets/js/jquery.countdown.min.js"></script>
@@ -465,6 +478,173 @@
     <script src="assets/js/numscroller-1.0.js"></script>
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <script></script>
+    <script src="assets/js/jquery.cookie.js"></script>
+    <script>
+	    var nameCookie = $.cookie('username');
+		var idCookie = $.cookie('userid');
+		var vipCookie = $.cookie('vip');
+    	$(function(){
+    		//设置用户名
+			if (nameCookie != null){
+				$("span[id=username]").text(nameCookie);
+				$('a[id=logininfo]').attr('href', 'personpage.html');
+			}
+    		if (idCookie == null){
+    			return;
+    		}else{
+    			getAddressList();
+    			getOrderList();
+    		}
+    	})
+    	
+    	//添加地址信息
+	    $(document).on("click","#addAddress", function addAddress(){
+   			$.ajax({
+   				type:"post",
+   				url:"address",
+   				cache:false,
+   				data:{
+   					userid:idCookie,
+   					city:$("#city").val(),
+   					detail:$("#detail").val(),
+   					name:$("#name").val(),
+   					postalcode:$("#postalcode").val(),
+   					phonenum:$("#phonenum").val(),
+   					op:"add"
+   				},
+   				dataType:"json",
+   				success:function(data){
+   					if (data > 0){
+   						alert('添加成功');
+   						window.location.href="shop_checkout.html";
+   					}
+   				}
+   			})
+    	});
+    	
+    	$(document).on("click", "#toPay", function pay(){
+    		var addressid = 0;
+    		$("input[name=address]").each(function(index, obj){
+    			if ($(obj).prop("checked")){
+    				addressid = $(obj).attr("value");
+    			}
+    		})
+    		var total = $("td[class=total]").attr("value");
+    		
+    		//生成订单
+    		generateOrder(total, addressid, 1);
+    	})
+    	
+    	//生成订单基本信息
+    	function generateOrder(total, addressid, status){
+    		
+    		$.ajax({
+   				type:"post",
+   				url:"pay",
+   				cache:false,
+   				data:{
+   					userid:idCookie,
+   					total:total,
+   					addressid:addressid,
+   					status:status,
+   				},
+   				dataType:"json",
+   				success:function(data){
+   					if (data){
+   						alert("支付成功")
+   					}
+   				}
+    		})
+    	}
+    	
+    	
+    	
+    	//获取地址信息
+    	function getAddressList(){
+    		$.ajax({
+				type:"post",
+				url:"address",
+				cache:false,
+				data:{
+					userid:idCookie,
+					op:"list"
+				},
+				dataType:"json",
+				success:function(data){
+					$("#addresslist").html("");
+					$(data).each(function(index, address){
+						var html = `
+							<tr>
+								<td><input type="radio" name="address" value="${address.id}"/></td>
+								<td>${address.name}</td>
+								<td>${address.phoneNum}</td>
+								<td>${address.city}  ${address.detail}</td>
+								<td>${address.postalcode}</td>
+							</tr>
+						`;
+						$("#addresslist").append(html);
+					});
+					$("input[name=address]").each(function(index,obj){
+						if (index == 0){
+							$(obj).prop("checked", true);
+						}
+					});
+				}
+			})
+		 }
+    	
+    	//获取需要提交的订单信息
+       	function getOrderList(){
+       		$.ajax({
+				type:"post",
+				url:"Cart",
+				cache:false,
+				data:{
+					userid:idCookie,
+					op:"checkedList"
+				},
+				dataType:"json",
+				success:function(data){
+					var phoneList = data.phoneList;
+					var cartList = data.cartList;
+					var subtotal = 0;
+					var total = 0;
+					$(phoneList).each(function(index, obj){
+						var phone = phoneList[index];
+						var cart = cartList[index];
+						var sum = phone.price*cart.num;
+						subtotal += sum;
+						var html = `
+		    			  <tr>
+			                <th class="name">${phone.phonename} × <span>${cart.num}</span></th>
+			                <td class="price black" style="border-top: 0">￥${sum}</td>
+			              </tr>
+			             `;
+			           $("#orderList").append(html);
+					});
+					total = subtotal;
+					var totalhtml = "";
+					if (vipCookie == 1){
+						total *= 0.85;
+						totalhtml = `
+							${total}
+							<span style="text-decoration:line-through; font-size:16px;color:#9C9C9C;">￥${subtotal}</span>
+						`;
+					}
+					var html = `
+						<tr>
+			                <th>SUBTOTAL</th>
+			                <td class="price">￥${subtotal}</td>
+		              	</tr>
+						<tr>
+			              <th>TOTAL</th>
+			              <td class="total" value="${total}">￥${totalhtml}</td>
+			            </tr>
+					`;
+					$("#orderList").append(html);
+				}
+			})
+    	}
+    </script>
   </body>
 </html>

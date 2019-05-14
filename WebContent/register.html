@@ -25,7 +25,8 @@
         <div class="header-block d-flex align-items-center">
           <div class="container">
             <div class="row">
-              <div class="col-12 col-md-6">
+
+              <div class="col-12 col-md-6">	
                 <div class="header-left d-flex flex-column flex-md-row align-items-center">
                   <p class="d-flex align-items-center"><i class="fas fa-envelope"></i>info.deercreative@gmail.com</p>
                   <p class="d-flex align-items-center"><i class="fas fa-phone"></i>+65 11.188.888</p>
@@ -290,9 +291,44 @@
     <script src="assets/js/numscroller-1.0.js"></script>
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/jquery.cookie.js"></script>
+    <script src="assets/js/jquery.md5.js"></script>
     <script type="text/javascript">
     	$(function(){
-    		
+    		$("#registerBtn").click(function(){
+    			var username = $("input[id=user-name]").val();
+    			var password = $("input[id=password]").val();
+    			var confirm = $("input[id=confirm]").val();
+    			if (password != confirm){
+    				alert('密码不一致，请重试');
+    				return;
+    			}
+    			var md5pwd = $.md5(password);
+    			$.ajax({
+    				type:"post",
+    				url:"user",
+    				cache:false,
+    				data:{
+    					username:username,
+    					password:md5pwd,
+    					op:"register"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					console.log(data);
+    					if (data){
+    						//注册成功后自动存入cookie，跳转到登录页面后就能自动填充
+    						//并且不会永久储存
+    						$.cookie('username', username);
+    						$.cookie('password', md5pwd);
+    						alert('注册成功');
+    						window.location.href = "login.html";
+    					}else{
+    						console.log('注册失败')
+    					}
+    				}
+    			})
+    		})
     	})
     </script>
   </body>

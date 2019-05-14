@@ -353,14 +353,14 @@ $(function(){
 	
 	//模糊搜索
 	$(document).on("click",".website-search .no-round-btn",function(){
-		var phoneName=$(".no-round-input").val();
+		var keyword=$(".no-round-input").val();
 		console.log(phoneName);
 		$.ajax({
 			type:"post",
 			url:"PhoneServlet",
 			cache:false,
 			data:{
-				phoneName:phoneName,
+				keyword:keyword,
 				op:"getVaguePhone"
 			},
 			dataType:"json",
