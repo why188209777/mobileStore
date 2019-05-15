@@ -2,6 +2,9 @@ package com.phonestore.dao.impl;
 
 import java.util.Calendar;
 import java.util.List;
+
+import org.apache.commons.dbutils.DbUtils;
+
 import com.phonestore.dao.OrderDao;
 import com.phonestore.entity.Order;
 import com.phonestore.util.DBUtil;
@@ -15,8 +18,8 @@ public class OrderDaoImpl implements OrderDao {
 				+ "(orderid, userid, createtime, total, address, phonenum, status) values "
 				+ "(?,?,?,?,?,?,?)";
 		return DBUtil.executeUpdate(sql, 
-				String.valueOf(new IdWorker().nextId()), order.getUserId(),
-				Calendar.getInstance().getTime(), order.getTotal(),
+				order.getOrderId(), order.getUserId(),
+				order.getCreateTime(), order.getTotal(),
 				order.getAddress(), order.getPhoneNum(), order.getStatus());
 	}
 
@@ -46,15 +49,20 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public static void main(String[] args) {
-		Order order = new Order(1,"1000",1,Calendar.getInstance().getTime(),2000,"slsd","123456",1);
+		
+		Order order = new Order(3,6000,"slsd","123456",1);
 		System.out.println(order);
-		int updateOrder = new OrderDaoImpl().updateOrder(order);
-		System.out.println(updateOrder);
-		Order searchOrder = new OrderDaoImpl().searchOrder(1);
-		System.out.println(searchOrder);
-		searchOrder.setStatus(2);
-		int updateOrder2 = new OrderDaoImpl().updateOrder(searchOrder);
-		System.out.println(updateOrder2);
+		Order updateOrder = new Order(1, "1000", 3, Calendar.getInstance().getTime().toLocaleString(),6000,"slsd","123456",1);
+		System.out.println(new OrderDaoImpl().addOrder(order));
+		//System.out.println(new OrderDaoImpl().updateOrder(updateOrder));
+		//		System.out.println(order);
+//		int updateOrder = new OrderDaoImpl().updateOrder(order);
+//		System.out.println(updateOrder);
+//		Order searchOrder = new OrderDaoImpl().searchOrder(1);
+//		System.out.println(searchOrder);
+//		searchOrder.setStatus(2);
+//		int updateOrder2 = new OrderDaoImpl().updateOrder(searchOrder);
+//		System.out.println(updateOrder2);
 		
 	}
 	@Override

@@ -12,7 +12,7 @@ public class Order {
 	private String orderId;
 	private int userId;
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	private Date createTime;
+	private String createTime;
 	private double total;
 	private String address;
 	private String phoneNum;
@@ -30,7 +30,7 @@ public class Order {
 		super();
 		this.orderId = String.valueOf(new IdWorker().nextId());
 		this.userId = userId;
-		this.createTime = Calendar.getInstance().getTime();
+		this.createTime = Calendar.getInstance().getTime().toLocaleString();
 		this.total = total;
 		this.address = address;
 		this.phoneNum = phoneNum;
@@ -39,7 +39,7 @@ public class Order {
 
 
 
-	public Order(String orderId, int userId, Date createTime, double total, String address, String phoneNum,
+	public Order(String orderId, int userId, String createTime, double total, String address, String phoneNum,
 			int status) {
 		super();
 		this.orderId = orderId;
@@ -53,7 +53,7 @@ public class Order {
 
 
 
-	public Order(int id, String orderId, int userId, Date createTime, double total, String address, String phoneNum,
+	public Order(int id, String orderId, int userId, String createTime, double total, String address, String phoneNum,
 			int status) {
 		super();
 		this.id = id;
@@ -83,10 +83,10 @@ public class Order {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 	public double getTotal() {

@@ -892,7 +892,7 @@
 			$(document).on("click", ".corder", function(){
 				var orderid = $(this).data("id");
 				console.log(orderid);
-				$("#pid").val(orderid);
+				$("#cid").val(orderid);
 			});
 			
 			//修改地址
@@ -945,50 +945,50 @@
 			//支付订单
 			$(document).on("click", "#pay", function (){
 				console.log($("#pid").val());
-				alert("成功");
-			})
-			
-			//取消订单
-			$(document).on("click", "#cancelOrder", function (){
-				
-				console.log($("#cid").val());
-				alert("成功");
-				/* $.ajax({
-					type:"post",
-					url:"item",
-					cache:false,
-					data:{
-						orderid:orderId,
-						op:"cancel"
-					},
-					dataType:"json",
-					success:function(data){
-						if (data > 0){
-							alert("item取消成功");
-						}else{
-							alert("item取消失败");
-						}
-					}
-				})
 				$.ajax({
 					type:"post",
 					url:"OrderServlet",
 					cache:false,
 					data:{
-						orderid:orderId,
+						orderid:$("#pid").val(),
+						op:"continuepay"
+					},
+					dataType:"json",
+					success:function(data){
+						if (data){
+							alert("支付成功");
+							getOrderList();
+						}else{
+							alert("支付失败");
+						}
+					}
+				})
+			})
+			
+			//取消订单
+			$(document).on("click", "#cancelOrder", function (){
+			
+				console.log($("#cid").val());
+				$.ajax({
+					type:"post",
+					url:"OrderServlet",
+					cache:false,
+					data:{
+						orderid:$("#cid").val(),
 						op:"cancel"
 					},
 					dataType:"json",
 					success:function(data){
-						if (data > 0){
-							alert("order取消成功");
+						if (data){
+							alert("取消成功");
+							getOrderList();
 						}else{
-							alert("order取消失败");
+							alert("取消失败");
 						}
 					}
 				})
 				//取消后刷新订单列表
-				getOrderList(); */
+				getOrderList();
 			})
 				
 			function getUserInfo(){
@@ -1061,8 +1061,8 @@
 	       					if (order.status == 0){
 	       						status = `
 	       							<span style='color:#FFA500;'>待支付</span>
-	       							<a href="javascript:;" class="porder" data-toggle="modal" data-target="#payModal" data-id="${order.orderid}">支付</a>
-	       							<a href="javascript:;" class="corder" data-toggle="modal" data-target="#cancelModal" data-id="${order.orderid}">取消</a>
+	       							<a href="javascript:;" class="porder" data-toggle="modal" data-target="#payModal" data-id="${order.orderId}">支付</a>
+	       							<a href="javascript:;" class="corder" data-toggle="modal" data-target="#cancelModal" data-id="${order.orderId}">取消</a>
 	       						`;
 	       					}else if (order.status == 1){
 	       						status = `

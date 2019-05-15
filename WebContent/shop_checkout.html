@@ -297,8 +297,6 @@
                    <tbody id="addresslist">
                    </tbody>
                  </table>
-	               <button class="no-round-btn" data-toggle="modal" data-target="#addModal">添加地址</button>
-	               <button class="no-round-btn" data-toggle="modal" data-target="#changeModal">更改地址</button>
              	 </div>
            	   </div>
                <div class="form-group">
@@ -551,7 +549,7 @@
    				dataType:"json",
    				success:function(data){
    					if (data){
-   						alert("支付成功")
+   						window.location.href = "order_complete.html";
    					}
    				}
     		})
@@ -571,7 +569,12 @@
 				},
 				dataType:"json",
 				success:function(data){
+					console.log(data);
 					$("#addresslist").html("");
+					if (data == ""){
+						alert("请先添加地址");
+						window.location.href = "personpage.html";
+					}
 					$(data).each(function(index, address){
 						var html = `
 							<tr>

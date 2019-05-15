@@ -1,7 +1,6 @@
 package com.phonestore.servlet;
 
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -65,7 +64,6 @@ public class OrderServlet extends HttpServlet {
 		OrderService orderService = new OrderServiceImpl();
 		AddressService addressService = new AddressServiceImpl();
 		
-		List<Item> list2=id.getAll();
 		
 		if ("list".equals(op)) {
 			int userid =Integer.parseInt(request.getParameter("userid"));
@@ -74,6 +72,19 @@ public class OrderServlet extends HttpServlet {
 			System.out.println("orderList" + list);
 			System.out.println("json:" + json);
 			out.println(json);
+		}
+		
+		//已经生成订单但未支付
+		if ("continuepay".equals(op)) {
+			String orderId = request.getParameter("orderid");
+			Order order = orderService.searchOrderByOrderId(orderId);
+			order.setStatus(1);
+			int updateOrder = orderService.updateOrder(order);
+			if (updateOrder > 0) {
+				out.println(true);
+			}else {
+				out.println(false);
+			}
 		}
 		
 		if ("cancel".equals(op)) {

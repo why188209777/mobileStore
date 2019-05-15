@@ -56,15 +56,15 @@ public class CartServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		System.out.println("我进来了");
 //		ItemDao itemDao = new ItemDaoImpl();
 		String op = request.getParameter("op");
 		PhoneService phonedao = new PhoneServiceImpl();
 		CartService cartDao = new CartServiceImpl();
 		OrderService oDao = new OrderServiceImpl();
 		int userid = Integer.parseInt(request.getParameter("userid"));
-
+		System.out.println(userid);
 		if ("list".equals(op)) {
+			//cartDao.clearChecked();
 			System.out.println(userid);
 			List<Phone> phoneList = null;
 			List<Cart> cartList = cartDao.getAllCart(userid);
