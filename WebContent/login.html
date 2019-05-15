@@ -315,48 +315,55 @@
     		$("#loginBtn").click(function(){
     			var username = $("input[id=user-name]").val();
     			var password = $("input[id=password]").val();
-    			//如果cookie中不存在，则代表用户手动输入，需进行md5加密
-    			if (pwdCookie == null){
-    				password = $.md5(password);
+    			if(username==""){
+    				alert("用户名不能为空");
     			}
-    			$.ajax({
-    				type:"post",
-    				url:"user",
-    				cache:false,
-    				data:{
-    					username:username,
-    					password:password,
-    					op:"login"
-    				},
-    				dataType:"json",
-    				success:function(data){
-    					if (data != null){
-    						var savepass = $("input[id=savepass]").prop("checked");
-    						//如果选择保存密码，则增加保存时间，单位为天
-    						//默认是关闭浏览器cookie自动失效
-    						if (savepass == true){
-    							$.cookie('username', username, {expires:7});
-        						$.cookie('password', password, {expires:7});
-        						//将用户id存入cookie，方便后续查询
-        						$.cookie('userid', data.id, {expires:7});
-        						//用户是否是vip
-        						$.cookie('vip', data.vip, {expires:7});
-    						}else{
-    							$.cookie('username', username);
-        						$.cookie('password', password);
-        						$.cookie('userid', data.id);
-        						$.cookie('vip', data.vip);
-    						}
-    						window.location.href="index.html";
-    					}else{
-    						alert('用户名或密码错误');
-    					}
-    					
-    				},
-    				error:function(){
-    					alert('登录出错');
-    				}
-    			})
+				}else if(password==""){
+				    alert("密码不能为空");
+				}else{
+					//如果cookie中不存在，则代表用户手动输入，需进行md5加密
+	    			if (pwdCookie == null){
+	    				password = $.md5(password);
+	    			}
+	    			$.ajax({
+	    				type:"post",
+	    				url:"user",
+	    				cache:false,
+	    				data:{
+	    					username:username,
+	    					password:password,
+	    					op:"login"
+	    				},
+	    				dataType:"json",
+	    				success:function(data){
+	    					if (data != null){
+	    						var savepass = $("input[id=savepass]").prop("checked");
+	    						//如果选择保存密码，则增加保存时间，单位为天
+	    						//默认是关闭浏览器cookie自动失效
+	    						if (savepass == true){
+	    							$.cookie('username', username, {expires:7});
+	        						$.cookie('password', password, {expires:7});
+	        						//将用户id存入cookie，方便后续查询
+	        						$.cookie('userid', data.id, {expires:7});
+	        						//用户是否是vip
+	        						$.cookie('vip', data.vip, {expires:7});
+	    						}else{
+	    							$.cookie('username', username);
+	        						$.cookie('password', password);
+	        						$.cookie('userid', data.id);
+	        						$.cookie('vip', data.vip);
+	    						}
+	    						window.location.href="index.html";
+	    					}else{
+	    						alert('用户名或密码错误');
+	    					}
+	    					
+	    				},
+	    				error:function(){
+	    					alert('登录出错');
+	    				}
+	    			})
+				}
     		})
     	})
     </script>
