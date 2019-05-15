@@ -101,6 +101,7 @@ public class OrderServlet extends HttpServlet {
 			int addOrder = orderService.addOrder(order);
 			String json = JSON.toJSONString(addOrder);
 			out.println(json);
+		}
 		if ("show".equals(op)) {
 			String orderid = request.getParameter("id");
 			List<Item> itemlist = id.searchItemsByOrderId(orderid);
@@ -152,4 +153,4 @@ public class OrderServlet extends HttpServlet {
 		}
 	}
 }
-}
+
