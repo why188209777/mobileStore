@@ -64,12 +64,15 @@ public class CartServlet extends HttpServlet {
 		OrderService oDao = new OrderServiceImpl();
 		
 		if ("list".equals(op)) {
+			int userid = Integer.parseInt(request.getParameter("userid"));
+			System.out.println(userid);
 			List<Phone> phoneList = null;
-			List<Cart> cartList = cartDao.getAll();
+			List<Cart> cartList = cartDao.getAllCart(userid);
 			if (cartList != null) {
 				phoneList = new ArrayList<Phone>();
 				for (Cart cart : cartList) {
 					Phone phone = phonedao.getPhoneByPhoneId(cart.getPhoneId());
+					
 					phoneList.add(phone);
 				}
 			}
