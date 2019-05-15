@@ -38,13 +38,9 @@ public class UserFilter implements Filter {
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		HttpServletResponse servletResponse = (HttpServletResponse) response;
 		String url = servletRequest.getRequestURI();
-	    System.out.println("url:" + url);
+	    //System.out.println("url:" + url);
 
-	    if (url.contains("order") || url.contains("cart")) {
-	    	servletResponse.sendRedirect("login.html");
-	    }else {
-		  chain.doFilter(request, response);
-	    }
+		chain.doFilter(request, response);
 	}
 
 	/**

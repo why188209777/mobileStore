@@ -46,6 +46,18 @@ public class OrderDaoImpl implements OrderDao {
 				order.getStatus(), order.getId());
 	}
 
+	public static void main(String[] args) {
+		Order order = new Order(1,"1000",1,Calendar.getInstance().getTime(),2000,"slsd","123456",1);
+		System.out.println(order);
+		int updateOrder = new OrderDaoImpl().updateOrder(order);
+		System.out.println(updateOrder);
+		Order searchOrder = new OrderDaoImpl().searchOrder(1);
+		System.out.println(searchOrder);
+		searchOrder.setStatus(2);
+		int updateOrder2 = new OrderDaoImpl().updateOrder(searchOrder);
+		System.out.println(updateOrder2);
+		
+	}
 	@Override
 	public Order searchOrder(int id) {
 		String sql = "select * from orders where id=?";

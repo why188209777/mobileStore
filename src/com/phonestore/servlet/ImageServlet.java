@@ -195,7 +195,25 @@ public class ImageServlet extends HttpServlet {
 		
 		if ("updateimage".equals(op)) {
 			int id = Integer.parseInt(request.getParameter("id"));
-			
+			String imageid = request.getParameter("iamgeid");
+			String phonename = request.getParameter("phonename");
+			Image image = imageService.searchImage(id);
+			File file = new File(path + File.separator + image.getImageid() + ".png");
+			String newPath = file.getParent() + File.separator + imageid + ".png";
+			System.out.println("oldPath:" + path + File.separator + image.getImageid() + ".png");
+			System.out.println("newPath:" + newPath);
+			File dest = new File(newPath);
+			boolean renameTo = file.renameTo(dest);
+			if (renameTo) {
+				int updateImage = imageService.updateImage(new Image(id, imageid, phonename));
+				if (updateImage > 0) {
+					out.println(true);
+				}else {
+					out.println(false);
+				}
+			}else {
+				out.println(false);
+			}
 		}
 		
 		if ("deleteimage".equals(op)) {
