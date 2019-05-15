@@ -3,13 +3,19 @@
  */
 $(function() {
 	//全局变量
-	var phoneid;//phoneid全局使用
+	var nameCookie = $.cookie('username');
+	var idCookie = $.cookie('userid');
+	if (nameCookie != null){
+		$("span[id=username]").text(nameCookie);
+		$('a[id=logininfo]').attr('href', 'personpage.html');
+	}
 	//用户Name
 	//ip
 	//设备
 	var allUrl = window.location.href;
 	var imgUrl = allUrl.substring(allUrl.lastIndexOf('?') + 1);
-	console.log(imgUrl);
+	var phoneid = imgUrl.substring(0, imgUrl.length - 2);
+	console.log(phoneid);
 	function getPhoneDetail() {
 		//ajax请求图片详情
 		$.ajax({
@@ -18,7 +24,7 @@ $(function() {
 			cache:false,
 			async:false, 
 			data:{
-				image:imgUrl,
+				phoneid:phoneid,
 				op:"getPhone"
 			},
 			dataType:"json",
@@ -33,7 +39,6 @@ $(function() {
 				$("h5.product-type").text(data.color);
 				$("h2.product-name").text(data.phonename);
 				var dataDescription;//商品描述
-				console.log(data.description);
 				if(!data.description){
 					dataDescription=data.description;			
 				}else{
@@ -54,16 +59,13 @@ $(function() {
 		var $shop_detail_img = $(".shop-detail_img");
 		$shop_detail_img.html("");
 		var str = "";
-		var imgUrlModel = imgUrl.substring(0, imgUrl.length - 2);
-		phoneid=imgUrlModel;//全局id
-		console.log("phoneid="+phoneid);
 		str += `<button class="round-icon-btn" id="zoom-btn"> <i class="icon_zoom-in_alt"></i>
 				</button>
 			  <div class="big-img">
 		`;
 		for(let i = 0; i < 3; i++) {
 			str += `
-				<div class="big-img_block"><img src="assets/images/phone/${imgUrlModel}-${i+1}.png" alt="product image"></div>
+				<div class="big-img_block"><img src="assets/images/phone/${phoneid}-${i+1}.png" alt="product image"></div>
 			`
 		}
 		str += `</div>
@@ -71,15 +73,15 @@ $(function() {
               `;
 		for(let j = 0; j < 3; j++) {
 			str += `
-				<div class="slide-img_block"><img src="assets/images/phone/${imgUrlModel}-${j+1}.png" alt="product image"></div>
+				<div class="slide-img_block"><img src="assets/images/phone/${phoneid}-${j+1}.png" alt="product image"></div>
 			`
 		}
 		str += `</div>`;
 		$shop_detail_img.append(str);
 		//手机描述图片
-		var src="assets/images/phone/"+imgUrlModel+"-"+"1.png";
+		var src="assets/images/phone/"+phoneid+"-"+"1.png";
 		$(".img-fluid1").attr("src", src);
-		var src="assets/images/phone/"+imgUrlModel+"-"+"2.png";
+		var src="assets/images/phone/"+phoneid+"-"+"2.png";
 		$(".img-fluid2").attr("src", src);	
 		
 	}
@@ -99,7 +101,6 @@ $(function() {
 			success:function(data){
 				//渲染评论列表
 				console.log(data);
-				console.log("开始渲染评论列表")
 				var $customer_reviews_middle_block=$(".customer-reviews_middle_block");//评论列表
 				$customer_reviews_middle_block.html("");//重置
 				var str="";
@@ -152,7 +153,6 @@ $(function() {
 			},
 			dataType:"json",
 			success:function(data){
-				console.log("评论："+data);
 				var $customer_reviews_middle_block=$(".customer-reviews_middle_block");//评论列表
 				var str;
 				str=`
@@ -167,7 +167,7 @@ $(function() {
                         <div class="col-12 col-sm-9 col-lg-10">
                           <div class="customer-comment"> 
                             <h5 class="comment-date">${data.conentTime}</h5>
-                            <h3 class="customer-name">Jenney Kelley</h3>
+                            <h3 class="customer-name">${nameCookie}</h3>
                             <p class="customer-commented">${data.content}</p>
                           </div>
                         </div>
@@ -211,5 +211,37 @@ $(function() {
 				color:'#fff',
 			});
 		},3000)
+	});
+	
+	//添加购物车
+	$(document).on("click",".addCart",function(){
+		if(!idCookie || idCookie.length==0){
+			alert("请先登录！");
+			return false;
+		}
+		var num=$("#quantity").val();
+		console.log(num);
+		$.ajax({
+			type:"post",
+			url:"PhoneServlet",
+			cache:false,
+			data:{
+				op:"addCart",
+				userid:idCookie,
+				phoneid:phoneid,
+				num:num
+			},
+			dataType:"json",
+			success:function(data){
+				if(data>0){
+					alert("添加购物车成功")
+				}else{
+					alert("添加购物车失败");
+				}
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
 	});
 });
