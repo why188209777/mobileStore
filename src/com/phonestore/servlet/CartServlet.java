@@ -61,11 +61,10 @@ public class CartServlet extends HttpServlet {
 		PhoneService phonedao = new PhoneServiceImpl();
 		CartService cartDao = new CartServiceImpl();
 		OrderService oDao = new OrderServiceImpl();
-		int userid = Integer.parseInt(request.getParameter("userid"));
-		System.out.println(userid);
 		if ("list".equals(op)) {
+			int clearChecked = cartDao.clearChecked();
+			int userid = Integer.parseInt(request.getParameter("userid"));
 			//cartDao.clearChecked();
-			System.out.println(userid);
 			List<Phone> phoneList = null;
 			List<Cart> cartList = cartDao.getAllCart(userid);
 			if (cartList != null) {
@@ -106,6 +105,7 @@ public class CartServlet extends HttpServlet {
 			}
 			int updateNum = cartDao.updateChecked(id, checkednum);
 			String json = JSON.toJSONString(updateNum);
+			System.out.println(json);
 			out.println(json);
 		}
 		if ("updateallchecked".equals(op)) {
@@ -124,6 +124,7 @@ public class CartServlet extends HttpServlet {
 		}
 		
 		if ("checkedList".equals(op)) {
+			int userid = Integer.parseInt(request.getParameter("userid"));
 			List<Cart> cartList = cartDao.getAllCartChecked(userid);
 			List<Phone> phoneList = null;
 			if (cartList != null) {

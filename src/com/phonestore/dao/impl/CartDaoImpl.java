@@ -96,8 +96,11 @@ public class CartDaoImpl implements CartDao{
 		return list;
 	}
 
-	
-	
+	@Override
+	public int clearChecked() {
+		String sql ="update cart set checked=0 ";
+		return DBUtil.executeUpdate(sql);
+	}
 
 
 }

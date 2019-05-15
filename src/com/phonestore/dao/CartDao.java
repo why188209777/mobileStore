@@ -18,5 +18,5 @@ public interface CartDao {
 	public List<Cart> getAllCart(int userId);
 	//获取checked的信息用于结算订单
 	public List<Cart> getAllCartChecked(int userId);
-	
+	public int clearChecked();
 }

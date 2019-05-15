@@ -90,7 +90,12 @@ public class CartServiceImpl implements CartService{
 	}
 
 
-	
+	@Override
+	public int clearChecked() {
+		// TODO Auto-generated method stub
+		return cd.clearChecked();
+	}
+
 
 	
 
