@@ -39,14 +39,23 @@ public class AddressServiceImpl implements AddressService{
 		// TODO Auto-generated method stub
 		return ad.getAll();
 	}
-	
+	@Override
+	public List<Address> getAllAddressByPage(int pageIndex, int pageSize, Object... params) {
+		// TODO Auto-generated method stub
+		return ad.getAllAddressByPage(pageIndex, pageSize, params);
+	}
 	@Override
 	public List<Address> searchAllAddressByUserId(int userId) {
 		// TODO Auto-generated method stub
 		return ad.searchAllAddressByUserId(userId);
 	}
+
+
+
+	@Override
+	public int getTotalCount(Object... params) {
+		// TODO Auto-generated method stub
+		return ad.getTotalCount(params);
+	}
 	
-
-
-
 }

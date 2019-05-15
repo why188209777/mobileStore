@@ -501,7 +501,7 @@
 	    $(document).on("click","#addAddress", function addAddress(){
    			$.ajax({
    				type:"post",
-   				url:"address",
+   				url:"AddressServlet",
    				cache:false,
    				data:{
    					userid:idCookie,
@@ -563,7 +563,7 @@
     	function getAddressList(){
     		$.ajax({
 				type:"post",
-				url:"address",
+				url:"AddressServlet",
 				cache:false,
 				data:{
 					userid:idCookie,
@@ -605,8 +605,12 @@
 				},
 				dataType:"json",
 				success:function(data){
+					console.log(data);
 					var phoneList = data.phoneList;
+					console.log(phoneList);
 					var cartList = data.cartList;
+					console.log(cartList);
+
 					var subtotal = 0;
 					var total = 0;
 					$(phoneList).each(function(index, obj){

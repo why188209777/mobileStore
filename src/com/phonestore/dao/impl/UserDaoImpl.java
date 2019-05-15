@@ -13,6 +13,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int addUser(User user) {
 		// TODO Auto-generated method stub
+
 		String sql = "INSERT INTO user (username,password,vip,admin,phonenum) VALUES (?,?,?,?,?)";
 		return DBUtil.executeUpdate(sql, user.getUserName(),user.getPassword(),user.getVip(),user.getAdmin(),user.getPhoneNum());
 	}

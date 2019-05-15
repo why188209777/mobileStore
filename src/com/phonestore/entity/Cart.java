@@ -3,7 +3,7 @@ package com.phonestore.entity;
 public class Cart {
 
 	private int id;
-	private int phoneId;
+	private String phoneId;
 	private int num;
 	private int userId;
 	private int checked;
@@ -15,7 +15,7 @@ public class Cart {
 	}
 	
 	
-	public Cart(int id, int phoneId, int num, int userId, int checked) {
+	public Cart(int id, String phoneId, int num, int userId, int checked) {
 		super();
 		this.id = id;
 		this.phoneId = phoneId;
@@ -24,7 +24,7 @@ public class Cart {
 		this.checked = checked;
 	}
 
-	public Cart(int phoneId, int num, int userId, int checked) {
+	public Cart(String phoneId, int num, int userId, int checked) {
 		super();
 		this.phoneId = phoneId;
 		this.num = num;
@@ -41,10 +41,10 @@ public class Cart {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPhoneId() {
+	public String getPhoneId() {
 		return phoneId;
 	}
-	public void setPhoneId(int phoneId) {
+	public void setPhoneId(String phoneId) {
 		this.phoneId = phoneId;
 	}
 	public int getNum() {

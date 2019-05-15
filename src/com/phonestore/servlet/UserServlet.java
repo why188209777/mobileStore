@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,9 +14,6 @@ import com.phonestore.entity.User;
 import com.phonestore.service.UserService;
 import com.phonestore.service.impl.UserServiceImpl;
 
-/**
- * Servlet implementation class UserServlet
- */
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -50,11 +46,8 @@ public class UserServlet extends HttpServlet {
 		UserService userService = new UserServiceImpl();
 		PrintWriter out = response.getWriter();
 		if ("login".equals(op)) {
-			
 			String name = request.getParameter("username");
 			String password = request.getParameter("password");
-			System.out.println(name);
-			System.out.println(password);
 			User user = userService.login(name, password);
 			String json = JSON.toJSONString(user);
 			System.out.println(json);

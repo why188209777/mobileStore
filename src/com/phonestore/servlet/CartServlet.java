@@ -62,14 +62,17 @@ public class CartServlet extends HttpServlet {
 		PhoneService phonedao = new PhoneServiceImpl();
 		CartService cartDao = new CartServiceImpl();
 		OrderService oDao = new OrderServiceImpl();
-		int userId = Integer.parseInt(request.getParameter("userid"));
+		int userid = Integer.parseInt(request.getParameter("userid"));
+
 		if ("list".equals(op)) {
+			System.out.println(userid);
 			List<Phone> phoneList = null;
-			List<Cart> cartList = cartDao.getAllCart(userId);
+			List<Cart> cartList = cartDao.getAllCart(userid);
 			if (cartList != null) {
 				phoneList = new ArrayList<Phone>();
 				for (Cart cart : cartList) {
 					Phone phone = phonedao.getPhoneByPhoneId(cart.getPhoneId());
+					
 					phoneList.add(phone);
 				}
 			}
@@ -87,14 +90,46 @@ public class CartServlet extends HttpServlet {
 			System.out.println(json);
 			out.println(json);
 		}
+		if ("update".equals(op)) {
+			int numid=Integer.parseInt(request.getParameter("numid"));
+			int num=Integer.parseInt(request.getParameter("num"));
+			int updateNum = cartDao.updateNum(numid, num);
+			String json = JSON.toJSONString(updateNum);
+			out.println(json);
+		}
+		if ("updatechecked".equals(op)) {
+			int checkednum=0;
+			String checked = request.getParameter("checked");
+			int id = Integer.parseInt(request.getParameter("id"));
+			if (checked.equals("true")) {
+				checkednum=1;
+			}
+			int updateNum = cartDao.updateChecked(id, checkednum);
+			String json = JSON.toJSONString(updateNum);
+			out.println(json);
+		}
+		if ("updateallchecked".equals(op)) {
+			String checked = request.getParameter("checked");
+			if (checked.equals("true")) {
+				int updateAllChecked = cartDao.updateAllChecked();
+				String json = JSON.toJSONString(updateAllChecked);
+				out.println(json);
+			}
+		}
+		if ("delall".equals(op)) {
+			int delAllCart = cartDao.delAllCart();
+			String json = JSON.toJSONString(delAllCart);
+			System.out.println(json);
+			out.println(json);
+		}
 		
 		if ("checkedList".equals(op)) {
-			List<Cart> cartList = cartDao.getAllCartChecked(userId);
+			List<Cart> cartList = cartDao.getAllCartChecked(userid);
 			List<Phone> phoneList = null;
 			if (cartList != null) {
 				phoneList = new ArrayList<Phone>();
 				for (Cart cart : cartList) {
-					phoneList.add(phonedao.searchPhone(cart.getPhoneId()));
+					phoneList.add(phonedao.searchPhoneByPhoneId(cart.getPhoneId()));
 				}
 			}
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -104,8 +139,6 @@ public class CartServlet extends HttpServlet {
 			System.out.println(json);
 			out.println(json);
 		}
-		
-		
 	}
 
 }

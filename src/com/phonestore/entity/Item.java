@@ -17,9 +17,8 @@ public class Item {
 		// TODO Auto-generated constructor stub
 		super();
 	}
-
-
-
+	
+	
 	public Item(String itemId, String name, String image, double price, int number, String orderId) {
 		super();
 		this.itemId = itemId;

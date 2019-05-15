@@ -26,7 +26,9 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public int updateCart(Cart cart) {
 		// TODO Auto-generated method stub
-		String sql="update address set phoneid=?,num=?,userid=?,checked=? where id=?";
+
+		String sql="update cart set phoneid=?,num=?,userid=?,checked=? where id=?";
+
 		return DBUtil.executeUpdate(sql, cart.getPhoneId(),cart.getNum(),cart.getUserId(),cart.getChecked(),cart.getId());
 	}
 
@@ -45,16 +47,7 @@ public class CartDaoImpl implements CartDao{
 		List<Cart> list = DBUtil.getObjects(Cart.class, sql, userId);
 		return list;
 	}
-	public static void main(String[] args) {
-		CartDaoImpl cd = new CartDaoImpl();
-//		Cart cart = new Cart(1,2,3);
-//		cd.addCart(cart);
-//		cd.delUser(5);
-//		for(int i=0;i<cd.getAll().size();i++) {
-//			System.out.println(cd.getAll().get(i));
-//		}
-		System.out.println(cd.searchCart(2));
-	}
+
 
 	@Override
 	public List<Cart> getAllCartChecked(int userId) {
@@ -62,5 +55,46 @@ public class CartDaoImpl implements CartDao{
 		String sql = "select * from cart where userid=? and checked=1";
 		return DBUtil.getObjects(Cart.class, sql,userId);
 	}
+
+
+	@Override
+	public int updateNum(int id, int num) {
+		// TODO Auto-generated method stub
+		String sql ="update cart set num=? where id=?";
+		return DBUtil.executeUpdate(sql,num,id);
+	}
+
+
+
+	@Override
+	public int updateChecked(int id, int checked) {
+		// TODO Auto-generated method stub
+		String sql ="update cart set checked=? where id=?";
+		return DBUtil.executeUpdate(sql,checked,id);
+	}
+
+	
+
+	@Override
+	public int updateAllChecked() {
+		// TODO Auto-generated method stub
+		String sql ="update cart set checked=1 ";
+		return DBUtil.executeUpdate(sql);
+	}
+
+	@Override
+	public int delAllCart() {
+		// TODO Auto-generated method stub
+		String sql="delete from cart";
+		return DBUtil.executeUpdate(sql);
+	}
+
+	@Override
+	public List<Cart> getAll() {
+		String sql="select * from cart";
+		List<Cart> list = DBUtil.getObjects(Cart.class, sql);
+		return list;
+	}
+
 
 }
