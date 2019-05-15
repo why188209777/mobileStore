@@ -71,10 +71,10 @@ public class CartServlet extends HttpServlet {
 				phoneList = new ArrayList<Phone>();
 				for (Cart cart : cartList) {
 					Phone phone = phonedao.getPhoneByPhoneId(cart.getPhoneId());
-					
 					phoneList.add(phone);
 				}
 			}
+			System.out.println(phoneList);
 			Map map = new HashMap();
 			map.put("cartlist", cartList);
 			map.put("phonelist", phoneList);

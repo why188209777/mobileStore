@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 import com.phonestore.entity.Phone;
+import com.phonestore.entity.Cart;
+import com.phonestore.service.CartService;
 import com.phonestore.service.PhoneService;
+import com.phonestore.service.impl.CartServiceImpl;
 import com.phonestore.service.impl.PhoneServiceImpl;
 
 /**
@@ -43,6 +46,7 @@ public class PhoneServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PhoneService ps=new PhoneServiceImpl();
+		CartService cs=new CartServiceImpl();
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		response.setHeader("Access-Control-Allow-Origin", "*");//跨越
@@ -73,9 +77,9 @@ public class PhoneServlet extends HttpServlet {
 			json=JSON.toJSONString(map);
 		}else if ("getPhone".equals(op)) {
 			//获取某个Phone的详情
-			String image=request.getParameter("image");
-			Phone phone=ps.searchPhone(image);
-			System.out.println("imageUrl:"+image);
+			String phoneid=request.getParameter("phoneid");
+			Phone phone=ps.searchPhoneByPhoneId(phoneid);
+			System.out.println("phoneid:"+phoneid);
 			if(phone!=null){
 				json=JSON.toJSONString(phone);
 			}else{
@@ -104,6 +108,7 @@ public class PhoneServlet extends HttpServlet {
 			map.put("totalPage", totalPage);
 			List<Phone> listPhone=ps.searchPricePhone(minPrice, maxPrice,currentPage,pageSize);
 			System.out.println("minPrice:"+minPrice+"maxPrice:"+maxPrice);
+			System.out.println("价格Phone的数量："+listPhone.size());
 			if(listPhone!=null){
 				map.put("minPrice", minPrice);
 				map.put("maxPrice", maxPrice);
@@ -114,6 +119,7 @@ public class PhoneServlet extends HttpServlet {
 			}
 		}else if ("getVaguePhone".equals(op)) {
 			String keyword=request.getParameter("keyword");
+			System.out.println("模糊搜索"+keyword);
 			totalPage=(int) (ps.getTotalCountByVague(keyword)%pageSize==0?ps.getTotalCountByVague(keyword)/pageSize:ps.getTotalCountByVague(keyword)/pageSize+1);
 			map.put("totalPage", totalPage);
 			List<Phone> listPhone=ps.vagueSearchPhone(keyword,currentPage,pageSize);
@@ -123,7 +129,7 @@ public class PhoneServlet extends HttpServlet {
 				map.put("list", listPhone);
 				json=JSON.toJSONString(map);
 			}else{
-				System.out.println("未找到该模糊条件区间的信息");
+				System.out.println("未找到该模糊条件的信息");
 			}
 		}else if ("addPhone".equals(op)) {
 			System.out.println("开始准备增加手机！");
@@ -187,6 +193,34 @@ public class PhoneServlet extends HttpServlet {
 				
 			}else{
 				System.out.println("删除手机失败");
+			}
+			json=JSON.toJSONString(result);
+		}else if ("addCart".equals(op)) {
+			System.out.println("进入购物车流程：");
+			String userid=request.getParameter("userid");
+			String phoneid=request.getParameter("phoneid");
+			String num=request.getParameter("num");
+			int result=0;
+			Cart isExitCart=cs.getCart(phoneid);
+			if(isExitCart!=null){
+				System.out.println("本phoneid已存在cart表");
+				System.out.println("已存在的phoneid的物品数量为："+isExitCart.getNum());
+				Cart cart=new Cart(phoneid, isExitCart.getNum()+Integer.valueOf(num), Integer.valueOf(userid),0);
+				result=cs.updateCart(cart);
+				if(result>0){
+					System.out.println("添加购物车成功");	
+				}else{
+					System.out.println("添加购物车失败(已存在)");
+				}
+			}else{
+				Cart cart=new Cart(phoneid, Integer.valueOf(num), Integer.valueOf(userid), 0);
+				result=cs.addCart(cart);
+				if(result>0){
+					System.out.println("添加购物车成功");
+					
+				}else{
+					System.out.println("添加购物车失败(不存在)");
+				}
 			}
 			json=JSON.toJSONString(result);
 		}

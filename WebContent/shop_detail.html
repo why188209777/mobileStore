@@ -26,13 +26,13 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="header-left d-flex flex-column flex-md-row align-items-center">
-                  <p class="d-flex align-items-center"><i class="fas fa-envelope"></i>info.deercreative@gmail.com</p>
+                  <p class="d-flex align-items-center"><i class="fas fa-envelope"></i>info://www.zjweu.edu.cn/</p>
                   <p class="d-flex align-items-center"><i class="fas fa-phone"></i>+65 11.188.888</p>
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <div class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
-                  <div class="login d-flex"><a href="login.html"><i class="fas fa-user"></i>Login</a></div>
+                  <div class="login d-flex"><a href="login.html" id="logininfo"><i class="fas fa-user"></i><span id="username">Login</span></a></div>
                 </div>
               </div>
             </div>
@@ -49,7 +49,7 @@
 
                     </li>
                     <li class="toggleable"> <a class="menu-item" href="shop_grid+list_3col.html">商店</a>
-                      <ul class="sub-menu shop d-flex">
+                      <!--<ul class="sub-menu shop d-flex">
                         <div class="nav-column">
                           <h2>Layout shop</h2>
                           <li><a href="shop_grid+list_fullwidth.html">Shop grid fullwidth</a></li>
@@ -68,7 +68,7 @@
                           <li><a href="shop_order_complete.html">order complete</a></li>
                           <li><a href="shop_cart.html">cart</a></li>
                         </div>
-                      </ul>
+                      </ul>-->
                     </li>
                     <!--<li class="toggleable"><a class="menu-item" href="blog_list_sidebar.html">博客</a>
                       <ul class="sub-menu">
@@ -303,8 +303,7 @@
                         <input class="no-round-input" id="quantity" type="number" min="0" value="1">
                       </div>
                       <div class="product-select">
-                        <button class="add-to-cart normal-btn outline">Add to Cart</button>
-                        <button class="add-to-compare normal-btn outline">+ Add to Compare</button>
+                        <button class="add-to-cart normal-btn outline addCart">Add to Cart</button>
                       </div>
                     </div>
                   </div>
@@ -320,26 +319,26 @@
                           <div class="description-block">
                             <div class="description-item_block">
                               <div class="row align-items-center">
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                   <div class="description-item_img"><img class="img-fluid img-fluid1" alt="description image"></div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-8">
                                   <div class="description-item_text">
                                     <h2>Product information</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <p>众所周知，最近小米总裁卢伟冰对于Redmi新机的预热是一天一个，近期可能并非只有一款小米新手机众所周知，最近小米总裁卢伟冰对于Redmi新机的预热是一天一个，近期可能并非只有一款小米新手机</p>
                                   </div>
                                 </div>
                               </div>
                             </div>
                             <div class="description-item_block">
                               <div class="row align-items-center">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                   <div class="description-item_img"><img class="img-fluid img-fluid2"  alt="description image"></div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                   <div class="description-item_text">
                                     <h2>An incredible view</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                    <p>虽然就目前来说，用手机进行反向无线充电，确实体验上还有待加强。不仅充电速度慢，还伴随着一定的能量损耗。 用手机进行反向无线充电，确实体验上还有待加强。不仅充电速度慢，还伴随着一定的能量损耗</p>
                                   </div>
                                 </div>
                               </div>
@@ -502,5 +501,6 @@
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/page/shop_detail.js"></script>
+    <script src="assets/js/jquery.cookie.js"></script>
   </body>
 </html>

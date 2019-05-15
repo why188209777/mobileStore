@@ -27,9 +27,9 @@ public class CartDaoImpl implements CartDao{
 	public int updateCart(Cart cart) {
 		// TODO Auto-generated method stub
 
-		String sql="update cart set phoneid=?,num=?,userid=?,checked=? where id=?";
+		String sql="update cart set num=?,userid=?,checked=? where phoneid=?";
 
-		return DBUtil.executeUpdate(sql, cart.getPhoneId(),cart.getNum(),cart.getUserId(),cart.getChecked(),cart.getId());
+		return DBUtil.executeUpdate(sql,cart.getNum(),cart.getUserId(),cart.getChecked(),cart.getPhoneId());
 	}
 
 	@Override
@@ -102,5 +102,11 @@ public class CartDaoImpl implements CartDao{
 		return DBUtil.executeUpdate(sql);
 	}
 
+	@Override
+	public Cart getCart(String phoneid) {
+		String sql="select * from cart where phoneid=?";
+		return (Cart) DBUtil.getObject(Cart.class, sql, phoneid);
+	}
+	
 
 }

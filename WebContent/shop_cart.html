@@ -591,6 +591,7 @@
         			var cart = data.cartlist;
    					$(phone).each(function(index, phoneList){  						
    						var cartlist = cart[index];
+   						console.log(phoneList);
    	   					var input = "<input id='num"+cartlist.id+"' class='quantity no-round-input num'  type='number' min='1' value='"+cartlist.num+"'>";
        					price = phoneList.price;
        					var total_price=0;
