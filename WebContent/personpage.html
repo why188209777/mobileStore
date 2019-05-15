@@ -828,27 +828,40 @@
 		    
 		    //添加地址信息
 		    $(document).on("click","#addAddress", function (){
-    			$.ajax({
-    				type:"post",
-    				url:"AddressServlet",
-    				cache:false,
-    				data:{
-    					userid:idCookie,
-    					city:$("#acity").val(),
-    					detail:$("#adetail").val(),
-    					name:$("#aname").val(),
-    					postalcode:$("#apostalcode").val(),
-    					phonenum:$("#aphonenum").val(),
-    					op:"add"
-    				},
-    				dataType:"json",
-    				success:function(data){
-    					if (data > 0){
-    						alert('添加成功');
-    						getAddressList();
-    					}
-    				}
-    			})
+		    	var phonepattern = /^1[34578]\d{9}$/;
+		    	var city = $("#city").val();
+		    	var detail = $("#detail").val();
+		    	var aname = $("#aname").val()
+		    	var postalcode = $("#apostalcode").val();
+		    	var phonenum = $("#aphonenum").val();
+		    	console.log(phonepattern.test(phonenum));
+		    	if(city==""||detail==""||aname==""||postalcode==""||phonenum==""){
+		    		alert("以下字段都不能为空");
+		    	}else if(!phonepattern.test(phonenum)){
+		    		alert("请输入正确格式的手机号");
+		    	}else{
+		    		$.ajax({
+	    				type:"post",
+	    				url:"AddressServlet",
+	    				cache:false,
+	    				data:{
+	    					userid:idCookie,
+	    					city:$("#acity").val(),
+	    					detail:$("#adetail").val(),
+	    					name:$("#aname").val(),
+	    					postalcode:$("#apostalcode").val(),
+	    					phonenum:$("#aphonenum").val(),
+	    					op:"add"
+	    				},
+	    				dataType:"json",
+	    				success:function(data){
+	    					if (data > 0){
+	    						alert('添加成功');
+	    						getAddressList();
+	    					}
+	    				}
+	    			})
+		    	}
 	    	});
 			
 			//显示修改模态框

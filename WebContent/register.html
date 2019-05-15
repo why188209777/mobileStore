@@ -299,35 +299,43 @@
     			var username = $("input[id=user-name]").val();
     			var password = $("input[id=password]").val();
     			var confirm = $("input[id=confirm]").val();
-    			if (password != confirm){
-    				alert('密码不一致，请重试');
-    				return;
+    			if(username==""){
+    			    alert("用户名不能为空");
+    			}else if(password==""){
+    			    alert("密码不能为空");
+    			}else if(confirm==""){
+    			    alert("密码不能为空");
+    			}else if(password.length<6||confirm.length<6){
+    			    alert("请重新输入密码，密码长度不能小于6");
+    			} else if(password!=confirm){
+    			    alert("两次密码输入不一致请重新输入");
+    			}else{
+    				var md5pwd = $.md5(password);
+        			$.ajax({
+        				type:"post",
+        				url:"user",
+        				cache:false,
+        				data:{
+        					username:username,
+        					password:md5pwd,
+        					op:"register"
+        				},
+        				dataType:"json",
+        				success:function(data){
+        					console.log(data);
+        					if (data){
+        						//注册成功后自动存入cookie，跳转到登录页面后就能自动填充
+        						//并且不会永久储存
+        						$.cookie('username', username);
+        						$.cookie('password', md5pwd);
+        						alert('注册成功');
+        						window.location.href = "login.html";
+        					}else{
+        						console.log('注册失败')
+        					}
+        				}
+        			})
     			}
-    			var md5pwd = $.md5(password);
-    			$.ajax({
-    				type:"post",
-    				url:"user",
-    				cache:false,
-    				data:{
-    					username:username,
-    					password:md5pwd,
-    					op:"register"
-    				},
-    				dataType:"json",
-    				success:function(data){
-    					console.log(data);
-    					if (data){
-    						//注册成功后自动存入cookie，跳转到登录页面后就能自动填充
-    						//并且不会永久储存
-    						$.cookie('username', username);
-    						$.cookie('password', md5pwd);
-    						alert('注册成功');
-    						window.location.href = "login.html";
-    					}else{
-    						console.log('注册失败')
-    					}
-    				}
-    			})
     		})
     	})
     </script>
