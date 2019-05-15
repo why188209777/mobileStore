@@ -15,6 +15,12 @@ public class Cart {
 	}
 	
 	
+	public Cart(String phoneId) {
+		super();
+		this.phoneId = phoneId;
+	}
+
+
 	public Cart(int id, String phoneId, int num, int userId, int checked) {
 		super();
 		this.id = id;
@@ -33,6 +39,14 @@ public class Cart {
 	}
 
 
+
+
+	public Cart(String phoneId, int num, int userId) {
+		super();
+		this.phoneId = phoneId;
+		this.num = num;
+		this.userId = userId;
+	}
 
 
 	public int getId() {

@@ -3,7 +3,8 @@ $('body').prepend('<div id="preload"><div class="preload-box"><div class="line">
 
 //Wait for document loaded
 window.onload = function () {
-	
+	var nameCookie = $.cookie('username');
+	var idCookie = $.cookie('userid');
 	//Remove preload from DOM
 	$('#preload').fadeOut('400', function(){
 		$(this).remove();
@@ -499,25 +500,20 @@ window.onload = function () {
 
 		/****************************************************
 				Quick view
-		****************************************************/
-		
+		****************************************************/	
+		var phoneid;
 		$(document).on('click', '.quickview', function(event) {
 			event.preventDefault();
-			var c=this.parentNode.firstChild.firstChild;
-			console.log(c);
-			var phoneUrl=this.parentNode.firstChild.firstChild.src;
-			var url=phoneUrl.substring(phoneUrl.lastIndexOf('/') + 1);
-			var imgUrl=url.substring(0,url.length-4);//发送后台
-			var urlModel=url.substring(0,url.length-6);
-			//发送ajax请求
+			phoneid=$(this).next().text();//phoneid
 			var dataColor,dataPhoneName,dataPrice,dataDescription;
 			$.ajax({
 				type:"post",
-				url:"PhoneDetails",
+				url:"PhoneServlet",
 				cache:false,
-				async:false, 
+				async:false,
 				data:{
-					image:imgUrl
+					phoneid:phoneid,
+					op:"getPhone"
 				},
 				dataType:"json",
 				success:function(data){
@@ -549,63 +545,55 @@ window.onload = function () {
 									<i class="icon_zoom-in_alt"></i></button> 
 									<div class="big-img big-img_qv"> 
 									<div class="big-img_block">
-										<img src="assets/images/phone/${url}" alt="product image">
+										<img src="assets/images/phone/${phoneid}-1.png" alt="product image">
 									</div>
 									<div class="big-img_block">
-										<img src="assets/images/phone/${urlModel}-1.png" alt="product image">
+										<img src="assets/images/phone/${phoneid}-1.png" alt="product image">
 									</div>
 									<div class="big-img_block">
-										<img src="assets/images/phone/${urlModel}-2.png" alt="product image">
+										<img src="assets/images/phone/${phoneid}-2.png" alt="product image">
 									</div>
 									<div class="big-img_block">
-										<img src="assets/images/phone/${urlModel}-3.png" alt="product image">
+										<img src="assets/images/phone/${phoneid}-3.png" alt="product image">
 									</div>
 								</div>
 								<div class="slide-img slide-img_qv"> 
 									<div class="slide-img_block">
-										<img src="assets/images/phone/${url}"" alt="product image">
+										<img src="assets/images/phone/${phoneid}-1.png" alt="product image">
 									</div>
 									<div class="slide-img_block">
-										<img src="assets/images/phone/${urlModel}-1.png" alt="product image">
+										<img src="assets/images/phone/${phoneid}-1.png" alt="product image">
 									</div>
 									<div class="slide-img_block">
-										<img src="assets/images/phone/${urlModel}-2.png" alt="product image">
+										<img src="assets/images/phone/${phoneid}-2.png" alt="product image">
 									</div>
 									<div class="slide-img_block">
-										<img src="assets/images/phone/${urlModel}-3.png" alt="product image">
+										<img src="assets/images/phone/${phoneid}-3.png" alt="product image">
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-12 col-md-6"> 
 							<div class="shop-detail_info"> 
-								<h5 class="product-type color-type">${dataColor}</h5>
-								<a class="product-name" href="shop_detail.html">${dataPhoneName}</a>
+								<h5 class="product-type color-type">红色</h5>
+								<a class="product-name" href="shop_detail.html"></a>
 								<div class="price-rate"> 
 									<h3 class="product-price"> <del>¥${eval(dataPrice+500)}</del>¥${dataPrice}</h3> 
 								</div>
 								<p class="product-describe">${dataDescription}</p>
 								<div class="quantity-select"> 
 									<label for="quantity">Quatity:</label> 
-									<input class="no-round-input" id="quantity" type="number" min="0" value="1"> 
+									<input class="no-round-input" id="quantity" type="text" min="0" value="1"> 
 								</div>
 								<div class="product-select"> 
-									<button class="add-to-cart normal-btn outline">Add to Cart</button> 
-									<button class="add-to-compare normal-btn outline">+ Add to Compare</button> 
+									<button class="add-to-cart normal-btn outline" id="quickAddCart">Add to Cart</button> 
 								</div>
-								/*<div class="product-share"> 
-									<h5>Share link:</h5>
-									<a href=""><i class="fab fa-facebook-f"> </i></a>
-									<a href=""><i class="fab fa-twitter"></i></a>
-									<a href=""><i class="fab fa-invision"> </i></a>
-									<a href=""><i class="fab fa-pinterest-p"></i></a> </div>
-								</div>*/
 							</div>
 						</div>
 					</div>
 				</div>
 			`);
-			
+			$(".product-name").text(dataPhoneName);
 			
 			//Wirte Quick view block to DOM
 			$('#quickview .big-img_qv').slick({
@@ -629,6 +617,41 @@ window.onload = function () {
 			});
 			$('#quickview-close-btn').on('click', function(event) {
 				$('#quickview').remove()
+			});
+		});
+		//quickAddCart
+		$(document).on('click', '#quickAddCart', function(event) {
+			if(!idCookie || idCookie.length==0){
+				alert("请先登录！");
+				return false;
+			}
+			var num=$("#quantity").val();
+			console.log(num);
+			if(isNaN(num) || num<0){
+				alert("请输入正确的数量！");
+				return false;
+			}
+			$.ajax({
+				type:"post",
+				url:"PhoneServlet",
+				cache:false,
+				data:{
+					op:"addCart",
+					userid:idCookie,
+					phoneid:phoneid,
+					num:num
+				},
+				dataType:"json",
+				success:function(data){
+					if(data>0){
+						alert("添加购物车成功")
+					}else{
+						alert("添加购物车失败");
+					}
+				},
+				error:function(error){
+					console.log(error);
+				}
 			});
 		});
 	});

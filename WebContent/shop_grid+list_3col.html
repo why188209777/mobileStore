@@ -28,13 +28,13 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="header-left d-flex flex-column flex-md-row align-items-center">
-                  <p class="d-flex align-items-center"><i class="fas fa-envelope"></i>info.deercreative@gmail.com</p>
+                  <p class="d-flex align-items-center"><i class="fas fa-envelope"></i>info://www.zjweu.edu.cn/</p>
                   <p class="d-flex align-items-center"><i class="fas fa-phone"></i>+65 11.188.888</p>
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <div class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
-                  <div class="login d-flex"><a href="login.html"><i class="fas fa-user"></i>Login</a></div>
+                  <div class="login d-flex"><a href="login.html" id="logininfo"><i class="fas fa-user"></i><span id="username">Login</span></a></div>
                 </div>
               </div>
             </div>
@@ -51,7 +51,7 @@
 
                     </li>
                     <li class="toggleable"> <a class="menu-item" href="shop_grid+list_3col.html">商店</a>
-                      <ul class="sub-menu shop d-flex">
+                      <!--<ul class="sub-menu shop d-flex">
                         <div class="nav-column">
                           <h2>Layout shop</h2>
                           <li><a href="shop_grid+list_fullwidth.html">Shop grid fullwidth</a></li>
@@ -70,7 +70,7 @@
                           <li><a href="shop_order_complete.html">order complete</a></li>
                           <li><a href="shop_cart.html">cart</a></li>
                         </div>
-                      </ul>
+                      </ul>-->
                     </li>
                     <!--<li class="toggleable"><a class="menu-item" href="blog_list_sidebar.html">博客</a>
                       <ul class="sub-menu">
@@ -259,7 +259,7 @@
 	                    <input class="amount" id="minPrice" type="text" style="width: 60px;">
 	                    <span>至</span>
 	                    <input class="amount" id="maxPrice" type="text" style="width: 60px;"/>
-	                    <button class="normal-btn">筛选</button>
+	                    <button class="normal-btn" id="selectPrice">筛选</button>
 	                  </div>
                   </div>
                 </div>
@@ -477,6 +477,6 @@
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/page/shop_grid_list+3col.js"></script>
-
+		<script src="assets/js/jquery.cookie.js"></script>
   </body>
 </html>

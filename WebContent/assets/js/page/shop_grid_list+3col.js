@@ -3,6 +3,14 @@
  */
 $(function(){
 	//全局变量
+	//用户名 用户ID
+	var nameCookie = $.cookie('username');
+	var idCookie = $.cookie('userid');
+	if (nameCookie != null){
+		$("span[id=username]").text(nameCookie);
+		$('a[id=logininfo]').attr('href', 'personpage.html');
+	}
+
 	var currentPage;//当前页码
 	var totalPage;//总共页码
 	//手机商城遍历
@@ -17,11 +25,6 @@ $(function(){
 			},
 			dataType:"json",
 			success:function(data){
-				console.log(data.listBrand);
-				currentPage=data.currentPage;//当前页码赋值
-				totalPage=data.totalPage;//总共页码
-				console.log("当前页码："+currentPage);
-				console.log("总共页码："+totalPage);
 				getDataPhone(data);	
 			},
 			error:function(error){
@@ -31,6 +34,8 @@ $(function(){
 	}
 	function getDataPhone(data){
 		console.log(data);
+		currentPage=data.currentPage;//当前页码赋值
+		totalPage=data.totalPage;//总共页码
 		if(!data.list || data.length==0){
 			alert("暂未查到相关手机信息，请重新输入查询！");
 			return false;
@@ -44,6 +49,7 @@ $(function(){
 	                <div class="product grid-view">
 	                  <div class="product-img_block"><a class="product-img" href="shop_detail.html?${data.list[i].image}"><img src="assets/images/phone/${data.list[i].image}.png" alt=""></a>
 	                    <button class="quickview no-round-btn smooth">Quick view</button>
+	                    <span style="visibility:hidden">${data.list[i].phoneId}</span>
 	                  </div>
 	                  <div class="product-info_block">
 	                    <h5 class="product-type">${data.list[i].color}</h5><a class="product-name" href="shop__detail.html">${data.list[i].phonename}</a>
@@ -56,18 +62,16 @@ $(function(){
 	                    <button class="add-to-wishlist button-borderless"><i class="icon_heart_alt"></i></button>
 	                  </div>
 	                  <div class="product-select">
-	                    <button class="add-to-wishlist round-icon-btn"> <i class="icon_heart_alt"></i></button>
-	                    <button class="add-to-cart round-icon-btn">  <i class="icon_bag_alt"></i></button>
-	                    <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
+	                    <button class="add-to-cart round-icon-btn addCart" style="margin-left:60px">  <i class="icon_bag_alt"></i></button>
 	                    <button class="quickview round-icon-btn"> <i class="far fa-eye"></i></button>
+	                    <span style="visibility:hidden">${data.list[i].phoneId}</span>
 	                  </div>
 	                  <div class="product-select_list">
 	                    <p class="delivery-status">Free delivery</p>
 	                    <h3 class="product-price"> 
 	                      <del>¥${eval(data.list[i].price+500)}</del>¥${data.list[i].price} 
 	                    </h3>
-	                    <button class="add-to-cart normal-btn outline">Add to Cart</button>
-	                    <button class="add-to-compare normal-btn outline">+ Add to Compare</button>
+	                    <button class="add-to-cart normal-btn outline addCart">Add to Cart</button>
 	                  </div>
 	                </div>
 	            </div>
@@ -177,7 +181,6 @@ $(function(){
 	$(document).on("click",".nextPage",function(){
 		var pageIndex=$(this).text();
 		currentPage=pageIndex;
-		console.log("页码："+pageIndex);
 		$.ajax({
 			type:"post",
 			url:"PhoneServlet",
@@ -302,7 +305,7 @@ $(function(){
 	});
 	
 	//筛选价格区间的Phone
-	$(document).on("click",".normal-btn",function(){
+	$(document).on("click","#selectPrice",function(){
 		currentPage=1;//重置页码
 		var minPrice=$("#minPrice").val();
 		var maxPrice=$("#maxPrice").val();
@@ -354,7 +357,7 @@ $(function(){
 	//模糊搜索
 	$(document).on("click",".website-search .no-round-btn",function(){
 		var keyword=$(".no-round-input").val();
-		console.log(phoneName);
+		console.log(keyword);
 		$.ajax({
 			type:"post",
 			url:"PhoneServlet",
@@ -372,6 +375,40 @@ $(function(){
 			}
 		});
 		$(".no-round-input").val("");
+	});
+	
+	//商品缩略图下方按钮添加购物车
+	$(document).on("click",".addCart",function(){
+		if(!idCookie || idCookie.length==0){
+				alert("请先登录！");
+				return false;
+			}
+		var phoneid=$(this).parent().children("span").text();
+		console.log(phoneid);
+		//直接添加默认数量为1
+		var num=1;
+		$.ajax({
+			type:"post",
+			url:"PhoneServlet",
+			cache:false,
+			data:{
+				op:"addCart",
+				userid:idCookie,
+				phoneid:phoneid,
+				num:num
+			},
+			dataType:"json",
+			success:function(data){
+				if(data>0){
+					alert("添加购物车成功")
+				}else{
+					alert("添加购物车失败");
+				}
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
 	});
 	
 	

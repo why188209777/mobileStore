@@ -96,7 +96,11 @@ public class CartServiceImpl implements CartService{
 		return cd.clearChecked();
 	}
 
-
+	@Override
+	public Cart getCart(String phoneid) {
+		// TODO Auto-generated method stub
+		return cd.getCart(phoneid);
+	}
 	
 
 }
