@@ -1,6 +1,7 @@
 package com.phonestore.servlet;
 
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -115,7 +116,9 @@ public class OrderServlet extends HttpServlet {
 		}
 		if ("show".equals(op)) {
 			String orderid = request.getParameter("id");
+			System.out.println(orderid);
 			List<Item> itemlist = id.searchItemsByOrderId(orderid);
+			System.out.println(itemlist);
 			String json1 = JSON.toJSONString(itemlist);
 			out.print(json1);
 		}

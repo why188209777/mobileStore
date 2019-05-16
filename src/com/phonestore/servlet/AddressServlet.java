@@ -109,7 +109,7 @@ public class AddressServlet extends HttpServlet {
 		//h后台管理
 		if ("getlist".equals(op)) {
 			List<Address> list = as.getAll();
-			int pageSize = 3;
+			int pageSize = 7;
 			int pageIndex = 
 				request.getParameter("pageIndex") == ""
 				? 1

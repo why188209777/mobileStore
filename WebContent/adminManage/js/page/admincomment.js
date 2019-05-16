@@ -23,6 +23,12 @@ $(function(){
 	}
 	//填充评论DOM
 	function getDataComment(data){
+		if(!data.list || data.length==0){
+			alert("暂无数据");
+			return false;
+		}
+		currentPage=data.currentPage;//当前页码赋值
+		totalPage=data.totalPage;//总共页码
 		var $tablebody=$(".tablebody");
 		$tablebody.html("");
 		var str="";

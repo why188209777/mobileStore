@@ -104,7 +104,7 @@
 											<div class="form-group ">
 												<label for="sPwd" class="col-xs-4 control-label">密码：</label>
 												<div class="col-xs-7 ">
-													<input type="text" class="form-control input-sm duiqi" id="password1" placeholder="">
+													<input type="password" class="form-control input-sm duiqi" id="password1" placeholder="">
 												</div>
 											</div>
 											<div class="form-group">
@@ -113,7 +113,7 @@
 													<label class="control-label" for="anniu">
                                                             <input type="radio" name="uservip" value="1"> 是</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													<label class="control-label" for="meun">
-                                                            <input type="radio" checked="checked" name="uservip" value="0"> 不是</label>
+                                                            <input type="radio" checked="checked" name="uservip" value="0"> 否</label>
 												</div>
 											</div>
 											<div class="form-group">
@@ -122,7 +122,7 @@
 													<label class="control-label" for="anniu">
                                                             <input type="radio" name="useradmin" value="1"> 是</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													<label class="control-label" for="meun">
-                                                            <input type="radio" checked="checked" name="useradmin" value="0"> 不是</label>
+                                                            <input type="radio" checked="checked" name="useradmin" value="0"> 否</label>
 												</div>
 											</div>
 											<div class="form-group">
@@ -251,13 +251,13 @@
 												<div class="form-group ">
 													<label for="sName" class="col-xs-4 control-label">用户名：</label>
 													<div class="col-xs-7 ">
-														<input type="email" class="form-control input-sm duiqi" id="username2" placeholder="">
+														<input type="email" class="form-control input-sm duiqi" id="username2" disabled="disabled">
 													</div>
 												</div>
 												<div class="form-group ">
 												<label for="sPwd" class="col-xs-4 control-label">密码：</label>
 												<div class="col-xs-7 ">
-													<input type="password" class="form-control input-sm duiqi" id="password2" placeholder="">
+													<input type="password" class="form-control input-sm duiqi" id="password2" disabled="disabled">
 												</div>
 											</div>
 												<div class="form-group">
@@ -380,6 +380,7 @@
 -->
 		<script src="js/jquery.nouislider.js"></script>
 		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.md5.js"></script>
 
 		<!-- this page specific inline scripts -->
 		<script>
@@ -457,7 +458,7 @@
 				var phonenum = $("#userphonenum1").val();
 				if(username==""||phonenum==""||password==""){
 					alert("以下内容不能为空请重新输入");
-				}else if(password.length<9){
+				}else if(password.length<6){
 				    alert("密码不能小于6位");
 				} else if(!phonepattern.test(phonenum)){
 				    alert("请输入正确格式的手机号");
@@ -468,7 +469,7 @@
 	    				cache:false,
 	    				data:{
 	    					name:username,
-	    					password:password,
+	    					password:$.md5(password),
 	    					vip:vip,
 	    					admin:admin,
 	    					phonenum:phonenum,
@@ -548,16 +549,16 @@
 				console.log($("input[name=uservip][value=1]").prop("checked"));
 				console.log($("input[name=useradmin][value=1]").prop("checked"));
 				if ($("input[name=uservip][value=1]").prop("checked")) {
-					vip = 1;
-				}
-				if ($("input[name=uservip][value=0]").prop("checked")) {
 					vip = 0;
 				}
+				if ($("input[name=uservip][value=0]").prop("checked")) {
+					vip = 1;
+				}
 				if ($("input[name=useradmin][value=1]").prop("checked")) {
-					admin = 1;
+					admin = 0;
 				}
 				if ($("input[name=useradmin][value=0]").prop("checked")) {
-					admin = 0;
+					admin = 1;
 				}
 				console.log("vip:" + vip);
 				console.log("admin:" + admin);

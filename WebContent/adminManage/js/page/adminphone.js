@@ -18,8 +18,6 @@ $(function(){
 			dataType:"json",
 			success:function(data){
 				console.log(data);
-				currentPage=data.currentPage;//当前页码赋值
-				totalPage=data.totalPage;//总共页码
 				getDataPhone(data);	
 			},
 			error:function(error){
@@ -33,9 +31,11 @@ $(function(){
 	
 	function getDataPhone(data){
 		if(!data.list || data.length==0){
-			console.log("暂无数据");
-			return false
+			alert("暂无数据");
+			return false;
 		}
+		currentPage=data.currentPage;//当前页码赋值
+		totalPage=data.totalPage;//总共页码
 		var $tablebody=$(".tablebody");
 		$tablebody.html("");
 		var str="";
@@ -213,7 +213,6 @@ $(function(){
 		var phonename1=$("#phonename1").val();
 		var phoneprice1=$("#phoneprice1").val();
 		var phoneimage1=$("#phoneimage1").val();
-		var phoneprice1=$("#phoneprice1").val();
 		var phonesize1=$("#phonesize1").val();
 		var phonecolcor1=$("#phonecolcor1").val();
 		var phonenum1=$("#phonenum1").val();
@@ -224,12 +223,31 @@ $(function(){
 		var phonecpu1=$("#phonecpu1").val();
 		var phoneoperatingsystem1=$("#phoneoperatingsystem1").val();
 		var phonecontent1=$("#phonecontent1").val();
-		console.log("开始添加手机");
+		
 		//非空判断跳出
-		if(!phoneid1){
-//			alert("请输入！")
+		if(!phoneid1 || !phonebrand1 || !phonename1 || !phoneprice1){
+			alert("请输入完整的配置信息！");
 			return false;
 		}
+		if(isNaN(phoneprice1)){
+			alert("手机价格输入格式有误！");
+			return false;
+		}
+		if(isNaN(phonenum1)){
+			alert("手机数量输入格式有误！");
+			return false;
+		}
+		console.log(phoneimage1.substring(0,phoneid1.length));
+		console.log(phoneimage1.substr(phoneid1.length,1));
+		if((phoneimage1.substring(0,phoneid1.length)!=phoneid1) || phoneimage1.substr(phoneid1.length,1)!="-"){
+			alert("手机图片输入格式有误！");
+			return false;
+		}
+		if(!phonecontent1){
+			alert("请输入手机描述信息");
+			return false;
+		}
+		console.log("开始添加手机");
 		$.ajax({
 			type:"post",
 			url:"http://localhost:8080/手机商城/PhoneServlet",
@@ -255,7 +273,8 @@ $(function(){
 			dataType:"json",
 			success:function(data){
 				if(data>0){
-					console.log("添加成功！")
+//					console.log("添加成功！");
+					alert("添加成功！");
 				}
 			},
 			error:function(error){
@@ -360,9 +379,10 @@ $(function(){
 						},
 						dataType:"json",
 						success:function(data){
-							console.log(data)
+							console.log(data);
 							if(data>0){
-								console.log("删除手机成功！");
+								//console.log("删除手机成功！");
+								alert("删除成功");
 							}
 						},
 						error:function(error){
@@ -370,7 +390,8 @@ $(function(){
 						}	
 					});
 				}else{
-					console.log("取消删除")
+					console.log("取消删除");
+					
 				}
 			}
 		})
@@ -392,7 +413,7 @@ $(function(){
 			},
 			dataType:"json",
 			success:function(data){
-				console.log(data)
+				console.log(data);
 				getDataPhone(data);
 			},
 			error:function(error){
@@ -403,7 +424,7 @@ $(function(){
 	});
 	
 	//搜索框聚焦时清空
-	$("#inputKeyWord").on("focus",function(){
+	/*$("#inputKeyWord").on("focus",function(){
 		$(this).val("");
-	})
+	})*/
 })

@@ -114,7 +114,7 @@
 									商品名称
 								</div>
 								<div class="col-xs-4">
-									<span style="visibility: hidden;">fasfafas</span>商品图片
+									商品图片
 								</div>
 
 								<div class="col-xs-2">
@@ -612,7 +612,7 @@
 	    									${image.phonename}
 	    								</div>
 	    								<div class="col-xs-4 image">
-	    									<img width="160px" height="100px" src="http://localhost:8080/手机商城/assets/images/admin/1.jpg">
+	    									<img width="70px" height="70px" src="http://localhost:8080/手机商城/assets/images/phone/${image.imageid}.png">
 	    								</div>
 	    								<div class="col-xs-2">
 	    									<button class="btn btn-success btn-xs uimage" data-toggle="modal" data-target="#reviseImage" data-id="${image.id}">修改</button>
@@ -626,7 +626,7 @@
     						//显示分页
     						$("ul[class=pagination]").html("");
     						var pageList = `
-    							<li>
+    							<li style="cursor:pointer">
 									<a href="#">
 										<font color="black">&laquo;</font>
 									</a>
@@ -634,20 +634,20 @@
 							`;
     						for (var i = 1; i <= data.totalSize; i ++){
     							pageList += `
-    								<li>
-	    								<span >
+    								<li style="cursor:pointer">
+	    								<span>
 	    									<font color="black" class="pageIndex">${i}</font>
 	    								</span>
 	    							</li>
     							`;
     						}
     						pageList += `
-								<li>
+								<li style="cursor:pointer">
 									<a href="#">
 										<font color="black">&raquo;</font>
 									</a>
 								</li>
-								<li class="gray">
+								<li class="gray" style="cursor:pointer">
 									<font color="black"id="totalSize"></font>
 								</li>
 							`;
@@ -689,7 +689,7 @@
 	    									${image.phonename}
 	    								</div>
 	    								<div class="col-xs-4 image">
-	    									<img width="160px" height="100px" src="http://localhost:8080/手机商城/assets/images/admin/1.jpg">
+	    									<img width="70px" height="70px" src="http://localhost:8080/手机商城/assets/images/admin/1.jpg">
 	    								</div>
 	    								<div class="col-xs-2">
 	    									<button class="btn btn-success btn-xs uimage" data-toggle="modal" data-target="#reviseImage" data-id="${image.id}">修改</button>
