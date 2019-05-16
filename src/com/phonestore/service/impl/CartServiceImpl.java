@@ -101,6 +101,13 @@ public class CartServiceImpl implements CartService{
 		// TODO Auto-generated method stub
 		return cd.getCart(phoneid);
 	}
+
+
+	@Override
+	public List<Cart> searchChecked() {
+		// TODO Auto-generated method stub
+		return cd.searchChecked();
+	}
 	
 
 }

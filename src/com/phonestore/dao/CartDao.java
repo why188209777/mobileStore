@@ -13,6 +13,7 @@ public interface CartDao {
 	public int updateChecked(int id,int checked);
 	public int delAllCart();
 	public int updateAllChecked();
+	public List<Cart> searchChecked();
 	public Cart searchCart(int id);
 	public List<Cart> getAll();
 	public List<Cart> getAllCart(int userId);

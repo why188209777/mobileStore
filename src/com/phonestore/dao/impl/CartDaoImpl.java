@@ -107,6 +107,13 @@ public class CartDaoImpl implements CartDao{
 		String sql="select * from cart where phoneid=?";
 		return (Cart) DBUtil.getObject(Cart.class, sql, phoneid);
 	}
+
+	@Override
+	public List<Cart> searchChecked() {
+		// TODO Auto-generated method stub
+		String sql="select checked from cart";
+		return DBUtil.getObjects(Cart.class, sql);
+	}
 	
 
 }

@@ -98,7 +98,7 @@ public class CartServlet extends HttpServlet {
 		}
 		if ("updatechecked".equals(op)) {
 			int checkednum=0;
-			String checked = request.getParameter("checked");
+			String checked = request.getParameter("check");
 			int id = Integer.parseInt(request.getParameter("id"));
 			if (checked.equals("true")) {
 				checkednum=1;
@@ -127,6 +127,7 @@ public class CartServlet extends HttpServlet {
 			int userid = Integer.parseInt(request.getParameter("userid"));
 			List<Cart> cartList = cartDao.getAllCartChecked(userid);
 			List<Phone> phoneList = null;
+			
 			if (cartList != null) {
 				phoneList = new ArrayList<Phone>();
 				for (Cart cart : cartList) {
@@ -138,6 +139,13 @@ public class CartServlet extends HttpServlet {
 			map.put("phoneList", phoneList);
 			String json = JSON.toJSONString(map);
 			System.out.println(json);
+			out.println(json);
+		}
+		if ("checkchecked".equals(op)) {
+			
+			List<Cart> searchChecked = cartDao.searchChecked();
+			System.out.println(searchChecked);
+			String json = JSON.toJSONString(searchChecked);
 			out.println(json);
 		}
 	}
