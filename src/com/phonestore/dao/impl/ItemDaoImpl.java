@@ -60,9 +60,4 @@ public class ItemDaoImpl implements ItemDao {
 		String sql = "select * from item where orderid=?";
 		return DBUtil.getObjects(Item.class, sql, orderId);
 	}
-
-public static void main(String[] args) {
-	List<Item> list = new ItemDaoImpl().searchItemsByOrderId("1128908915730014200");
-	System.out.println(list);
-}
 }

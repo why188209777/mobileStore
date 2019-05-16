@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,7 +56,10 @@ public class ImageServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		ImageService imageService = new ImageServiceImpl();
 		String op = request.getParameter("op");
-		String path = request.getServletContext().getRealPath("assets/images/phone");
+		String path = request.getServletContext().getRealPath("/assets/images/phone");
+		System.out.println(path);
+		
+		
 		if ("upload".equals(op)) {
 			try {
 	            // 获取客户端传过来图片的二进制流             
