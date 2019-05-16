@@ -190,12 +190,14 @@ $(function() {
 	//添加评论
 	$("#commentBtn").bind("click",function(event){
 		event.preventDefault();
-		console.log("发表按钮")
+		if(!idCookie || idCookie.length==0){
+			alert("请先登录！");
+			return false;
+		}
 		var comment=$("#review").val();//获取评论内容
-		console.log(comment);
 		if(comment==null||comment.length==0){
 			alert("请输入评论！再提交");
-			return;
+			return false;
 		}
 		console.log("继续执行");
 		putComment(comment);
