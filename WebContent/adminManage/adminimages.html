@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="ch">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="手机商城后台">
+		<meta name="keywords" content="手机商城后台">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<title>手机商城后台</title>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script>
+			$(function() {
+				$(".meun-item").click(function() {
+					$(".meun-item").removeClass("meun-item-active");
+					$(this).addClass("meun-item-active");
+					var itmeObj = $(".meun-item").find("img");
+					itmeObj.each(function() {
+						var items = $(this).attr("src");
+						items = items.replace("_grey.png", ".png");
+						items = items.replace(".png", "_grey.png")
+						$(this).attr("src", items);
+					});
+					var attrObj = $(this).find("img").attr("src");;
+					attrObj = attrObj.replace("_grey.png", ".png");
+					$(this).find("img").attr("src", attrObj);
+				});
+				$("#topAD").click(function() {
+					$("#topA").toggleClass(" glyphicon-triangle-right");
+					$("#topA").toggleClass(" glyphicon-triangle-bottom");
+				});
+				$("#topBD").click(function() {
+					$("#topB").toggleClass(" glyphicon-triangle-right");
+					$("#topB").toggleClass(" glyphicon-triangle-bottom");
+				});
+				$("#topCD").click(function() {
+					$("#topC").toggleClass(" glyphicon-triangle-right");
+					$("#topC").toggleClass(" glyphicon-triangle-bottom");
+				});
+				$(".toggle-btn").click(function() {
+					$("#leftMeun").toggleClass("show");
+					$("#rightContent").toggleClass("pd0px");
+				})
+			})
+		</script>
+		<!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/slide.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/flat-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.nouislider.css">
+	</head>
+
+	<body>
+		<div id="wrap">
+			<!-- 左侧菜单栏目块 -->
+			<div class="leftMeun" id="leftMeun">
+				<div id="logoDiv">
+					<p id="logoP"><img id="logo" alt="左右结构项目" src="images/logo.png"><span>手机商城后台</span></p>
+				</div>
+				<div id="personInfor">
+					
+				</div>
+				<div class="meun-title">账号管理</div>
+				<div class="meun-item"><a href="adminindex.html"><img src="images/icon_user_grey.png">用户管理</a></div>
+				<div class="meun-item"><a href="adminphone.html"><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;&nbsp;&nbsp;手机管理</a></div>
+				<div class="meun-item"><a href="adminaddress.html">&nbsp;<span class="glyphicon glyphicon-tower"></span>&nbsp;&nbsp;&nbsp;&nbsp;地址管理</a></div>
+				<div class="meun-item"><a href="admincomment.html"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;&nbsp;评论管理</a></div>
+				<div class="meun-item"><a href="adminorders.html">&nbsp;<span class="glyphicon glyphicon-gift"></span>&nbsp;&nbsp;&nbsp;&nbsp;订单管理</a></div>
+				<div class="meun-item meun-item-active" href="#picture" aria-controls="picture" role="tab" data-toggle="tab">&nbsp;<span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp;&nbsp;&nbsp;图片管理</div>
+				<div class="meun-item"><a href="adminrepassword.html"><img src="images/icon_change_grey.png">修改密码</a></div>
+
+			</div>
+			<!-- 右侧具体内容栏目 -->
+			<div id="rightContent">
+				<a class="toggle-btn" id="nimei">
+					<i class="glyphicon glyphicon-align-justify"></i>
+				</a>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<!--添加用户-->
+					
+					<!-- 图片管理 -->
+					<div role="tabpanel" class="tab-pane active" id="picture">
+						<div class="check-div form-inline">
+							<div class="col-xs-3">
+								<button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addPicture">添加图片 </button>
+							</div>
+							<div class="col-xs-4">
+								<input type="text" class="form-control input-sm" placeholder="输入文字搜索" id="keyword">
+								<button class="btn btn-white btn-xs " id="search">查 询 </button>
+							</div>
+							<div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+								<label for="paixu">排序:&nbsp;</label>
+								<select class=" form-control">
+									<option>商品名称</option>
+									<option>商品图片</option>
+
+								</select>
+							</div>
+						</div>
+						<div class="data-div">
+							<div class="row tableHeader">
+								<div class="col-xs-3">
+									图片编号
+								</div>
+								<div class="col-xs-3">
+									商品名称
+								</div>
+								<div class="col-xs-4">
+									<span style="visibility: hidden;">fasfafas</span>商品图片
+								</div>
+
+								<div class="col-xs-2">
+									操作
+								</div>
+							</div>
+							<div class="tablebody " id="imageList">
+
+							</div>
+
+						</div>
+						<!--页码块-->
+						<footer class="footer">
+							<ul class="pagination">
+								
+							</ul>
+						</footer>
+					</div>
+					<!--添加商品图片-->
+					<div class="modal fade" id="addPicture" role="dialog" aria-labelledby="gridSystemModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="gridSystemModalLabel">添加图片</h4>
+								</div>
+								<div class="modal-body">
+									<div class="container-fluid">
+										<form class="form-horizontal" id="uploadForm" enctype='multipart/form-data'>
+											<div class="form-group ">
+												<label for="sName" class="col-xs-4 control-label">商品编号：</label>
+												<div class="col-xs-7 ">
+													<input type="email" class="form-control input-sm duiqi" id="imageid1" placeholder="">
+												</div>
+											</div>
+											<div class="form-group ">
+												<label for="sName" class="col-xs-4 control-label">商品名称：</label>
+												<div class="col-xs-7 ">
+													<input type="email" class="form-control input-sm duiqi" id="imagephonename1" placeholder="">
+												</div>
+											</div>
+
+											<div class="form-group ">
+													<label for="sName" class="col-xs-4 control-label">手机图片：</label>
+													<div class="col-xs-7 ">
+														<input id="file" type="file">
+													</div>
+												</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+									<button type="button" class="btn btn-xs btn-green" id="addImage" data-dismiss="modal">保 存</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!--修改商品图片-->
+					<div class="modal fade" id="reviseImage" role="dialog" aria-labelledby="gridSystemModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="gridSystemModalLabel">修改图片</h4>
+								</div>
+								<div class="modal-body">
+									<div class="container-fluid">
+										<form class="form-horizontal">
+											<input type="hidden" id="uid">
+											<div class="form-group ">
+												<label for="sName" class="col-xs-4 control-label">商品编号：</label>
+												<div class="col-xs-7 ">
+													<input type="email" class="form-control input-sm duiqi" id="imageid2" placeholder="">
+												</div>
+											</div>
+											<div class="form-group ">
+												<label for="sName" class="col-xs-4 control-label">商品名称：</label>
+												<div class="col-xs-7 ">
+													<input type="email" class="form-control input-sm duiqi" id="imagephonename2" placeholder="">
+												</div>
+											</div>
+
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+									<button type="button" class="btn btn-xs btn-green updateimage" data-dismiss="modal">保 存</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!--删除图片-->
+					<div class="modal fade" id="deleteImage" role="dialog" aria-labelledby="gridSystemModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+								</div>
+								<input type="hidden" id="did">
+								<div class="modal-body">
+									<div class="container-fluid">
+										确定要删除？删除后不可恢复！
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+									<button type="button" class="btn  btn-xs btn-danger deleteimage" data-dismiss="modal">删除</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- 权限管理模块 -->
+
+					<!--手机管理模块-->
+					
+					<!--地址管理模块-->
+					
+					<!--添加地址模块-->
+					
+					<!--地址修改模块-->
+					
+					<!--地址删除警告-->
+					
+					<!--评论管理模块-->
+					
+					<!--添加评论模态框-->
+					
+					<!--评论详情模态框-->
+					
+					<!--删除评论模态框-->
+					
+					<!--订单管理模块-->
+					
+					<!--添加订单-->
+					
+					<!--订单修改模态框-->
+					
+					<!--订单删除模态框-->
+					
+					<!--添加手机模态框-->
+					
+					<!--用户管理模块-->
+					
+					<!-- 修改密码模块 -->
+					
+					<!--是否为会员管理模块-->
+
+					<!--规则管理模块-->
+
+					<!--时间段管理模块-->
+
+					<!--座位管理模块-->
+				</div>
+			</div>
+		</div>
+		<!-- 滑块js -->
+		<!--	<script type="text/javascript">
+        scale = function(btn, bar, title, unit) {
+                this.btn = document.getElementById(btn);
+                this.bar = document.getElementById(bar);
+                this.title = document.getElementById(title);
+                this.step = this.bar.getElementsByTagName("div")[0];
+                this.unit = unit;
+                this.init();
+        };
+        scale.prototype = {
+                init: function() {
+                        var f = this,
+                                g = document,
+                                b = window,
+                                m = Math;
+                        f.btn.onmousedown = function(e) {
+                                var x = (e || b.event).clientX;
+                                var l = this.offsetLeft;
+//						var max = f.bar.offsetWidth - this.offsetWidth;
+                                var max = f.bar.offsetWidth-20 ;
+                                g.onmousemove = function(e) {
+                                        var thisX = (e || b.event).clientX;
+                                        var to = m.min(max, m.max(-2, l + (thisX - x)));
+                                        f.btn.style.left = to+ 'px';
+                                        f.ondrag(m.round(m.max(0, to / max) * 100), to);
+                                        b.getSelection ? b.getSelection().removeAllRanges() : g.selection.empty();
+                                };
+                                g.onmouseup = new Function('this.onmousemove=null');
+                        };
+                },
+                ondrag: function(pos, x) {
+                        this.step.style.width = Math.max(0, x) +2+ 'px';
+                        this.title.innerHTML = pos / 10 + this.unit + "";
+                }
+        }
+        new scale('btn0', 'bar0', 'title0', "分钟");
+        new scale('btn1', 'bar1', 'title1', "分钟");
+        new scale('btn2', 'bar2', 'title2', "天");
+        new scale('btn3', 'bar3', 'title3', "次");
+</script>
+-->
+		<script src="js/jquery.nouislider.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+
+		<!-- this page specific inline scripts -->
+		<script>
+			//min/max slider
+			function huadong(my, unit, def, max) {
+				$(my).noUiSlider({
+					range: [0, max],
+					start: [def],
+					handles: 1,
+					connect: 'upper',
+					slide: function() {
+						var val = Math.floor($(this).val());
+						$(this).find(".noUi-handle").text(
+							val + unit
+						);
+						console.log($(this).find(".noUi-handle").parent().parent().html());
+					},
+					set: function() {
+						var val = Math.floor($(this).val());
+						$(this).find(".noUi-handle").text(
+							val + unit
+						);
+					}
+				});
+				$(my).val(def, true);
+			}
+			huadong('.slider-minmax1', "分钟", "5", 30);
+			huadong('.slider-minmax2', "分钟", "6", 15);
+			huadong('.slider-minmax3', "分钟", "10", 60);
+			huadong('.slider-minmax4', "次", "2", 10);
+			huadong('.slider-minmax5', "天", "3", 7);
+			huadong('.slider-minmax6', "天", "8", 10);
+		</script>
+
+		<script type="text/javascript">
+
+			var nameCookie = $.cookie('adminname');
+			if (nameCookie == null){
+				console.log(nameCookie);
+				$("#personInfor").html(`<p><a href = "adminlogin.html">请登录</a></p>`);
+			}else{
+				$("#personInfor").html(`
+					<p id="userName"></p>
+					<p>
+						<a href = "adminlogin.html">退出登录</a>
+					</p>
+				`);
+				$("#userName").text(nameCookie);
+			}
+
+			/*
+		     * 分段读取文件为blob ，并使用ajax上传到服务器
+		     * 分段上传exe文件会抛出异常
+		     */
+		    var fileBox = document.getElementById('file');
+		    var imagePath = "";
+		    function uploadImage() {
+		        // 获取文件对象
+		        var file = fileBox.files[0];
+		        var reader = new FileReader();
+		        var step = 1024 * 1024;
+		        var total = file.size;
+		        var cuLoaded = 0;
+		        console.info("文件大小：" + file.size);
+		        var startTime = new Date();
+		        // 读取一段成功
+		        reader.onload = function(e) {
+		            // 处理读取的结果
+		            var loaded = e.loaded;
+		            // 将分段数据上传到服务器
+		            uploadFile(reader.result, cuLoaded, function() {
+		                console.info('loaded:' + cuLoaded + 'current:' + loaded);
+		                // 如果没有读完，继续
+		                cuLoaded += loaded;
+		                if (cuLoaded < total) {
+		                    readBlob(cuLoaded);
+		                } else {
+		                    console.log('总共用时：'
+		                            + (new Date().getTime() - startTime.getTime())
+		                            / 1000);
+		                    cuLoaded = total;
+		                    //上传完成胡修改图片名称
+		                    renameImage();
+		                }
+		            });
+		        }
+		        // 指定开始位置，分块读取文件
+		        function readBlob(start) {
+		            // 指定开始位置和结束位置读取文件
+		            // console.info('start:' + start);
+		            var blob = file.slice(start, start + step);
+		            reader.readAsArrayBuffer(blob);
+		        }
+		        // 开始读取
+		        readBlob(0);
+		        // 关键代码上传到服务器
+		        function uploadFile(result, startIndex, onSuccess) {
+		            var blob = new Blob([ result ]);
+		            // 提交到服务器
+		            var fd = new FormData();
+		            fd.append('file', blob);
+		            fd.append('filename', file.name);
+		            fd.append('loaded', startIndex);
+		            var xhr = new XMLHttpRequest();
+		            xhr.open('post', 'http://localhost:8080//手机商城/image?op=upload',
+		                    true);
+		            xhr.onreadystatechange = function() {
+		                if (xhr.readyState == 4 && xhr.status == 200) {
+		                    // var data = eval('(' + xhr.responseText + ')');
+		                    console.info(xhr.responseText);
+		                    //上传结束后传回图片路径，用于修改
+		                    imagePath = xhr.responseText;
+		                    if (onSuccess)
+		                        onSuccess();
+		                }
+		            }
+		            // 开始发送
+		            xhr.send(fd);
+		        }
+		    }
+
+		    //上传完成后修改图片信息
+		    function renameImage(){
+		    	var imageid = $("#imageid1").val();
+		    	var phonename = $("#imagephonename1").val();
+		    	$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/image",
+    				cache:false,
+    				data:{
+    					imageid:imageid,
+    					phonename:phonename,
+    					imagePath:imagePath,
+    					op:"renameimage"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data) {
+    						alert("上传成功");
+    						if (key == ""){
+								getImageList();
+							}else{
+								getImageListByKey(key);
+							}
+    					}else{
+    						alert("上传失败");
+    					}
+    					$("#imageid1").val("");
+    					$("#imagephonename1").val("");
+    					$("#file").val("");
+    				}
+    			})
+		    }
+
+		    //上传并重命名图片
+		    $(document).on("click", "#addImage", function(){
+		    	console.log("开始上传");
+		    	uploadImage();
+		    });
+
+		</script>
+
+		<script type="text/javascript">
+			var pageIndex = "";
+			var key = "";
+			$(function(){
+				//初始化数据
+				getImageList();
+			});
+
+			//打开修改模态框填充数据
+			$(document).on("click", ".uimage", function(){
+				var id = $(this).data("id");
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/image",
+    				cache:false,
+    				data:{
+    					id:id,
+    					op:"imageinfo"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data != null) {
+    						console.log(data);
+    						$("#uid").val(data.id);
+    						$("#imageid2").val(data.imageid);
+    						$("#imagephonename2").val(data.phonename);
+    					}
+    				}
+    			})
+			});
+
+			//打开删除对话框填充数据
+			$(document).on("click", ".duser", function(){
+				var id = $(this).data("id");
+				console.log(id);
+				$("#did").val(id);
+			});
+
+			//更新图片信息
+			$(document).on("click", ".updateimage", function(){
+				var id = $("#uid").val();
+				var iamgeid = $("#imageid2").val();
+    			var phonename = $("#imagephonename2").val();
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/image",
+    				cache:false,
+    				data:{
+    					id:id,
+    					iamgeid:iamgeid,
+    					phonename:phonename,
+    					op:"updateimage"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data) {
+    						alert("更新成功");
+    						if (key == ""){
+								getImageList();
+							}else{
+								getImageListByKey(key);
+							}
+    					}else{
+    						alert("更新失败");
+    					}
+    				}
+    			})
+			})
+
+			//删除图片
+			$(document).on("click", ".deleteimage", function(){
+				var id = $("#did").val();
+				console.log(id);
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/image",
+    				cache:false,
+    				data:{
+    					id:id,
+    					op:"deleteimage"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data) {
+    						alert("删除成功");
+    						if (key == ""){
+								getImageList();
+							}else{
+								getImageListByKey(key);
+							}
+    					}else{
+    						alert("删除失败");
+    					}
+    				}
+    			})
+			})
+
+			//获取图片列表
+			function getImageList(){
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/image",
+    				cache:false,
+    				data:{
+    					pageIndex:pageIndex,
+    					op:"imagelist"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data != null){
+    						console.log(data);
+    						//显示用户列表
+    						$("#imageList").html("");
+    						var imageList ='';
+							var list = data.imageList;
+    						for (var i = 0; i < list.length; i ++){
+    							var image = list[i];
+    							// console.log(user);
+    							imageList += `
+	    							<div class="row userbody">
+	        							<div class="col-xs-3 imageid">
+	    									${image.imageid}
+	    								</div>
+	    								<div class="col-xs-3 phonename">
+	    									${image.phonename}
+	    								</div>
+	    								<div class="col-xs-4 image">
+	    									<img width="160px" height="100px" src="http://localhost:8080/手机商城/assets/images/admin/1.jpg">
+	    								</div>
+	    								<div class="col-xs-2">
+	    									<button class="btn btn-success btn-xs uimage" data-toggle="modal" data-target="#reviseImage" data-id="${image.id}">修改</button>
+	    									<button class="btn btn-danger btn-xs duser" data-toggle="modal" data-target="#deleteImage"  data-id="${image.id}">删除</button>
+	    								</div>
+	    							</div>
+        						`;
+    						}
+    						$("#imageList").html(imageList);
+
+    						//显示分页
+    						$("ul[class=pagination]").html("");
+    						var pageList = `
+    							<li>
+									<a href="#">
+										<font color="black">&laquo;</font>
+									</a>
+								</li>
+							`;
+    						for (var i = 1; i <= data.totalSize; i ++){
+    							pageList += `
+    								<li>
+	    								<span >
+	    									<font color="black" class="pageIndex">${i}</font>
+	    								</span>
+	    							</li>
+    							`;
+    						}
+    						pageList += `
+								<li>
+									<a href="#">
+										<font color="black">&raquo;</font>
+									</a>
+								</li>
+								<li class="gray">
+									<font color="black"id="totalSize"></font>
+								</li>
+							`;
+							$("ul[class=pagination]").html(pageList);
+							$("#totalSize").html("共" + data.totalSize + "页");
+    					}
+    				}
+				})
+			};
+
+			//模糊查询获取图片列表
+			function getImageListByKey(key){
+				console.log(key);
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/image",
+    				cache:false,
+    				data:{
+    					pageIndex:pageIndex,
+    					key:key,
+    					op:"imagelist"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data != null){
+    						console.log(data);
+    						//显示用户列表
+    						$("#imageList").html("");
+    						var imageList ='';
+							var list = data.imageList;
+    						for (var i = 0; i < list.length; i ++){
+    							var image = list[i];
+    							imageList += `
+	    							<div class="row userbody">
+	        							<div class="col-xs-3 imageid">
+	    									${image.imageid}
+	    								</div>
+	    								<div class="col-xs-3 phonename">
+	    									${image.phonename}
+	    								</div>
+	    								<div class="col-xs-4 image">
+	    									<img width="160px" height="100px" src="http://localhost:8080/手机商城/assets/images/admin/1.jpg">
+	    								</div>
+	    								<div class="col-xs-2">
+	    									<button class="btn btn-success btn-xs uimage" data-toggle="modal" data-target="#reviseImage" data-id="${image.id}">修改</button>
+	    									<button class="btn btn-danger btn-xs duser" data-toggle="modal" data-target="#deleteImage"  data-id="${image.id}">删除</button>
+	    								</div>
+	    							</div>
+        						`;
+    						}
+    						$("#imageList").html(imageList);
+
+    						//显示分页
+    						$("ul[class=pagination]").html("");
+    						var pageList = `
+    							<li>
+									<a href="#">
+										<font color="black">&laquo;</font>
+									</a>
+								</li>
+							`;
+    						for (var i = 1; i <= data.totalSize; i ++){
+    							pageList += `
+    								<li>
+	    								<span >
+	    									<font color="black" class="pageIndex">${i}</font>
+	    								</span>
+	    							</li>
+    							`;
+    						}
+    						pageList += `
+								<li>
+									<a href="#">
+										<font color="black">&raquo;</font>
+									</a>
+								</li>
+								<li class="gray">
+									<font color="black"id="totalSize"></font>
+								</li>
+							`;
+							$("ul[class=pagination]").html(pageList);
+							$("#totalSize").html("共" + data.totalSize + "页");
+    					}
+    				}
+				})
+			};
+
+			//页码点击跳转
+			$(document).on("click", ".pageIndex", function(){
+				pageIndex = $(this).html();
+				if (key == ""){
+					getImageList();
+				}else{
+					getImageListByKey(key);
+				}
+			});
+
+			//模糊查询
+			$(document).on("click", "#search", function(){
+				//重置当前页
+				pageIndex = "";
+				key = $("#keyword").val();
+				getImageListByKey(key);
+			});
+
+		</script>
+	</body>
+
+</html>
