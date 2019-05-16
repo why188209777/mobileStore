@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="ch">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="手机商城后台">
+		<meta name="keywords" content="手机商城后台">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<title>手机商城后台</title>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script>
+			$(function() {
+				$(".meun-item").click(function() {
+					$(".meun-item").removeClass("meun-item-active");
+					$(this).addClass("meun-item-active");
+					var itmeObj = $(".meun-item").find("img");
+					itmeObj.each(function() {
+						var items = $(this).attr("src");
+						items = items.replace("_grey.png", ".png");
+						items = items.replace(".png", "_grey.png")
+						$(this).attr("src", items);
+					});
+					var attrObj = $(this).find("img").attr("src");;
+					attrObj = attrObj.replace("_grey.png", ".png");
+					$(this).find("img").attr("src", attrObj);
+				});
+				$("#topAD").click(function() {
+					$("#topA").toggleClass(" glyphicon-triangle-right");
+					$("#topA").toggleClass(" glyphicon-triangle-bottom");
+				});
+				$("#topBD").click(function() {
+					$("#topB").toggleClass(" glyphicon-triangle-right");
+					$("#topB").toggleClass(" glyphicon-triangle-bottom");
+				});
+				$("#topCD").click(function() {
+					$("#topC").toggleClass(" glyphicon-triangle-right");
+					$("#topC").toggleClass(" glyphicon-triangle-bottom");
+				});
+				$(".toggle-btn").click(function() {
+					$("#leftMeun").toggleClass("show");
+					$("#rightContent").toggleClass("pd0px");
+				})
+			})
+		</script>
+		<!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/slide.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/flat-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.nouislider.css">
+	</head>
+
+	<body>
+		<div id="wrap">
+			<!-- 左侧菜单栏目块 -->
+			<div class="leftMeun" id="leftMeun">
+				<div id="logoDiv">
+					<p id="logoP"><img id="logo" alt="左右结构项目" src="images/logo.png"><span>手机商城后台</span></p>
+				</div>
+				<div id="personInfor">
+					
+				</div>
+				<div class="meun-title">账号管理</div>
+				<div class="meun-item meun-item-active" href="#user" aria-controls="user" role="tab" data-toggle="tab"><img src="images/icon_user_grey.png">用户管理</div>
+				<div class="meun-item"><a href="adminphone.html"><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;&nbsp;&nbsp;手机管理</a></div>
+				<div class="meun-item"><a href="adminaddress.html">&nbsp;<span class="glyphicon glyphicon-tower"></span>&nbsp;&nbsp;&nbsp;&nbsp;地址管理</a></div>
+				<div class="meun-item"><a href="admincomment.html"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;&nbsp;评论管理</a></div>
+				<div class="meun-item"><a href="adminorders.html">&nbsp;<span class="glyphicon glyphicon-gift"></span>&nbsp;&nbsp;&nbsp;&nbsp;订单管理</a></div>
+				<div class="meun-item"><a href="adminimages.html">&nbsp;<span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp;&nbsp;&nbsp;图片管理</a></div>
+				<div class="meun-item"><a href="adminrepassword.html"><img src="images/icon_change_grey.png">修改密码</a></div>
+
+			</div>
+			<!-- 右侧具体内容栏目 -->
+			<div id="rightContent">
+				<a class="toggle-btn" id="nimei">
+					<i class="glyphicon glyphicon-align-justify"></i>
+				</a>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<!--添加用户-->
+					<div class="modal fade" id="addModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="。true">&times;</span></button>
+									<h4 class="modal-title" id="gridSystemModalLabel">添加用户</h4>
+								</div>
+								<div class="modal-body">
+									<div class="container-fluid">
+										<form class="form-horizontal">
+											<div class="form-group ">
+												<label for="sName" class="col-xs-4 control-label">用户名：</label>
+												<div class="col-xs-7 ">
+													<input type="text" class="form-control input-sm duiqi" id="username1" placeholder="">
+												</div>
+											</div>
+											<div class="form-group ">
+												<label for="sPwd" class="col-xs-4 control-label">密码：</label>
+												<div class="col-xs-7 ">
+													<input type="text" class="form-control input-sm duiqi" id="password1" placeholder="">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="situation" class="col-xs-4 control-label">设置会员：</label>
+												<div class="col-xs-7">
+													<label class="control-label" for="anniu">
+                                                            <input type="radio" name="uservip" value="1"> 是</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label class="control-label" for="meun">
+                                                            <input type="radio" checked="checked" name="uservip" value="0"> 不是</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="situation" class="col-xs-4 control-label">设置管理员：</label>
+												<div class="col-xs-7">
+													<label class="control-label" for="anniu">
+                                                            <input type="radio" name="useradmin" value="1"> 是</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label class="control-label" for="meun">
+                                                            <input type="radio" checked="checked" name="useradmin" value="0"> 不是</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="sKnot" class="col-xs-4 control-label">手机号码：</label>
+												<div class="col-xs-7">
+													<input type="" class="form-control input-sm duiqi" id="userphonenum1" placeholder="">
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+									<button type="button" class="btn btn-xs btn-green addModal" id="addUser" data-dismiss="modal">保 存</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- 图片管理 -->
+					
+					<!--添加商品图片-->
+					
+					<!--修改商品图片-->
+					
+					<!--删除图片-->
+					
+					<!-- 权限管理模块 -->
+
+					<!--手机管理模块-->
+					
+					<!--地址管理模块-->
+					
+					<!--添加地址模块-->
+					
+					<!--地址修改模块-->
+					
+					<!--地址删除警告-->
+					
+					<!--评论管理模块-->
+					
+					<!--添加评论模态框-->
+					
+					<!--评论详情模态框-->
+					
+					<!--删除评论模态框-->
+					
+					<!--订单管理模块-->
+					
+					<!--添加订单-->
+					
+					<!--订单修改模态框-->
+					
+					<!--订单删除模态框-->
+					
+					<!--添加手机模态框-->
+					
+					<!--用户管理模块-->
+					<div role="tabpanel" class="tab-pane active" id="user">
+						<div class="check-div form-inline">
+							<div class="col-xs-3">
+								<button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addModal">添加用户 </button>
+							</div>
+							<div class="col-xs-4">
+								<input type="text" class="form-control input-sm" placeholder="输入文字搜索" id="keyword">
+								<button class="btn btn-white btn-xs " id="search">查 询 </button>
+							</div>
+							<div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+								<label for="paixu">排序:&nbsp;</label>
+								<select class=" form-control">
+									<option>用户名</option>
+									<option>是否为会员</option>
+									<option>是否为管理员</option>
+									<option>手机号码</option>
+									<option>操作</option>
+								</select>
+							</div>
+						</div>
+						<div class="data-div">
+							<div class="row tableHeader">
+								<div class="col-xs-4">
+									用户名
+								</div>
+								<div class="col-xs-2">
+									是否为会员
+								</div>
+								<div class="col-xs-2">
+									是否为管理员
+								</div>
+								<div class="col-xs-2">
+									手机号码
+								</div>
+								<div class="col-xs-2">
+									操作
+								</div>
+							</div>
+							<div class="tablebody" id="userList">	
+
+							</div>
+
+						</div>
+						<!--页码块-->
+						<footer class="footer">
+							<ul class="pagination">
+								
+							</ul>
+						</footer>
+
+						<!--弹出添加用户窗口-->
+
+						<!-- /.modal -->
+
+						<!--弹出修改用户窗口-->
+						<div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<form class="form-horizontal">
+												<input type="hidden" id="uuserid">
+												<div class="form-group ">
+													<label for="sName" class="col-xs-4 control-label">用户名：</label>
+													<div class="col-xs-7 ">
+														<input type="email" class="form-control input-sm duiqi" id="username2" placeholder="">
+													</div>
+												</div>
+												<div class="form-group ">
+												<label for="sPwd" class="col-xs-4 control-label">密码：</label>
+												<div class="col-xs-7 ">
+													<input type="password" class="form-control input-sm duiqi" id="password2" placeholder="">
+												</div>
+											</div>
+												<div class="form-group">
+													<label for="situation" class="col-xs-4 control-label">设置会员：</label>
+													<div class="col-xs-7">
+														<label class="control-label" for="anniu">
+															<input type="radio" name="uservip" value="1" > 是</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<label class="control-label" for="meun">
+															<input type="radio" name="uservip" value="0" > 不是</label>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="situation" class="col-xs-4 control-label">设置管理员：</label>
+													<div class="col-xs-7">
+														<label class="control-label" for="anniu">
+															<input type="radio" name="useradmin" value="1"> 是</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<label class="control-label" for="meun">
+															<input type="radio" name="useradmin" value="0"> 不是</label>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="sKnot" class="col-xs-4 control-label">手机号码：</label>
+													<div class="col-xs-7">
+														<input type="" class="form-control input-sm duiqi" id="userphonenum2" placeholder="">
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+										<button type="button" class="btn btn-xs btn-green updateuser" data-dismiss="modal">保 存</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!-- /.modal -->
+
+						<!--弹出删除用户警告窗口-->
+						<div class="modal fade" id="deleteUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+									</div>
+									<input type="hidden" id="duserid">
+									<div class="modal-body">
+										<div class="container-fluid">
+											确定要删除该用户？删除后不可恢复！
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+										<button type="button" class="btn  btn-xs btn-danger deleteuser" data-dismiss="modal">删除</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!-- /.modal -->
+
+					</div>
+					<!-- 修改密码模块 -->
+					
+					<!--是否为会员管理模块-->
+
+					<!--规则管理模块-->
+
+					<!--时间段管理模块-->
+
+					<!--座位管理模块-->
+				</div>
+			</div>
+		</div>
+		<!-- 滑块js -->
+		<!--	<script type="text/javascript">
+        scale = function(btn, bar, title, unit) {
+                this.btn = document.getElementById(btn);
+                this.bar = document.getElementById(bar);
+                this.title = document.getElementById(title);
+                this.step = this.bar.getElementsByTagName("div")[0];
+                this.unit = unit;
+                this.init();
+        };
+        scale.prototype = {
+                init: function() {
+                        var f = this,
+                                g = document,
+                                b = window,
+                                m = Math;
+                        f.btn.onmousedown = function(e) {
+                                var x = (e || b.event).clientX;
+                                var l = this.offsetLeft;
+//						var max = f.bar.offsetWidth - this.offsetWidth;
+                                var max = f.bar.offsetWidth-20 ;
+                                g.onmousemove = function(e) {
+                                        var thisX = (e || b.event).clientX;
+                                        var to = m.min(max, m.max(-2, l + (thisX - x)));
+                                        f.btn.style.left = to+ 'px';
+                                        f.ondrag(m.round(m.max(0, to / max) * 100), to);
+                                        b.getSelection ? b.getSelection().removeAllRanges() : g.selection.empty();
+                                };
+                                g.onmouseup = new Function('this.onmousemove=null');
+                        };
+                },
+                ondrag: function(pos, x) {
+                        this.step.style.width = Math.max(0, x) +2+ 'px';
+                        this.title.innerHTML = pos / 10 + this.unit + "";
+                }
+        }
+        new scale('btn0', 'bar0', 'title0', "分钟");
+        new scale('btn1', 'bar1', 'title1', "分钟");
+        new scale('btn2', 'bar2', 'title2', "天");
+        new scale('btn3', 'bar3', 'title3', "次");
+</script>
+-->
+		<script src="js/jquery.nouislider.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+
+		<!-- this page specific inline scripts -->
+		<script>
+			//min/max slider
+			function huadong(my, unit, def, max) {
+				$(my).noUiSlider({
+					range: [0, max],
+					start: [def],
+					handles: 1,
+					connect: 'upper',
+					slide: function() {
+						var val = Math.floor($(this).val());
+						$(this).find(".noUi-handle").text(
+							val + unit
+						);
+						console.log($(this).find(".noUi-handle").parent().parent().html());
+					},
+					set: function() {
+						var val = Math.floor($(this).val());
+						$(this).find(".noUi-handle").text(
+							val + unit
+						);
+					}
+				});
+				$(my).val(def, true);
+			}
+			huadong('.slider-minmax1', "分钟", "5", 30);
+			huadong('.slider-minmax2', "分钟", "6", 15);
+			huadong('.slider-minmax3', "分钟", "10", 60);
+			huadong('.slider-minmax4', "次", "2", 10);
+			huadong('.slider-minmax5', "天", "3", 7);
+			huadong('.slider-minmax6', "天", "8", 10);
+		</script>
+		
+		<script type="text/javascript">
+
+			var nameCookie = $.cookie('adminname');
+			if (nameCookie == null){
+				console.log(nameCookie);
+				$("#personInfor").html(`<p><a href = "adminlogin.html">请登录</a></p>`);
+			}else{
+				$("#personInfor").html(`
+					<p id="userName"></p>
+					<p>
+						<a href = "adminlogin.html">退出登录</a>
+					</p>
+				`);
+				$("#userName").text(nameCookie);
+			}
+
+			var pageIndex = "";
+			var key = "";
+			$(function(){
+				//初始化数据
+				getUserList();
+			});
+			
+			//添加用户
+			$(document).on("click", "#addUser", function(){
+				var username = $("#username1").val();
+				var password = $("#password1").val();
+				var phonepattern = /^1[34578]\d{9}$/;
+				var vip = 0;
+				var admin = 0;
+				$("input[name=uservip]").each(function(index, obj){
+					if (index == 0 && $(obj).prop("checked")) {
+						vip = 1;
+					}
+				})
+				$("input[name=useradmin]").each(function(index, obj){
+					if (index == 0 && $(obj).prop("checked")) {
+						admin = 1;
+					}
+				})
+				var phonenum = $("#userphonenum1").val();
+				if(username==""||phonenum==""||password==""){
+					alert("以下内容不能为空请重新输入");
+				}else if(password.length<9){
+				    alert("密码不能小于6位");
+				} else if(!phonepattern.test(phonenum)){
+				    alert("请输入正确格式的手机号");
+				}else{
+					$.ajax({
+	    				type:"post",
+	    				url:"http://localhost:8080/手机商城/admin",
+	    				cache:false,
+	    				data:{
+	    					name:username,
+	    					password:password,
+	    					vip:vip,
+	    					admin:admin,
+	    					phonenum:phonenum,
+	    					op:"adduser"
+	    				},
+	    				dataType:"json",
+	    				success:function(data){
+	    					if (data) {
+	    						alert("添加成功");
+	    						//清除模态框数据
+	    						$("#username1").val("");
+	    						$("#password1").val("");
+	    						$("#userphonenum1").val("");
+	    						$("input[name=uservip][value=0]").prop("checked", 'checked');
+	    						$("input[name=useradmin][value=0]").prop("checked", 'checked');
+	    						getUserList();
+	    					}else{
+	    						alert("添加失败");
+	    					}
+	    				}
+	    			})
+				}	
+			});
+
+			//打开修改模态框填充数据
+			$(document).on("click", ".uuser", function(){
+				var id = $(this).data("userid");
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/admin",
+    				cache:false,
+    				data:{
+    					id:id,
+    					op:"userinfo"
+    				},
+    				dataType:"json",
+    				success:function(data){
+						console.log(data);
+    					if (data != null) {
+    						$("#uuserid").val(data.id);
+							console.log($("input[name=uservip][value=1]").prop("checked"));
+							console.log($("input[name=uservip][value=0]").prop("checked"));
+							console.log($("input[name=useradmin][value=1]").prop("checked"));
+							console.log($("input[name=useradmin][value=0]").prop("checked"));
+    						if (data.vip == 1) {
+    							$("input[name=uservip][value=1]").prop("checked", "checked");
+    						}else{
+    							$("input[name=uservip][value=0]").prop("checked", "checked");
+    						}
+    						if (data.admin == 1) {
+    							$("input[name=useradmin][value=1]").prop("checked", "checked");
+    						}else{
+    							$("input[name=useradmin][value=0]").prop("checked", "checked");
+    						}
+    						$("#username2").val(data.userName);
+    						$("#password2").val(data.password);
+    						$("#userphonenum2").val(data.phoneNum);
+    					}
+    				}
+    			})
+			});
+
+			//打开删除对话框填充数据
+			$(document).on("click", ".duser", function(){
+				var id = $(this).data("userid");
+				console.log(id);
+				$("#duserid").val(id);
+			});
+
+			//更新用户信息
+			$(document).on("click", ".updateuser", function(){
+				var id = $("#uuserid").val();
+				var name = $("#username2").val();
+				var password = $("#password2").val();
+				var vip = 0;
+				var admin = 0;
+				console.log($("input[name=uservip][value=1]").prop("checked"));
+				console.log($("input[name=useradmin][value=1]").prop("checked"));
+				if ($("input[name=uservip][value=1]").prop("checked")) {
+					vip = 1;
+				}
+				if ($("input[name=uservip][value=0]").prop("checked")) {
+					vip = 0;
+				}
+				if ($("input[name=useradmin][value=1]").prop("checked")) {
+					admin = 1;
+				}
+				if ($("input[name=useradmin][value=0]").prop("checked")) {
+					admin = 0;
+				}
+				console.log("vip:" + vip);
+				console.log("admin:" + admin);
+				var phoneNum = $("#userphonenum2").val();
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/admin",
+    				cache:false,
+    				data:{
+    					id:id,
+    					name:name,
+    					password:password,
+    					vip:vip,
+    					admin:admin,
+    					phonenum:phoneNum,
+    					op:"updateuser"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data) {
+    						alert("更新成功");
+    						if (key == ""){
+    							getUserList();
+    						}else{
+    							getUserListByKey(key);
+    						}
+    					}else{
+    						alert("更新失败");
+    					}
+    				}
+    			})
+			})
+
+			//删除用户
+			$(document).on("click", ".deleteuser", function(){
+				var id = $("#duserid").val();
+				console.log(id);
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/admin",
+    				cache:false,
+    				data:{
+    					id:id,
+    					op:"deleteuser"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data) {
+    						alert("删除成功");
+    						if (key == ""){
+								getUserList();
+							}else{
+								getUserListByKey(key);
+							}
+    					}else{
+    						alert("删除失败");
+    					}
+    				}
+    			})
+			})
+
+			//获取用户列表
+			function getUserList(){
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/admin",
+    				cache:false,
+    				data:{
+    					pageIndex:pageIndex,
+    					op:"userlist"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data != null){
+    						console.log(data);
+    						//显示用户列表
+    						$("#userList").html("");
+    						var userList ='';
+							var list = data.userList;
+    						for (var i = 0; i < list.length; i ++){
+    							var user = list[i];
+    							// console.log(user);
+    							userList += `
+	    							<div class="row userbody">
+	        							<div class="col-xs-4 username">
+	    									${user.userName}
+	    								</div>
+	    								<div class="col-xs-2 uservip">
+	    									${user.vip}
+	    								</div>
+	    								<div class="col-xs-2 useradmin">
+	    									${user.admin}
+	    								</div>
+	    								<div class="col-xs-2 userphonenum">
+	    									${user.phoneNum}
+	    								</div>
+	    								<div class="col-xs-2">
+	    									<button class="btn btn-success btn-xs uuser" data-toggle="modal" data-target="#reviseUser" data-userid="${user.id}">修改</button>
+	    									<button class="btn btn-danger btn-xs duser" data-toggle="modal" data-target="#deleteUser"  data-userid="${user.id}">删除</button>
+	    								</div>
+	    							</div>
+        						`;
+    						}
+    						$("#userList").html(userList);
+
+    						//显示分页
+    						$("ul[class=pagination]").html("");
+    						var pageList = `
+    							<li>
+									<a href="#">
+										<font color="black">&laquo;</font>
+									</a>
+								</li>
+							`;
+    						for (var i = 1; i <= data.totalSize; i ++){
+    							pageList += `
+    								<li>
+	    								<span >
+	    									<font color="black" class="pageIndex">${i}</font>
+	    								</span>
+	    							</li>
+    							`;
+    						}
+    						pageList += `
+								<li>
+									<a href="#">
+										<font color="black">&raquo;</font>
+									</a>
+								</li>
+								<li class="gray">
+									<font color="black"id="totalSize"></font>
+								</li>
+							`;
+							$("ul[class=pagination]").html(pageList);
+							$("#totalSize").html("共" + data.totalSize + "页");
+    					}
+    				}
+				})
+			};
+
+			//模糊查询获取用户列表
+			function getUserListByKey(key){
+				$.ajax({
+    				type:"post",
+    				url:"http://localhost:8080/手机商城/admin",
+    				cache:false,
+    				data:{
+    					pageIndex:pageIndex,
+    					key:key,
+    					op:"userlist"
+    				},
+    				dataType:"json",
+    				success:function(data){
+    					if (data != null){
+    						console.log(data);
+    						//显示用户列表
+    						$("#userList").html("");
+    						var userList ='';
+							var list = data.userList;
+    						for (var i = 0; i < list.length; i ++){
+    							var user = list[i];
+    							userList += `
+	    							<div class="row userbody">
+	        							<div class="col-xs-4 username">
+	    									${user.userName}
+	    								</div>
+	    								<div class="col-xs-2 uservip">
+	    									${user.vip}
+	    								</div>
+	    								<div class="col-xs-2 useradmin">
+	    									${user.admin}
+	    								</div>
+	    								<div class="col-xs-2 userphonenum">
+	    									${user.phoneNum}
+	    								</div>
+	    								<div class="col-xs-2">
+	    									<button class="btn btn-success btn-xs uuser" data-toggle="modal" data-target="#reviseUser" data-userid="${user.id}">修改</button>
+	    									<button class="btn btn-danger btn-xs duser" data-toggle="modal" data-target="#deleteUser"  data-userid="${user.id}">删除</button>
+	    								</div>
+	    							</div>
+        						`;
+    						}
+    						$("#userList").html(userList);
+
+    						//显示分页
+    						$("ul[class=pagination]").html("");
+    						var pageList = `
+    							<li>
+									<a href="#">
+										<font color="black">&laquo;</font>
+									</a>
+								</li>
+							`;
+    						for (var i = 1; i <= data.totalSize; i ++){
+    							pageList += `
+    								<li>
+	    								<span >
+	    									<font color="black" class="pageIndex">${i}</font>
+	    								</span>
+	    							</li>
+    							`;
+    						}
+    						pageList += `
+								<li>
+									<a href="#">
+										<font color="black">&raquo;</font>
+									</a>
+								</li>
+								<li class="gray">
+									<font color="black"id="totalSize"></font>
+								</li>
+							`;
+							$("ul[class=pagination]").html(pageList);
+							$("#totalSize").html("共" + data.totalSize + "页");
+    					}
+    				}
+				})
+			};
+
+			//页码点击跳转
+			$(document).on("click", ".pageIndex", function(){
+				pageIndex = $(this).html();
+				if (key == ""){
+					getUserList();
+				}else{
+					getUserListByKey(key);
+				}
+			});
+
+			//模糊查询
+			$(document).on("click", "#search", function(){
+				//重置当前页
+				pageIndex = "";
+				key = $("#keyword").val();
+				getUserListByKey(key);
+			});
+
+		</script>
+	</body>
+
+</html>

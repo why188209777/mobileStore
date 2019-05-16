@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>登录</title>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+
+<body>	
+
+	<img class="bgone" src="images/loginImg/1.jpg" />
+	<img class="pic" src="images/loginImg/a.png" />
+	
+	<div class="table">
+		<div class="wel">手机商城系统后台登录</div>
+		<div class="wel1">WELCOME TO OUR MOBILE MANAGE SYSTEM</div>
+		<div class="user">
+			<div id="yonghu" style=""><img src="images/loginImg/yhm.png" /></div>
+			<input type="text" id="adminname" name="用户名" placeholder="用户名" />
+		</div>			
+		<div class="password">
+			<div id="yonghu"><img src="images/loginImg/mm.png" /></div>
+			<input type="password" id="password" name="密码" placeholder="密码"/>
+		</div>
+		<input class="btn" type="button" id="login" name="登录" value="登录" />
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.md5.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		$(document).on("click", "#login", function(){
+			
+			var adminname = $("#adminname").val();
+			var password = $.md5($("#password").val());
+			console.log(password);
+			$.ajax({
+   				type:"post",
+   				url:"http://localhost:8080/手机商城/admin",
+   				cache:false,
+   				data:{
+   					adminname:adminname,
+   					password:password,
+   					op:"login"
+   				},
+   				dataType:"json",
+   				success:function(data){
+   					if (data){
+   						$.cookie('adminname', adminname);
+	        			$.cookie('password', password);
+   						alert("登录成功");
+						window.location.href = "adminindex.html";
+   					}else{
+   						alert("登录失败");
+   					}
+   				}
+			})
+		})
+	</script>
+</body>
+</html>
