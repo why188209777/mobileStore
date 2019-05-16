@@ -148,6 +148,28 @@ public class AdminServlet extends HttpServlet {
 			String json = JSON.toJSONString(user);
 			out.println(json);
 		}
+		
+		if ("updatepwd".equals(op)) {
+			String username = request.getParameter("adminname");
+			String password = request.getParameter("oldpwd");
+			System.out.println(username);
+			System.out.println(password);
+			User user = userService.login(username, password);
+			System.out.println(user);
+			if (user != null) {
+				String newpwd = request.getParameter("newpwd");
+				System.out.println(newpwd);
+				user.setPassword(newpwd);
+				int updateUser = userService.updateUser(user);
+				if (updateUser > 0) {
+					out.println(true);
+				}else {
+					out.println(false);
+				}
+			}else {
+				out.println(false);
+			}
+		}
 	
 	}
 

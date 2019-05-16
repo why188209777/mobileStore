@@ -403,6 +403,7 @@
       });
       
       var nameCookie = $.cookie('username');
+      console.log(nameCookie);
       if (nameCookie != null){
       	$("span[id=username]").text(nameCookie);
       	$("a[id=logininfo").attr("href", "personpage.html");
