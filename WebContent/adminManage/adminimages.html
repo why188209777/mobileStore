@@ -450,7 +450,7 @@
 		    	var phonename = $("#imagephonename1").val();
 		    	$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/image",
+    				url:"image",
     				cache:false,
     				data:{
     					imageid:imageid,
@@ -498,7 +498,7 @@
 				var id = $(this).data("id");
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/image",
+    				url:"image",
     				cache:false,
     				data:{
     					id:id,
@@ -530,7 +530,7 @@
     			var phonename = $("#imagephonename2").val();
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/image",
+    				url:"image",
     				cache:false,
     				data:{
     					id:id,
@@ -560,7 +560,7 @@
 				console.log(id);
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/image",
+    				url:"image",
     				cache:false,
     				data:{
     					id:id,
@@ -586,7 +586,7 @@
 			function getImageList(){
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/image",
+    				url:"image",
     				cache:false,
     				data:{
     					pageIndex:pageIndex,
@@ -612,7 +612,7 @@
 	    									${image.phonename}
 	    								</div>
 	    								<div class="col-xs-4 image">
-	    									<img width="60px" height="60px" src="http://localhost:8080/手机商城/assets/images/phone/${image.imageid}.png">
+	    									<img width="60px" height="60px" src="assets/images/phone/${image.imageid}.png">
 	    								</div>
 	    								<div class="col-xs-2">
 	    									<button class="btn btn-success btn-xs uimage" data-toggle="modal" data-target="#reviseImage" data-id="${image.id}">修改</button>
@@ -663,7 +663,7 @@
 				console.log(key);
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/image",
+    				url:"image",
     				cache:false,
     				data:{
     					pageIndex:pageIndex,
@@ -689,7 +689,7 @@
 	    									${image.phonename}
 	    								</div>
 	    								<div class="col-xs-4 image">
-	    									<img width="60px" height="60px" src="http://localhost:8080/手机商城/assets/images/admin/1.jpg">
+	    									<img width="60px" height="60px" src="assets/images/admin/1.jpg">
 	    								</div>
 	    								<div class="col-xs-2">
 	    									<button class="btn btn-success btn-xs uimage" data-toggle="modal" data-target="#reviseImage" data-id="${image.id}">修改</button>

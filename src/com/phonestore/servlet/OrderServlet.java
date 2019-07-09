@@ -1,7 +1,6 @@
 package com.phonestore.servlet;
 
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -131,7 +130,7 @@ public class OrderServlet extends HttpServlet {
 				userList.add(user);
 				
 			}
-			int pageSize = 2;
+			int pageSize = 7;
 			int pageIndex = 
 				request.getParameter("pageIndex") == ""
 				? 1
@@ -151,7 +150,7 @@ public class OrderServlet extends HttpServlet {
 						: od.getTotalCount() / pageSize + 1;
 			}
 			
-			Map map = new HashMap();
+			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("orderlist", list);
 			map.put("userlist", userList);
 			map.put("pageIndex", pageIndex);

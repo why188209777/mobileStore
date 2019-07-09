@@ -465,7 +465,7 @@
 				}else{
 					$.ajax({
 	    				type:"post",
-	    				url:"http://localhost:8080/手机商城/admin",
+	    				url:"admin",
 	    				cache:false,
 	    				data:{
 	    					name:username,
@@ -499,7 +499,7 @@
 				var id = $(this).data("userid");
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/admin",
+    				url:"admin",
     				cache:false,
     				data:{
     					id:id,
@@ -566,7 +566,7 @@
 				var phoneNum = $("#userphonenum2").val();
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/admin",
+    				url:"admin",
     				cache:false,
     				data:{
     					id:id,
@@ -599,7 +599,7 @@
 				console.log(id);
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/admin",
+    				url:"admin",
     				cache:false,
     				data:{
     					id:id,
@@ -625,7 +625,7 @@
 			function getUserList(){
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/admin",
+    				url:"admin",
     				cache:false,
     				data:{
     					pageIndex:pageIndex,
@@ -704,7 +704,7 @@
 			function getUserListByKey(key){
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/admin",
+    				url:"admin",
     				cache:false,
     				data:{
     					pageIndex:pageIndex,

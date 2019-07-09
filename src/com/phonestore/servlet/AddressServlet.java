@@ -129,7 +129,7 @@ public class AddressServlet extends HttpServlet {
 						? as.getTotalCount() / pageSize
 						: as.getTotalCount() / pageSize + 1;
 			}
-			Map map = new HashMap();
+			Map<String,Object>map = new HashMap<String,Object>();
 			map.put("addresslist", list);
 			map.put("pageIndex", pageIndex);
 			map.put("totalSize", totalSize);

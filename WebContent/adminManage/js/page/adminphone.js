@@ -9,7 +9,7 @@ $(function(){
 	function getAllPhone(){
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/PhoneServlet",
+			url:"PhoneServlet",
 			async:true,
 			cache:false,
 			data:{
@@ -130,7 +130,7 @@ $(function(){
 		console.log("页码："+pageIndex);
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/PhoneServlet",
+			url:"PhoneServlet",
 			cache:false,
 			data:{
 				pageIndex:pageIndex,
@@ -160,7 +160,7 @@ $(function(){
 		console.log("页码："+currentPage);
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/PhoneServlet",
+			url:"PhoneServlet",
 			cache:false,
 			data:{
 				pageIndex:pageIndex,
@@ -189,7 +189,7 @@ $(function(){
 		console.log("页码："+currentPage);
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/PhoneServlet",
+			url:"PhoneServlet",
 			cache:false,
 			data:{
 				pageIndex:pageIndex,
@@ -250,7 +250,7 @@ $(function(){
 		console.log("开始添加手机");
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/PhoneServlet",
+			url:"PhoneServlet",
 			cache:false,
 			data:{
 				op:"addPhone",
@@ -325,7 +325,7 @@ $(function(){
 					var phonedescription=$("#phonecontent2").val();
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/手机商城/PhoneServlet",
+						url:"PhoneServlet",
 						async:true,
 						cache:false,
 						data:{
@@ -370,7 +370,7 @@ $(function(){
 					//2.ajax返回函数里重新遍历
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/手机商城/PhoneServlet",
+						url:"PhoneServlet",
 						async:true,
 						cache:false,
 						data:{
@@ -404,7 +404,7 @@ $(function(){
 		console.log(keyword);
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/PhoneServlet",
+			url:"PhoneServlet",
 			async:true,
 			cache:false,
 			data:{

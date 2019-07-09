@@ -423,7 +423,7 @@
 				console.log(userid);
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/AddressServlet",
+    				url:"AddressServlet",
     				cache:false,
     				data:{
     					city:city,
@@ -456,7 +456,7 @@
 				var id = $(this).data("addressid");
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/AddressServlet",
+    				url:"AddressServlet",
     				cache:false,
     				data:{
     					id:id,
@@ -481,7 +481,7 @@
 			function getAddressList(){
 				$.ajax({
 					type:"post",
-	        		url:"http://localhost:8080/手机商城/AddressServlet",
+	        		url:"AddressServlet",
 	        		data:{
     					pageIndex:pageIndex,
     					op:"getlist"
@@ -560,7 +560,7 @@
 			function getAddressListByKey(key){
 				$.ajax({
 					type:"post",
-	        		url:"http://localhost:8080/手机商城/AddressServlet",
+	        		url:"AddressServlet",
 	        		data:{
     					pageIndex:pageIndex,
     					key:key,
@@ -650,7 +650,7 @@
 
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/AddressServlet",
+    				url:"AddressServlet",
     				cache:false,
     				data:{
     					id:id,
@@ -684,7 +684,7 @@
 				
 				$.ajax({
     				type:"post",
-    				url:"http://localhost:8080/手机商城/AddressServlet",
+    				url:"AddressServlet",
     				cache:false,
     				data:{
     					id:id,

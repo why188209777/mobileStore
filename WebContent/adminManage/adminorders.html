@@ -85,7 +85,7 @@
 					<a href="adminaddress.html">&nbsp;<span class="glyphicon glyphicon-tower"></span>&nbsp;&nbsp;&nbsp;&nbsp;地址管理</a>
 				</div>
 				<div class="meun-item">
-					<a href="admincommit.html"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;&nbsp;评论管理</a>
+					<a href="admincomment.html"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;&nbsp;评论管理</a>
 				</div>
 				<div class="meun-item meun-item-active" href="#order" aria-controls="order" role="tab" data-toggle="tab">&nbsp;<span class="glyphicon glyphicon-gift"></span>&nbsp;&nbsp;&nbsp;&nbsp;订单管理</div>
 				<div class="meun-item">
@@ -459,7 +459,7 @@
 			function getOrderList(){
 				$.ajax({
 					type:"post",
-	        		url:"http://localhost:8080/手机商城/OrderServlet",
+	        		url:"OrderServlet",
 	        		data:{
     					pageIndex:pageIndex,
     					op:"getlist"
@@ -553,7 +553,7 @@
 			function getOrderListByKey(key){
 				$.ajax({
 					type:"post",
-	        		url:"http://localhost:8080/手机商城/OrderServlet",
+	        		url:"OrderServlet",
 	        		data:{
     					pageIndex:pageIndex,
     					key:key,
@@ -649,7 +649,7 @@
 			function del(id){
 					$.ajax({
 						type:"post",
-	        			url:"http://localhost:8080/手机商城/OrderServlet",
+	        			url:"OrderServlet",
 	        			data:"op=dellist&id="+id,
 	        			dataType:"json",
 	        			cache:false,
@@ -666,7 +666,7 @@
 			function show(id){
 					$.ajax({
 						type:"post",
-	        			url:"http://localhost:8080/手机商城/OrderServlet",
+	        			url:"OrderServlet",
 	        			data:"op=show&id="+id,
 	        			dataType:"json",
 	        			cache:false,

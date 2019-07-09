@@ -5,7 +5,7 @@ $(function(){
 	function getAllComments(){
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/CommentServlet",
+			url:"CommentServlet",
 			async:true,
 			cache:false,
 			data:{
@@ -13,7 +13,7 @@ $(function(){
 			},
 			dataType:"json",
 			success:function(data){
-				console.log(data)
+				console.log(data);
 				getDataComment(data);	
 			},
 			error:function(error){
@@ -121,11 +121,11 @@ $(function(){
 		console.log("页码："+pageIndex);
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/CommentServlet",
+			url:"CommentServlet",
 			cache:false,
 			data:{
 				pageIndex:pageIndex,
-				op:"getAllComments"
+				op:"getAllComments",
 			},
 			dataType:"json",
 			success:function(data){
@@ -151,7 +151,7 @@ $(function(){
 		console.log("页码："+currentPage);
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/CommentServlet",
+			url:"CommentServlet",
 			cache:false,
 			data:{
 				pageIndex:pageIndex,
@@ -180,7 +180,7 @@ $(function(){
 		console.log("页码："+currentPage);
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/CommentServlet",
+			url:"CommentServlet",
 			cache:false,
 			data:{
 				pageIndex:pageIndex,
@@ -223,7 +223,7 @@ $(function(){
 					var commentcontent=$("#commentcontent2").val();
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/手机商城/CommentServlet",
+						url:"CommentServlet",
 						async:true,
 						cache:false,
 						data:{
@@ -268,7 +268,7 @@ $(function(){
 					//2.ajax返回函数里重新遍历
 					$.ajax({
 						type:"post",
-						url:"http://localhost:8080/手机商城/CommentServlet",
+						url:"CommentServlet",
 						async:true,
 						cache:false,
 						data:{
@@ -299,7 +299,7 @@ $(function(){
 		console.log(keyword);
 		$.ajax({
 			type:"post",
-			url:"http://localhost:8080/手机商城/CommentServlet",
+			url:"CommentServlet",
 			async:true,
 			cache:false,
 			data:{
